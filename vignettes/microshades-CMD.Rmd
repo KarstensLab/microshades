@@ -1,0 +1,150 @@
+---
+title: "microshades-CMD"
+author: "Erin Dahl"
+date: '`r format(Sys.Date(), "%B %e, %Y")`'
+output: rmarkdown::html_document
+vignette: >
+  %\VignetteIndexEntry{microshades-CMD}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+# Curated Metagenomic Data Vignette
+
+This vignette uses Curated Metagenomic Data of the Human Microbiome.
+
+
+This data is available in the curatedMetagenomicData library. To download use `BiocManager::install("curatedMetagenomicData")`.
+
+Learn more about the Curated Metagenomic Data [here](https://github.com/waldronlab/curatedMetagenomicData).
+Secondary link https://bioconductor.org/packages/release/data/experiment/html/curatedMetagenomicData.html
+
+To install microshades use command `devtools::install_github("KarstensLab/microshades")`
+
+## Load the necessary packages for this tutorial
+
+```{r message=FALSE}
+library(curatedMetagenomicData)
+library(phyloseq)
+library(ggplot2)
+library(cowplot)
+library(grid)
+library(microshades)
+```
+## Load datasets and convert to phyloseq objects
+
+```{r message= FALSE}
+# Load the CMD data 
+britol = BritoIL_2016.metaphlan_bugs_list.stool()
+ps_britol = ExpressionSet2phyloseq (britol)
+
+HMP = HMP_2012.metaphlan_bugs_list.stool()
+ps_HMP = ExpressionSet2phyloseq (HMP)
+```
+
+The `ps_britol` object contains 112 samples, and `ps_HMP` contains 141 samples. To focus on a smaller sample size, use phyloseq function `subset_samples()`. In this scenario, only schoolage subjects samples will be included.
+
+```{r message= FALSE}
+# Subset the samples
+ps_britol_sub <- subset_samples(ps_britol,age_category == "schoolage")
+
+ps_HMP_sub <- subset_samples(ps_HMP,age_category == "schoolage")
+```
+
+Now `ps_britol_sub` object contains 18 samples, and `ps_HMP_sub` contains 6 samples. Begin using microshades functions to evaluate abundance and apply advanced color organization. 
+
+
+## Apply the microshades functions to the Britol dataset.
+
+```{r}
+# Use microshades function prep_mdf to agglomerate, normalize, and melt the phyloseq object
+mdf_britol_pre <- prep_mdf(ps_britol_sub)
+
+# Create a color object for the specified data
+color_objs_britol <- create_color_dfs(mdf_britol_pre)
+
+# Extract
+mdf_britol<- color_objs_britol$mdf
+cdf_britol <- color_objs_britol$color_df
+```
+
+### Plot Britol
+
+The dataframe `mdf_britol` contains sample data and abundance info. The dataframe `cdf_britol` stores the color mapping information used for plotting. 
+
+`plot_microshades` produces a stacked barplot with ordered subgroup taxonomy. The darkest shade is the most abundant, and the lightest shade is the least abundant. (excluding the "other" subgroup from each of the selected groups)
+
+```{r fig.width= 6, fig.height= 4}
+
+plot_britol <- plot_microshades(mdf_britol, cdf_britol)
+
+plot_britol + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
+  theme(axis.text.x = element_text(size= 6)) 
+
+```
+
+## Apply the microshades functions to the HMP dataset.
+
+```{r fig.width= 2, fig.height= 1}
+# Use microshades function prep_mdf to agglomerate, normalize, and melt the phyloseq object
+mdf_HMP_pre <- prep_mdf(ps_HMP_sub)
+
+# Create a color object for the specified data
+color_objs_HMP <- create_color_dfs(mdf_HMP_pre)
+
+# Extract
+mdf_HMP <- color_objs_HMP$mdf
+cdf_HMP <- color_objs_HMP$color_df
+```
+
+### Plot HMP
+
+```{r fig.width= 6, fig.height= 4}
+
+plot_HMP <- plot_microshades(mdf_HMP, cdf_HMP)
+
+plot_HMP + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
+  theme(axis.text.x = element_text(size= 6))
+
+```
+
+Examine Legends
+
+```{r}
+
+HMP_legend <- get_legend(plot_HMP)
+
+plot_grid(HMP_legend)
+
+britol_legend <- get_legend(plot_britol)
+
+plot_grid(britol_legend)
+
+```
+
+Each legend is configured to reflect the dataset of the plot. 
+Notice that the Britol and HMP Legends are similar, but not the exact same, due to different top abundances for genera in each phylum.
+
+## Use Britol legend for HMP Plot
+
+If the plots are being compared, it may be confusing visually if the genus shading colors account for different genera between the two plots.
+In this case, the function `match_color_df()` can apply the color factoring information from one processed mdf to a different, unprocessed mdf.
+
+To use the Britol color legend with the HMP data, apply the Britol color factoring to the HMP data.
+
+```{r fig.width= 3.75, fig.height= 4}
+
+mdf_HMP_matched <- match_color_df(mdf_HMP_pre, mdf_britol)
+
+# Use the Britol cdf for color reference
+plot_HMP_matched <- plot_microshades(mdf_HMP_matched, cdf_britol)
+
+plot_HMP_matched + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
+  theme(axis.text.x = element_text(size= 6))
+
+```
+
+
+

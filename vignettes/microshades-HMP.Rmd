@@ -1,0 +1,96 @@
+---
+title: "microshades-HMP"
+author: "Erin Dahl"
+date: '`r format(Sys.Date(), "%B %e, %Y")`'
+output: rmarkdown::html_document
+vignette: >
+  %\VignetteIndexEntry{microshades-HMP}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Human Microbiome Project 16S Data Vignette
+
+This vignette uses 16S rRNA sequencing data from variable region v1-v3 in the Human Microbiome Project.
+
+
+This data is available in the HMP16SData library. To download use `BiocManager::install("HMP16SData")`.
+
+Learn more about the HMP16S Data [here](https://github.com/waldronlab/HMP16SData)
+Secondary link https://bioconductor.org/packages/release/data/experiment/html/HMP16SData.html
+
+
+To install microshades use command `devtools::install_github("KarstensLab/microshades")`
+
+
+## Load the necessary packages for this tutorial
+
+```{r message=FALSE}
+library(HMP16SData)
+library(phyloseq)
+library(dplyr)
+library(ggplot2)
+library(microshades)
+```
+
+## Load and subset the HMP data
+```{r}
+
+v1v3_stool <-
+    V13() %>%
+    subset(select = HMP_BODY_SUBSITE == "Stool") %>%
+    subset(select = SEX == "Male")
+
+ps_v1v3_stool <-
+    as_phyloseq(v1v3_stool)
+```
+
+## Apply microshades functions
+
+Begin using microshades functions to evaluate abundance and apply advanced color organization at the Phylum Family level. 
+```{r}
+# Use microshades function prep_mdf to agglomerate, normalize, and melt the phyloseq object
+mdf_prep <- prep_mdf(ps_v1v3_stool, subgroup_level = "FAMILY")
+
+# Create a color object for the specified data
+color_obj_v1v3_stool <- create_color_dfs(mdf_prep, group_level = "PHYLUM", subgroup_level = "FAMILY")
+
+
+# Extract
+mdf_v1v3_stool <- color_obj_v1v3_stool$mdf
+cdf_v1v3_stool <- color_obj_v1v3_stool$color_df
+```
+
+### Plot 
+
+The dataframe `mdf_v1v3_stool` contains sample data and abundance info. The dataframe `cdf_v1v3_stool` stores the color mapping information used for plotting. 
+
+`plot_microshades` produces a stacked barplot with ordered subgroup taxonomy. The darkest shade is the most abundant, and the lightest shade is the least abundant. (excluding the "other" subgroup from each of the selected groups)
+
+```{r fig.width= 8, fig.height= 4}
+plot_1 <- plot_microshades(mdf_v1v3_stool, cdf_v1v3_stool, group_label = "Pylum Family")
+
+plot_1 + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
+  theme(axis.text.x = element_text(size= 6)) 
+
+```
+
+## Order the samples by Bacteroidaceae Abundance
+
+The plot above indicates that Bacteroidaceae is the most abundant family in the Bacteriodetes phylum in this dataset. To see samples arranged in order of Bacteroidaceae abundance (or any genus listed in the legend above)  use the `reorder_samples_by()` function and then plot.
+
+
+Reodering the samples can help users notice additional visual trends.
+
+```{r fig.width= 8, fig.height= 4}
+# reorder_samples_by will change the order of samples based on an abundance of a specified subgroup taxonomy
+# The default subgroup_level is "Genus" and the default subgroup taxonomy to order by is "Lactobacillus"
+mdf_v1v3_stool <- reorder_samples_by(mdf_v1v3_stool, order = "Bacteroidaceae", subgroup_level = "FAMILY")
+plot_2 <- plot_microshades(mdf_v1v3_stool, cdf_v1v3_stool)
+
+plot_2 + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
+  theme(axis.text.x = element_text(size= 6))
+
+```

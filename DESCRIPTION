@@ -1,0 +1,30 @@
+Package: microshades
+Title: A custom color palette for improving data visualization 
+Version: 0.0.0.9000
+Authors@R: 
+    c(person("Erin","Dahl", role = c("aut", "cre"), email = "erind@pacificu.edu"),
+      person("Lisa", "Karstens", role = "aut"),
+      person("Eric", "Leung", role = "aut"),
+      person("Kate", "Bowie", role = "aut"),
+      person("Emory", "Neer", role = "aut"))
+Description: This package contains custom built color palettes that are avalible for 
+            plotting. This package can also be used to improve phyloseq abundance 
+            plots with color abundance organization.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+  phyloseq (>= 1.34.0),
+  speedyseq,
+  dplyr (>= 1.0),
+  tidyr (>= 1.1.2),
+  purrr,
+  forcats,
+  tidyselect
+Suggests:
+    ggplot2 (>= 3.3.2),
+    knitr,
+    rmarkdown
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+VignetteBuilder: knitr

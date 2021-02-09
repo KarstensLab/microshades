@@ -1,0 +1,75 @@
+---
+title: "microshades-GP"
+author: "Erin Dahl"
+date: '`r format(Sys.Date(), "%B %e, %Y")`'
+output: rmarkdown::html_document
+vignette: >
+  %\VignetteIndexEntry{microshades-GP}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Global Patterns Data Vignette
+
+This vignette uses the Global Patterns microbiome data available from phyloseq.
+
+Learn more about the phyloseq [here](https://github.com/joey711/phyloseq).
+
+Secondary link https://bioconductor.org/packages/release/bioc/html/phyloseq.html
+
+To install microshades use the following command `devtools::install_github("KarstensLab/microshades")`
+
+## Load the required packages
+
+```{r setup}
+library(microshades)
+library(phyloseq)
+library(ggplot2)
+```
+
+## Use the microshades functions
+
+```{r}
+# The dataset Global Paterns is a phyloseq object avalible from the Phyloseq package
+data(GlobalPatterns)
+
+# Agglomerate and normalize the phyloseq object, and melted to a data frame
+mdf_prep <- prep_mdf(GlobalPatterns)
+
+# Generate a color object for the specified data
+color_objs_GP <- create_color_dfs(mdf_prep,cvdf = TRUE)
+
+# Extract
+mdf_GP <- color_objs_GP$mdf
+cdf_GP <- color_objs_GP$color_df
+```
+
+### Plot 
+
+Use `mdf_GP` as the object to plot and use `cdf_GP` to assign the correct color assignments. 
+
+```{r fig.width= 9, fig.height= 4}
+# Plot
+plot <- plot_microshades(mdf_GP, cdf_GP)
+
+plot_1 <- plot + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
+  theme(axis.text.x = element_text(size= 6))
+
+plot_1
+```
+
+The `plot_microshades` returns a ggplot object, that allows for additional specifications for the plot to be declared. For example, this allows users to facet samples and more descriptive elements.
+
+```{r fig.width= 9, fig.height= 4}
+
+plot_2 <- plot + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
+  theme(axis.text.x = element_text(size= 6)) +
+  facet_wrap(~SampleType, scales = "free_x", nrow = 2) +
+  theme (strip.text.x = element_text(size = 6))
+
+plot_2
+```
+
+

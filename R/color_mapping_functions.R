@@ -78,9 +78,11 @@ default_hex <- function(n_groups = 5, cvdf = FALSE) {
     # Remove columns that aren't necessary if asked by counting number of
     # columns to remove then setting those columns to NULL, effectively removing
     # the column.
-    num_rm_cols <- ncol(hex_df) - n_groups + 1
-    hex_df[, 2:num_rm_cols] <- NULL
-
+    if(!(ncol(hex_df) == n_groups ))
+    {
+      num_rm_cols <- ncol(hex_df) - n_groups + 1
+      hex_df[, 2:num_rm_cols] <- NULL
+    }
     # Return hex codes data frame
     hex_df
 }

@@ -40,3 +40,4 @@ vignettes/*.pdf
 
 # ignore Mac os files
 .DS_Store
+.Rproj.user

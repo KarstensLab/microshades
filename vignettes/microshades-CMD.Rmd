@@ -18,11 +18,10 @@ This data is available in the curatedMetagenomicData library. To download use `B
 Learn more about the Curated Metagenomic Data [here](https://github.com/waldronlab/curatedMetagenomicData).
 Secondary link https://bioconductor.org/packages/release/data/experiment/html/curatedMetagenomicData.html
 
-To install microshades use command `devtools::install_github("KarstensLab/microshades")`
 
 ## Load the necessary packages for this tutorial
 
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 library(curatedMetagenomicData)
 library(phyloseq)
 library(ggplot2)

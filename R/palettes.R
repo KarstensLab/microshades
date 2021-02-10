@@ -18,10 +18,10 @@ microshades_palettes <- list(
 #'
 #' @export
 microshades_cvd_palettes <- list(
-  micro_cvd_gray = c("#E6E6E6", "#C7C7C7", "#999999", "#5C5C5C","#3D3D3D"),
-  micro_cvd_green = c("#BFF853",  "#AAF61A",  "#89CD0B", "#6EA600","#4E7705"),
-  micro_cvd_orange = c("#FFBD88",  "#FF9B4D","#eb8d48", "#F17639", "#c25e15"),
-  micro_cvd_blue = c("#E7F4FF", "#BCE1FF", "#7DCCFF", "#56B4E9","#077DAA"),
+  micro_cvd_gray = c("#F5F5F5", "#D6D6D6", "#B7B7B7", "#8B8B8B","#616161"),
+  micro_cvd_green = c("#DDFFA0",  "#BDEC6F",  "#97CE2F", "#6D9F06","#4E7705"),
+  micro_cvd_orange = c("#FFD5AF",  "#FCB076","#F09163", "#C17754", "#9D654C"),
+  micro_cvd_blue = c("#E7F4FF", "#BCE1FF", "#7DCCFF", "#56B4E9","#098BD9"),
   micro_cvd_turquoise = c("#68D7AC",  "#43BA8F",  "#009E73", "#026D4E","#00402C"),
   micro_cvd_purple = c("#E794C1", "#CC79A7", "#A1527F", "#7D3560", "#5C1943")
 )

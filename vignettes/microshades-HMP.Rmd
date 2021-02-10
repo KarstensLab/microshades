@@ -20,12 +20,10 @@ Learn more about the HMP16S Data [here](https://github.com/waldronlab/HMP16SData
 Secondary link https://bioconductor.org/packages/release/data/experiment/html/HMP16SData.html
 
 
-To install microshades use command `devtools::install_github("KarstensLab/microshades")`
-
 
 ## Load the necessary packages for this tutorial
 
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 library(HMP16SData)
 library(phyloseq)
 library(dplyr)

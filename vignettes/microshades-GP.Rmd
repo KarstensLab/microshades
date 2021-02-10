@@ -17,11 +17,9 @@ Learn more about the phyloseq [here](https://github.com/joey711/phyloseq).
 
 Secondary link https://bioconductor.org/packages/release/bioc/html/phyloseq.html
 
-To install microshades use the following command `devtools::install_github("KarstensLab/microshades")`
-
 ## Load the required packages
 
-```{r setup}
+```{r warning=FALSE}
 library(microshades)
 library(phyloseq)
 library(ggplot2)
@@ -37,7 +35,8 @@ data(GlobalPatterns)
 mdf_prep <- prep_mdf(GlobalPatterns)
 
 # Generate a color object for the specified data
-color_objs_GP <- create_color_dfs(mdf_prep,cvdf = TRUE)
+color_objs_GP <- create_color_dfs(mdf_prep,selected_groups = c("Verrucomicrobia", "Proteobacteria", "Actinobacteria", "Bacteroidetes",
+    "Firmicutes") , cvdf = TRUE)
 
 # Extract
 mdf_GP <- color_objs_GP$mdf
@@ -48,18 +47,39 @@ cdf_GP <- color_objs_GP$color_df
 
 Use `mdf_GP` as the object to plot and use `cdf_GP` to assign the correct color assignments. 
 
-```{r fig.width= 9, fig.height= 4}
+```{r fig.width= 9, fig.height= 8}
 # Plot
 plot <- plot_microshades(mdf_GP, cdf_GP)
 
 plot_1 <- plot + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
   theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
-  theme(axis.text.x = element_text(size= 6))
+  theme(axis.text.x = element_text(size= 6)) 
 
-plot_1
+plot_1 
+
 ```
 
 The `plot_microshades` returns a ggplot object, that allows for additional specifications for the plot to be declared. For example, this allows users to facet samples and more descriptive elements.
+
+```{r eval = FALSE, echo = FALSE}
+
+GP_legend <-custom_legend(cdf_GP, mdf_GP)
+
+GP_legend
+
+```
+
+```{r eval = FALSE, echo = FALSE}
+
+plot_diff <- plot + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.position = "none") +
+  theme(axis.text.x = element_text(size= 6)) + 
+  theme(plot.margin = margin(6,20,6,6))
+
+
+plot_grid(plot_diff, GP_legend,  rel_widths = c(1, .25))
+
+```
 
 ```{r fig.width= 9, fig.height= 4}
 

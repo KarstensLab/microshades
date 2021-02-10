@@ -20,12 +20,9 @@ Learn more about the HMP2 Data [here](https://github.com/jstansfield0/HMP2Data)
 Secondary link https://bioconductor.org/packages/release/data/experiment/html/HMP2Data.html
 
 
-To install microshades use command `devtools::install_github("KarstensLab/microshades")`
-
-
 ## Load the necessary packages for this toutorial
 
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 library(HMP2Data)
 library(phyloseq)
 library(SummarizedExperiment)

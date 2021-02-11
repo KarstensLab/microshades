@@ -93,7 +93,7 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <div class="sourceCode"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Remotes</span><span class="op">:</span> <span class="fu">github</span><span class="fu">::</span><span class="va">KarstensLab</span><span class="op">/</span><span class="va">Microshades</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"KarstensLab/microshades"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="the-shades" class="section level2">
 <h2 class="hasAnchor">
@@ -101,12 +101,6 @@
 <p>Here is a list of the microshades palettes, including the CVD friendly shades</p>
 <div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">microshades</span><span class="op">)</span>
-<span class="co">#&gt; Warning: replacing previous import 'phyloseq::psmelt' by 'speedyseq::psmelt'</span>
-<span class="co">#&gt; when loading 'microshades'</span>
-<span class="co">#&gt; Warning: replacing previous import 'phyloseq::tax_glom' by 'speedyseq::tax_glom'</span>
-<span class="co">#&gt; when loading 'microshades'</span>
-<span class="co">#&gt; Warning: replacing previous import 'phyloseq::transform_sample_counts' by</span>
-<span class="co">#&gt; 'speedyseq::transform_sample_counts' when loading 'microshades'</span>
 
 <span class="co">#default shades</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">microshades_palettes</span><span class="op">)</span>
@@ -131,10 +125,10 @@
 <a href="#phyloseq-useage" class="anchor"></a>Phyloseq useage</h2>
 <p>For detailed tutorials on how to use microshades function with phyloseq objects, please reference the following vignettes.</p>
 <ul>
-<li><a href="./vignettes/microshades-GP.Rmd">Global Patterns</a></li>
-<li><a href="./vignettes/microshades-HMP.Rmd">Human Microbiome Project</a></li>
-<li><a href="./vignettes/microshades-HMP2.Rmd">Human Microbiome Project 2</a></li>
-<li><a href="./vignettes/microshades-CMD.Rmd">Curated Metagenomic Data</a></li>
+<li><a href="https://KarstensLab.github.io/Microshades/articles/microshades-GP.html">Global Patterns</a></li>
+<li><a href="https://KarstensLab.github.io/Microshades/articles/microshades-HMP.html">Human Microbiome Project</a></li>
+<li><a href="https://KarstensLab.github.io/Microshades/articles/microshades-HMP2.html">Human Microbiome Project 2</a></li>
+<li><a href="https://KarstensLab.github.io/Microshades/articles/microshades-CMD.html">Curated Metagenomic Data</a></li>
 </ul>
 <p>Here is an example of the plot generated with microshades on Curated Metagenomic Data of the Human Microbiome.</p>
 <p><img src="reference/figures/plot_CMD.png" width="100%" style="display: block; margin: auto;"></p>

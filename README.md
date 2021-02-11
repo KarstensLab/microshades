@@ -13,7 +13,7 @@ Additionally, microshades colors can be incorporated into any plot by using our 
 ## Installation
 
 ``` r
-Remotes: github::KarstensLab/Microshades
+remotes::install_github("KarstensLab/microshades")
 ```
 
 ## The shades
@@ -22,12 +22,6 @@ Here is a list of the microshades palettes, including the CVD friendly shades
 
 ``` r
 library(microshades)
-#> Warning: replacing previous import 'phyloseq::psmelt' by 'speedyseq::psmelt'
-#> when loading 'microshades'
-#> Warning: replacing previous import 'phyloseq::tax_glom' by 'speedyseq::tax_glom'
-#> when loading 'microshades'
-#> Warning: replacing previous import 'phyloseq::transform_sample_counts' by
-#> 'speedyseq::transform_sample_counts' when loading 'microshades'
 
 #default shades
 names(microshades_palettes)
@@ -60,10 +54,10 @@ microshades_palette("micro_cvd_blue")
 
 For detailed tutorials on how to use microshades function with phyloseq objects, please reference the following vignettes.
 
--   [Global Patterns](./vignettes/microshades-GP.Rmd)
--   [Human Microbiome Project](./vignettes/microshades-HMP.Rmd)
--   [Human Microbiome Project 2](./vignettes/microshades-HMP2.Rmd)
--   [Curated Metagenomic Data](./vignettes/microshades-CMD.Rmd)
+-   [Global Patterns](https://KarstensLab.github.io/Microshades/articles/microshades-GP.html)
+-   [Human Microbiome Project](https://KarstensLab.github.io/Microshades/articles/microshades-HMP.html)
+-   [Human Microbiome Project 2](https://KarstensLab.github.io/Microshades/articles/microshades-HMP2.html)
+-   [Curated Metagenomic Data](https://KarstensLab.github.io/Microshades/articles/microshades-CMD.html)
 
 Here is an example of the plot generated with microshades on Curated Metagenomic Data of the Human Microbiome.
 

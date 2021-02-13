@@ -17,13 +17,13 @@ create_color_dfs(
 \arguments{
 \item{mdf}{data.frame, melted data frame}
 
-\item{selected_groups}{list of phyla to keep, the vector order is the
-stacking order. "Other" is always on the top of the stack,
+\item{selected_groups}{list of groups in group_level taxomomy to specify and color in plot.
+The vector order is the stacking order. "Other" is always on the top of the stack,
 but then the rest will follow. The default is "Proteobacteria", "Actinobacteria",
-"Bacteroidetes", "Firmicutes".}
+"Bacteroidetes", "Firmicutes". "Firmicutes" is on the bottom of the stack.}
 
 \item{top_n_subgroups}{integer number of top subgroups to show for each selected group
-the max is 4 top subgrorups}
+the max is 4 top subgroups}
 
 \item{group_level}{string of larger taxonomic group}
 
@@ -44,7 +44,7 @@ top group, the categories not in \code{selected_groups} will be changed to
 "Other". The \code{top_n_subgroups} will be determined for each selected group.
 }
 \details{
-#' Notes:
+Notes:
 \itemize{
 \item In SILVA 138, some phylum names are different and you should consider
 passing in the vector

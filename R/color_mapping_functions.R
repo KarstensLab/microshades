@@ -18,7 +18,7 @@
 #' @export
 #'
 #' @examples
-#' data(GlobalPatterns)
+#' phyloseq::data(GlobalPatterns)
 #'
 #' # Use defaults
 #' mdf <- prep_mdf(GlobalPatterns)
@@ -57,8 +57,8 @@ prep_mdf <- function(ps,
 #' # Get hex codes for 5 groups
 #' hex_df <- default_hex()
 #'
-#' # Get hex codes for 3 groups
-#' hex_df <- default_hex(3)
+#' # Get hex codes for 3 groups with CVD palette
+#' hex_df <- default_hex(3, TRUE)
 default_hex <- function(n_groups = 5, cvdf = FALSE) {
     # Hex is ordered light to dark
     # Numbers in name refer to the bottom up order in color stack
@@ -94,19 +94,19 @@ default_hex <- function(n_groups = 5, cvdf = FALSE) {
 #' top group, the categories not in `selected_groups` will be changed to
 #' "Other". The `top_n_subgroups` will be determined for each selected group.
 #'
-#' #' Notes:
+#'  Notes:
 #'
 #' - In SILVA 138, some phylum names are different and you should consider
 #'   passing in the vector
 #'   `c("Proteobacteria", "Actinobacteriota", "Bacteroidota", "Firmicutes")`
 #'
 #' @param mdf data.frame, melted data frame
-#' @param selected_groups list of phyla to keep, the vector order is the
-#'   stacking order. "Other" is always on the top of the stack,
+#' @param selected_groups list of groups in group_level taxomomy to specify and color in plot.
+#'   The vector order is the stacking order. "Other" is always on the top of the stack,
 #'   but then the rest will follow. The default is "Proteobacteria", "Actinobacteria",
-#'   "Bacteroidetes", "Firmicutes".
+#'   "Bacteroidetes", "Firmicutes". "Firmicutes" is on the bottom of the stack.
 #' @param top_n_subgroups integer number of top subgroups to show for each selected group
-#'   the max is 4 top subgrorups
+#'   the max is 4 top subgroups
 #' @param group_level string of larger taxonomic group
 #' @param subgroup_level string of smaller taxonomic group
 #' @param cvdf logical stands for Color Vision Deficent Friendly palette
@@ -386,27 +386,38 @@ match_color_df <- function(mdf,
       mdf
   }
 
-#' Reorder the samples by abundance of user selected subgroup taxa
+#' Reorder the samples by abundance of user selected subgroup taxa and/or
+#' reorder the groups levels based on abundance with the sink_abundant_groups flag
 #'
 #'
 #'
 #' @param mdf_group data.frame, melted data frame
+#' @param color_df data.frame containing the color key
 #' @param order string of subgroup to reorder by
+#' @param group_level string of larger taxonomic group
 #' @param subgroup_level string of smaller taxonomic group
+#' @param sink_abundant_groups logical reorder the phylum groups so the most abundant is the bottom group
 #'
 #' @import dplyr
 #' @import forcats
 #' @import tidyselect
 #'
-#' @return data.frame, mdf dataframe ready to plot
+#' @return list
+#'   \itemize{
+#'     \item{"mdf"}{ reordered melted data frame, ready for plotting}
+#'     \item{"color_df"}{ reordered manual color filling according to new order}
+#'   }
 #'
 #' @export
 #'
 #' @examples
 #' mdf_to_plot <- reorder_samples_by(mdf_group)
 reorder_samples_by <- function (mdf_group,
-                             order = "Lactobacillus",
-                             subgroup_level = "Genus")
+                                color_df,
+                                order = "NA",
+                                group_level = "Phylum",
+                                subgroup_level = "Genus",
+                                sink_abundant_groups = TRUE)
 {
   if (class(mdf_group) == "phyloseq")
   {
@@ -421,32 +432,74 @@ reorder_samples_by <- function (mdf_group,
     stop("mdf_group 'subgroup_level' does not exist")
   }
 
+  if (is.null(mdf_group[[group_level]])) {
+    stop("mdf_group 'group_level' does not exist")
+  }
+
+  col_name_group <- paste0("Top_", group_level)
   col_name_subgroup <- paste0("Top_", subgroup_level)
 
-  if(!(order %in% as.character(unique(mdf_group[[col_name_subgroup]]))))
+  if(!(order %in% as.character(unique(mdf_group[[col_name_subgroup]]))) && order != "NA")
   {
     stop("variable 'order' does not exist in the dataset")
   }
 
+  if( sink_abundant_groups)
+  {
+    # reorder Top group
+    reorder_groups <- mdf_group %>% group_by(!!sym(col_name_group))  %>%
+      filter(!!sym(col_name_group) != "Other") %>%
+      dplyr::summarise(rank_abundance = sum(Abundance))
+
+    top_group_order <- reorder_groups[order(reorder_groups$rank_abundance), col_name_group]
+
+    final_group_order <- c("Other", as.character(top_group_order[[col_name_group]]))
+
+    mdf_group[[col_name_group]] <- factor(mdf_group[[col_name_group]], final_group_order)
+
+    # column group
+    mdf_select <- mdf_group %>%
+      distinct(!!sym(col_name_group), group) %>%
+      arrange(group) %>%
+      arrange(!!sym(col_name_group))
+
+    group_order <- as.character(mdf_select$group)
+    mdf_group$group <- factor(mdf_group$group, group_order)
+
+    # cdf
+    reverse_group_order <-rev(group_order)
+    color_df <- color_df %>% filter( !is.na(hex))
+    color_df$group <- factor(color_df$group, reverse_group_order)
+
+    color_df <- color_df %>%
+      arrange(group)
+    color_df$group <- as.character(color_df$group)
+  }
+
+  if (order != "NA")
+  {
+    # Reorder samples
+    reorder_samples <- mdf_group %>%
+      group_by(Sample) %>%
+      filter(!!sym(col_name_subgroup) == order) %>%
+      dplyr::summarise(rank_abundance = sum(Abundance))
 
 
-  # Reorder samples
-  reorder_samples <- mdf_group %>%
-    group_by(Sample) %>%
-    filter(!!sym(col_name_subgroup) == order) %>%
-    dplyr::summarise(rank_abundance = sum(Abundance))
+    new_order <- reorder_samples[order(-reorder_samples$rank_abundance),"Sample"]
+
+    all_samples <- unique(mdf_group$Sample)
+    samples_no_subgroup <- setdiff(all_samples, reorder_samples$Sample)
+
+    sample_order <- c(new_order$Sample, samples_no_subgroup)
+
+    mdf_group$Sample <- factor(mdf_group$Sample, sample_order)
+  }
 
 
-  new_order <- reorder_samples[order(-reorder_samples$rank_abundance),"Sample"]
-
-  all_samples <- unique(mdf_group$Sample)
-  samples_no_subgroup <- setdiff(all_samples, reorder_samples$Sample)
-
-  sample_order <- c(new_order$Sample, samples_no_subgroup)
-
-  mdf_group$Sample <- factor(mdf_group$Sample, sample_order)
-
-  mdf_group
+  list(
+    mdf = mdf_group,
+    color_df = color_df
+  )
 }
 
 

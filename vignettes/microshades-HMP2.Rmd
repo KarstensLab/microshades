@@ -84,9 +84,13 @@ The plot above indicates that Lactobacillus is the most abundant genera in the F
 
 ```{r fig.width= 8, fig.height= 4}
 # reorder_samples_by will change the order of samples based on an abundance of a specified subgroup taxonomy
-# The default subgroup_level is "Genus" and the default specified subgroup taxonomy to order by is "Lactobacillus"
-mdf_momspi16S_ordered <- reorder_samples_by(mdf_momspi16S_unordered)
-plot_2 <- plot_microshades(mdf_momspi16S_ordered, cdf_momspi16S)
+# The default subgroup_level is "Genus" and the specified subgroup taxonomy to order by is "Lactobacillus"
+momspi16S_ordered <- reorder_samples_by(mdf_momspi16S_unordered,cdf_momspi16S, order = "Lactobacillus")
+
+mdf_momspi16S_ordered <- momspi16S_ordered$mdf
+cdf_momspi16S_ordered <- momspi16S_ordered$color_df
+
+plot_2 <- plot_microshades(mdf_momspi16S_ordered, cdf_momspi16S_ordered)
 
 plot_2 + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
   theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +

@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Reorder the samples by abundance of user selected subgroup taxa — reorder_samples_by • microshades</title>
+<title>Reorder the samples by abundance of user selected subgroup taxa and/or
+reorder the groups levels based on abundance with the sink_abundant_groups flag — reorder_samples_by • microshades</title>
 
 
 <!-- jquery -->
@@ -39,8 +40,10 @@
 
 
 
-<meta property="og:title" content="Reorder the samples by abundance of user selected subgroup taxa — reorder_samples_by" />
-<meta property="og:description" content="Reorder the samples by abundance of user selected subgroup taxa" />
+<meta property="og:title" content="Reorder the samples by abundance of user selected subgroup taxa and/or
+reorder the groups levels based on abundance with the sink_abundant_groups flag — reorder_samples_by" />
+<meta property="og:description" content="Reorder the samples by abundance of user selected subgroup taxa and/or
+reorder the groups levels based on abundance with the sink_abundant_groups flag" />
 
 
 
@@ -124,19 +127,24 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Reorder the samples by abundance of user selected subgroup taxa</h1>
+    <h1>Reorder the samples by abundance of user selected subgroup taxa and/or
+reorder the groups levels based on abundance with the sink_abundant_groups flag</h1>
     
     <div class="hidden name"><code>reorder_samples_by.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Reorder the samples by abundance of user selected subgroup taxa</p>
+    <p>Reorder the samples by abundance of user selected subgroup taxa and/or
+reorder the groups levels based on abundance with the sink_abundant_groups flag</p>
     </div>
 
     <pre class="usage"><span class='fu'>reorder_samples_by</span><span class='op'>(</span>
   <span class='va'>mdf_group</span>,
-  order <span class='op'>=</span> <span class='st'>"Lactobacillus"</span>,
-  subgroup_level <span class='op'>=</span> <span class='st'>"Genus"</span>
+  <span class='va'>color_df</span>,
+  order <span class='op'>=</span> <span class='st'>"NA"</span>,
+  group_level <span class='op'>=</span> <span class='st'>"Phylum"</span>,
+  subgroup_level <span class='op'>=</span> <span class='st'>"Genus"</span>,
+  sink_abundant_groups <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -147,18 +155,34 @@
       <td><p>data.frame, melted data frame</p></td>
     </tr>
     <tr>
+      <th>color_df</th>
+      <td><p>data.frame containing the color key</p></td>
+    </tr>
+    <tr>
       <th>order</th>
       <td><p>string of subgroup to reorder by</p></td>
+    </tr>
+    <tr>
+      <th>group_level</th>
+      <td><p>string of larger taxonomic group</p></td>
     </tr>
     <tr>
       <th>subgroup_level</th>
       <td><p>string of smaller taxonomic group</p></td>
     </tr>
+    <tr>
+      <th>sink_abundant_groups</th>
+      <td><p>logical reorder the phylum groups so the most abundant is the bottom group</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data.frame, mdf dataframe ready to plot</p>
+    <p>list</p><ul>
+<li><p>"mdf" reordered melted data frame, ready for plotting</p></li>
+<li><p>"color_df" reordered manual color filling according to new order</p></li>
+</ul>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>mdf_to_plot</span> <span class='op'>&lt;-</span> <span class='fu'>reorder_samples_by</span><span class='op'>(</span><span class='va'>mdf_group</span><span class='op'>)</span>
@@ -174,7 +198,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Erin Dahl, Lisa Karstens, Eric Leung, Emory Neer, Kate Bowie.</p>
+  <p>Developed by Erin Dahl, Lisa Karstens, Eric Leung, Emory Neer.</p>
 </div>
 
 <div class="pkgdown">

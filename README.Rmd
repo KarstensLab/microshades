@@ -21,6 +21,8 @@ knitr::include_graphics("man/figures/microshades_logo.png")
 <!-- badges: start -->
 <!-- badges: end -->
 
+
+
 The goal of microshades is to provide a custom color organization palette that can be applied to enhance current data visualization methods. 
 To increase accessibility of visuals created, users may select to use color vision deficient (CVD) friendly colors.
 

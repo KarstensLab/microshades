@@ -2,26 +2,41 @@
 % Please edit documentation in R/color_mapping_functions.R
 \name{reorder_samples_by}
 \alias{reorder_samples_by}
-\title{Reorder the samples by abundance of user selected subgroup taxa}
+\title{Reorder the samples by abundance of user selected subgroup taxa and/or
+reorder the groups levels based on abundance with the sink_abundant_groups flag}
 \usage{
 reorder_samples_by(
   mdf_group,
-  order = "Lactobacillus",
-  subgroup_level = "Genus"
+  color_df,
+  order = "NA",
+  group_level = "Phylum",
+  subgroup_level = "Genus",
+  sink_abundant_groups = TRUE
 )
 }
 \arguments{
 \item{mdf_group}{data.frame, melted data frame}
 
+\item{color_df}{data.frame containing the color key}
+
 \item{order}{string of subgroup to reorder by}
 
+\item{group_level}{string of larger taxonomic group}
+
 \item{subgroup_level}{string of smaller taxonomic group}
+
+\item{sink_abundant_groups}{logical reorder the phylum groups so the most abundant is the bottom group}
 }
 \value{
-data.frame, mdf dataframe ready to plot
+list
+\itemize{
+\item{"mdf"}{ reordered melted data frame, ready for plotting}
+\item{"color_df"}{ reordered manual color filling according to new order}
+}
 }
 \description{
-Reorder the samples by abundance of user selected subgroup taxa
+Reorder the samples by abundance of user selected subgroup taxa and/or
+reorder the groups levels based on abundance with the sink_abundant_groups flag
 }
 \examples{
 mdf_to_plot <- reorder_samples_by(mdf_group)

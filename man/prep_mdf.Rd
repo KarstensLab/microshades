@@ -26,7 +26,7 @@ Notes:
 }
 }
 \examples{
-data(GlobalPatterns)
+phyloseq::data(GlobalPatterns)
 
 # Use defaults
 mdf <- prep_mdf(GlobalPatterns)

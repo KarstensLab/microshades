@@ -162,8 +162,8 @@ and genera.</p>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>GlobalPatterns</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: data set ‘GlobalPatterns’ not found</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>phyloseq</span><span class='fu'>::</span><span class='fu'>data</span><span class='op'>(</span><span class='va'>GlobalPatterns</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error: 'data' is not an exported object from 'namespace:phyloseq'</span></div><div class='input'>
 <span class='co'># Use defaults</span>
 <span class='va'>mdf</span> <span class='op'>&lt;-</span> <span class='fu'>prep_mdf</span><span class='op'>(</span><span class='va'>GlobalPatterns</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='error'>Error in h(simpleError(msg, call)): error in evaluating the argument 'physeq' in selecting a method for function 'taxa_are_rows': object 'GlobalPatterns' not found</span></div><div class='input'>
@@ -181,7 +181,7 @@ and genera.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Erin Dahl, Lisa Karstens, Eric Leung, Emory Neer, Kate Bowie.</p>
+  <p>Developed by Erin Dahl, Lisa Karstens, Eric Leung, Emory Neer.</p>
 </div>
 
 <div class="pkgdown">

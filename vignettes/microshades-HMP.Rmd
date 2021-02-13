@@ -59,7 +59,7 @@ mdf_v1v3_stool <- color_obj_v1v3_stool$mdf
 cdf_v1v3_stool <- color_obj_v1v3_stool$color_df
 ```
 
-### Plot 
+## Plot 
 
 The dataframe `mdf_v1v3_stool` contains sample data and abundance info. The dataframe `cdf_v1v3_stool` stores the color mapping information used for plotting. 
 
@@ -74,21 +74,60 @@ plot_1 + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
 
 ```
 
-## Order the samples by Bacteroidaceae Abundance
+## Reorder Samples/Group levels
 
-The plot above indicates that Bacteroidaceae is the most abundant family in the Bacteriodetes phylum in this dataset. To see samples arranged in order of Bacteroidaceae abundance (or any genus listed in the legend above)  use the `reorder_samples_by()` function and then plot.
-
+The plot above indicates that Bacteroidaceae is the most abundant family in the Bacteriodetes phylum in this dataset. To see samples arranged in order of Bacteroidaceae abundance (or any genus listed in the legend above)  use the `reorder_samples_by()` function and then plot. This function can also reorder the Group levels based on overall group level abundance, if desired steeing the sink_abundant_groups to true.
 
 Reodering the samples can help users notice additional visual trends.
 
+### Reorder the samples by Bacteroidaceae Abundance
+
 ```{r fig.width= 8, fig.height= 4}
 # reorder_samples_by will change the order of samples based on an abundance of a specified subgroup taxonomy
-# The default subgroup_level is "Genus" and the default subgroup taxonomy to order by is "Lactobacillus"
-mdf_v1v3_stool <- reorder_samples_by(mdf_v1v3_stool, order = "Bacteroidaceae", subgroup_level = "FAMILY")
-plot_2 <- plot_microshades(mdf_v1v3_stool, cdf_v1v3_stool)
+new_sample_order_v1v3_stool <- reorder_samples_by(mdf_v1v3_stool, cdf_v1v3_stool, order = "Bacteroidaceae", group_level = "PHYLUM", subgroup_level = "FAMILY", sink_abundant_groups = FALSE)
+
+mdf_new_smample_order <-new_sample_order_v1v3_stool$mdf
+cdf_new_smample_order <-new_sample_order_v1v3_stool$color_df
+
+plot_2 <- plot_microshades(mdf_new_smample_order, cdf_new_smample_order)
 
 plot_2 + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
   theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
   theme(axis.text.x = element_text(size= 6))
 
 ```
+### Reorder by Abundance of Group levels Only
+```{r fig.width= 8, fig.height= 4}
+# reorder_samples_by will change the order of samples based on an abundance of a specified subgroup taxonomy
+# The default subgroup_level is "Genus" 
+new_group_order_v1v3_stool <- reorder_samples_by(mdf_v1v3_stool, cdf_v1v3_stool, group_level = "PHYLUM", subgroup_level = "FAMILY", sink_abundant_groups = TRUE)
+
+mdf_new_group_order <-new_group_order_v1v3_stool$mdf
+cdf_new_group_order <-new_group_order_v1v3_stool$color_df
+
+plot_3 <- plot_microshades(mdf_new_group_order, cdf_new_group_order)
+
+plot_3 + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
+  theme(axis.text.x = element_text(size= 6))
+
+```
+
+### Reorder by both Samples and Abundance of Group levels
+
+```{r fig.width= 8, fig.height= 4}
+# reorder_samples_by will change the order of samples based on Family an abundance of "Bacteroidaceae" and reorder the Phylum to sink the most abundant groups
+reordered_v1v3_stool <- reorder_samples_by(mdf_v1v3_stool, cdf_v1v3_stool, order = "Bacteroidaceae", group_level = "PHYLUM", subgroup_level = "FAMILY", sink_abundant_groups = TRUE)
+
+mdf_reordered <-reordered_v1v3_stool$mdf
+cdf_reordered <-reordered_v1v3_stool$color_df
+
+plot_3 <- plot_microshades(mdf_reordered, cdf_reordered)
+
+plot_3 + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
+  theme(axis.text.x = element_text(size= 6))
+
+```
+
+

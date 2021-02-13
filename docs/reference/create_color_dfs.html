@@ -156,15 +156,15 @@ top group, the categories not in <code>selected_groups</code> will be changed to
     </tr>
     <tr>
       <th>selected_groups</th>
-      <td><p>list of phyla to keep, the vector order is the
-stacking order. "Other" is always on the top of the stack,
+      <td><p>list of groups in group_level taxomomy to specify and color in plot.
+The vector order is the stacking order. "Other" is always on the top of the stack,
 but then the rest will follow. The default is "Proteobacteria", "Actinobacteria",
-"Bacteroidetes", "Firmicutes".</p></td>
+"Bacteroidetes", "Firmicutes". "Firmicutes" is on the bottom of the stack.</p></td>
     </tr>
     <tr>
       <th>top_n_subgroups</th>
       <td><p>integer number of top subgroups to show for each selected group
-the max is 4 top subgrorups</p></td>
+the max is 4 top subgroups</p></td>
     </tr>
     <tr>
       <th>group_level</th>
@@ -189,7 +189,7 @@ the max is 4 top subgrorups</p></td>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>#' Notes:</p><ul>
+    <p>Notes:</p><ul>
 <li><p>In SILVA 138, some phylum names are different and you should consider
 passing in the vector
 <code><a href='https://rdrr.io/r/base/c.html'>c("Proteobacteria", "Actinobacteriota", "Bacteroidota", "Firmicutes")</a></code></p></li>
@@ -212,7 +212,7 @@ passing in the vector
 
       <footer>
       <div class="copyright">
-  <p>Developed by Erin Dahl, Lisa Karstens, Eric Leung, Emory Neer, Kate Bowie.</p>
+  <p>Developed by Erin Dahl, Lisa Karstens, Eric Leung, Emory Neer.</p>
 </div>
 
 <div class="pkgdown">

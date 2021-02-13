@@ -21,6 +21,6 @@ Returns a built-in data frame with hex code.
 # Get hex codes for 5 groups
 hex_df <- default_hex()
 
-# Get hex codes for 3 groups
-hex_df <- default_hex(3)
+# Get hex codes for 3 groups with CVD palette
+hex_df <- default_hex(3, TRUE)
 }

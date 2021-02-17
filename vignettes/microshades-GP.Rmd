@@ -23,12 +23,14 @@ Secondary link https://bioconductor.org/packages/release/bioc/html/phyloseq.html
 library(microshades)
 library(phyloseq)
 library(ggplot2)
+library(dplyr)
+library(cowplot)
 ```
 
 ## Use the microshades functions
 
 ```{r}
-# The dataset Global Paterns is a phyloseq object avalible from the Phyloseq package
+# The dataset Global Patterns is a phyloseq object avalible from the Phyloseq package
 data(GlobalPatterns)
 
 # Agglomerate and normalize the phyloseq object, and melted to a data frame
@@ -61,25 +63,6 @@ plot_1
 
 The `plot_microshades` returns a ggplot object, that allows for additional specifications for the plot to be declared. For example, this allows users to facet samples and more descriptive elements.
 
-```{r eval = FALSE, echo = FALSE}
-
-GP_legend <-custom_legend(cdf_GP, mdf_GP)
-
-GP_legend
-
-```
-
-```{r eval = FALSE, echo = FALSE}
-
-plot_diff <- plot + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
-  theme(legend.position = "none") +
-  theme(axis.text.x = element_text(size= 6)) + 
-  theme(plot.margin = margin(6,20,6,6))
-
-
-plot_grid(plot_diff, GP_legend,  rel_widths = c(1, .25))
-
-```
 
 ```{r fig.width= 9, fig.height= 4}
 
@@ -92,4 +75,112 @@ plot_2 <- plot + scale_y_continuous(labels = scales::percent, expand = expansion
 plot_2
 ```
 
+Use custom legend Format
+```{r fig.width= 9, fig.height= 4}
 
+GP_legend <-custom_legend(mdf_GP, cdf_GP)
+
+plot_diff <- plot + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.position = "none")  +
+  theme(axis.text.x = element_text(size= 6)) +
+  facet_wrap(~SampleType, scales = "free_x", nrow = 2) +
+  theme(axis.text.x = element_text(size= 6)) + 
+  theme(plot.margin = margin(6,20,6,6))
+
+plot_grid(plot_diff, GP_legend,  rel_widths = c(1, .25))
+
+```
+
+Re-examine data with smaller groups
+```{r}
+# Subset Global Patterns to smaller groups in the dataset
+ps_water <- subset_samples(GlobalPatterns, SampleType %in% c("Freshwater", "Freshwater (creek)", "Ocean"))
+
+ps_land <- subset_samples(GlobalPatterns, SampleType %in% c("Soil", "Sediment (estuary)"))
+
+ps_human <- subset_samples(GlobalPatterns, SampleType %in% c("Skin", "Feces", "Tongue"))
+
+# Agglomerate and normalize the phyloseq objects, and melt to a data frame
+mdf_water <- prep_mdf(ps_water)
+mdf_land <- prep_mdf(ps_land)
+mdf_human <- prep_mdf(ps_human)
+
+# Generate a color object for the specified data
+color_objs_water <- create_color_dfs(mdf_water,selected_groups = c("Verrucomicrobia", "Proteobacteria", "Actinobacteria", "Bacteroidetes",
+    "Firmicutes") , cvdf = TRUE)
+
+color_objs_water <- reorder_samples_by(color_objs_water$mdf, color_objs_water$color_df)
+
+color_objs_land <- create_color_dfs(mdf_land,selected_groups = c("Verrucomicrobia", "Proteobacteria", "Actinobacteria", "Bacteroidetes",
+    "Firmicutes") , cvdf = TRUE)
+
+color_objs_land <- reorder_samples_by(color_objs_land$mdf, color_objs_land$color_df)
+
+color_objs_human <- create_color_dfs(mdf_human,selected_groups = c("Verrucomicrobia", "Proteobacteria", "Actinobacteria", "Bacteroidetes",
+    "Firmicutes") , cvdf = TRUE)
+
+color_objs_human <- reorder_samples_by(color_objs_human$mdf, color_objs_human$color_df)
+
+# Extract
+mdf_water <- color_objs_water$mdf
+cdf_water <- color_objs_water$color_df
+
+mdf_land <- color_objs_land$mdf
+cdf_land <- color_objs_land$color_df
+
+mdf_human <- color_objs_human$mdf
+cdf_human <- color_objs_human$color_df
+```
+
+Water Samples 
+```{r}
+water_legend <-custom_legend(mdf_water, cdf_water, legend_key_size = .3, legend_text_size = 8)
+
+water_plot <- plot_microshades(mdf_water, cdf_water) + 
+  scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.position = "none") +
+  theme(axis.text.x = element_text(size= 6)) +
+  facet_wrap(~SampleType, scales = "free_x") +
+  theme (strip.text.x = element_text(size = 6)) 
+
+
+plot_grid(water_plot, water_legend,  rel_widths = c(1, .25))
+
+
+```
+
+Land samples
+
+```{r}
+
+land_legend <-custom_legend(mdf_land, cdf_land, legend_key_size = .3, legend_text_size = 8)
+
+land_plot <- plot_microshades(mdf_land, cdf_land) + 
+  scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.position = "none") +
+  theme(axis.text.x = element_text(size= 6)) +
+  facet_wrap(~SampleType, scales = "free_x") +
+  theme (strip.text.x = element_text(size = 6)) 
+
+
+plot_grid(land_plot, land_legend,  rel_widths = c(1, .25))
+
+```
+
+
+Human Samples
+```{r}
+
+human_legend <-custom_legend(mdf_human, cdf_human, legend_key_size = .3, legend_text_size = 8)
+
+human_plot <- plot_microshades(mdf_human, cdf_human) + 
+  scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.position = "none") +
+  theme(axis.text.x = element_text(size= 6)) +
+  facet_wrap(~SampleType, scales = "free_x") +
+  theme (strip.text.x = element_text(size = 6)) 
+
+
+plot_grid(human_plot, human_legend,  rel_widths = c(1, .25))
+
+```

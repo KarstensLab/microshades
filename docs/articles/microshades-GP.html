@@ -85,7 +85,7 @@
       <h1 data-toc-skip>microshades-GP</h1>
                         <h4 class="author">Erin Dahl</h4>
             
-            <h4 class="date">February 12, 2021</h4>
+            <h4 class="date">February 16, 2021</h4>
       
       
       <div class="hidden name"><code>microshades-GP.Rmd</code></div>
@@ -106,13 +106,24 @@
 <div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">microshades</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.plos.org/10.1371/journal.pone.0061217">phyloseq</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/cowplot/">cowplot</a></span><span class="op">)</span></code></pre></div>
 </div>
 <div id="use-the-microshades-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#use-the-microshades-functions" class="anchor"></a>Use the microshades functions</h2>
 <div class="sourceCode"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># The dataset Global Paterns is a phyloseq object avalible from the Phyloseq package</span>
+<code class="sourceCode R"><span class="co"># The dataset Global Patterns is a phyloseq object avalible from the Phyloseq package</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span>
 
 <span class="co"># Agglomerate and normalize the phyloseq object, and melted to a data frame</span>
@@ -148,7 +159,101 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span> <span class="op">(</span>strip.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">plot_2</span></code></pre></div>
-<p><img src="microshades-GP_files/figure-html/unnamed-chunk-6-1.png" width="864"></p>
+<p><img src="microshades-GP_files/figure-html/unnamed-chunk-4-1.png" width="864"></p>
+<p>Use custom legend Format</p>
+<div class="sourceCode"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">GP_legend</span> <span class="op">&lt;-</span><span class="fu"><a href="../reference/custom_legend.html">custom_legend</a></span><span class="op">(</span><span class="va">mdf_GP</span>, <span class="va">cdf_GP</span><span class="op">)</span>
+
+<span class="va">plot_diff</span> <span class="op">&lt;-</span> <span class="va">plot</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org//reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>  <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">SampleType</span>, scales <span class="op">=</span> <span class="st">"free_x"</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="fl">6</span>,<span class="fl">20</span>,<span class="fl">6</span>,<span class="fl">6</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">plot_diff</span>, <span class="va">GP_legend</span>,  rel_widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">.25</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="microshades-GP_files/figure-html/unnamed-chunk-5-1.png" width="864"></p>
+<p>Re-examine data with smaller groups</p>
+<div class="sourceCode"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Subset Global Patterns to smaller groups in the dataset</span>
+<span class="va">ps_water</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html">subset_samples</a></span><span class="op">(</span><span class="va">GlobalPatterns</span>, <span class="va">SampleType</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Freshwater"</span>, <span class="st">"Freshwater (creek)"</span>, <span class="st">"Ocean"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">ps_land</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html">subset_samples</a></span><span class="op">(</span><span class="va">GlobalPatterns</span>, <span class="va">SampleType</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Soil"</span>, <span class="st">"Sediment (estuary)"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">ps_human</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html">subset_samples</a></span><span class="op">(</span><span class="va">GlobalPatterns</span>, <span class="va">SampleType</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Skin"</span>, <span class="st">"Feces"</span>, <span class="st">"Tongue"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Agglomerate and normalize the phyloseq objects, and melt to a data frame</span>
+<span class="va">mdf_water</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">ps_water</span><span class="op">)</span>
+<span class="va">mdf_land</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">ps_land</span><span class="op">)</span>
+<span class="va">mdf_human</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">ps_human</span><span class="op">)</span>
+
+<span class="co"># Generate a color object for the specified data</span>
+<span class="va">color_objs_water</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_color_dfs.html">create_color_dfs</a></span><span class="op">(</span><span class="va">mdf_water</span>,selected_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Verrucomicrobia"</span>, <span class="st">"Proteobacteria"</span>, <span class="st">"Actinobacteria"</span>, <span class="st">"Bacteroidetes"</span>,
+    <span class="st">"Firmicutes"</span><span class="op">)</span> , cvdf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="va">color_objs_water</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reorder_samples_by.html">reorder_samples_by</a></span><span class="op">(</span><span class="va">color_objs_water</span><span class="op">$</span><span class="va">mdf</span>, <span class="va">color_objs_water</span><span class="op">$</span><span class="va">color_df</span><span class="op">)</span>
+
+<span class="va">color_objs_land</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_color_dfs.html">create_color_dfs</a></span><span class="op">(</span><span class="va">mdf_land</span>,selected_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Verrucomicrobia"</span>, <span class="st">"Proteobacteria"</span>, <span class="st">"Actinobacteria"</span>, <span class="st">"Bacteroidetes"</span>,
+    <span class="st">"Firmicutes"</span><span class="op">)</span> , cvdf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="va">color_objs_land</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reorder_samples_by.html">reorder_samples_by</a></span><span class="op">(</span><span class="va">color_objs_land</span><span class="op">$</span><span class="va">mdf</span>, <span class="va">color_objs_land</span><span class="op">$</span><span class="va">color_df</span><span class="op">)</span>
+
+<span class="va">color_objs_human</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_color_dfs.html">create_color_dfs</a></span><span class="op">(</span><span class="va">mdf_human</span>,selected_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Verrucomicrobia"</span>, <span class="st">"Proteobacteria"</span>, <span class="st">"Actinobacteria"</span>, <span class="st">"Bacteroidetes"</span>,
+    <span class="st">"Firmicutes"</span><span class="op">)</span> , cvdf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="va">color_objs_human</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reorder_samples_by.html">reorder_samples_by</a></span><span class="op">(</span><span class="va">color_objs_human</span><span class="op">$</span><span class="va">mdf</span>, <span class="va">color_objs_human</span><span class="op">$</span><span class="va">color_df</span><span class="op">)</span>
+
+<span class="co"># Extract</span>
+<span class="va">mdf_water</span> <span class="op">&lt;-</span> <span class="va">color_objs_water</span><span class="op">$</span><span class="va">mdf</span>
+<span class="va">cdf_water</span> <span class="op">&lt;-</span> <span class="va">color_objs_water</span><span class="op">$</span><span class="va">color_df</span>
+
+<span class="va">mdf_land</span> <span class="op">&lt;-</span> <span class="va">color_objs_land</span><span class="op">$</span><span class="va">mdf</span>
+<span class="va">cdf_land</span> <span class="op">&lt;-</span> <span class="va">color_objs_land</span><span class="op">$</span><span class="va">color_df</span>
+
+<span class="va">mdf_human</span> <span class="op">&lt;-</span> <span class="va">color_objs_human</span><span class="op">$</span><span class="va">mdf</span>
+<span class="va">cdf_human</span> <span class="op">&lt;-</span> <span class="va">color_objs_human</span><span class="op">$</span><span class="va">color_df</span></code></pre></div>
+<p>Water Samples</p>
+<div class="sourceCode"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">water_legend</span> <span class="op">&lt;-</span><span class="fu"><a href="../reference/custom_legend.html">custom_legend</a></span><span class="op">(</span><span class="va">mdf_water</span>, <span class="va">cdf_water</span>, legend_key_size <span class="op">=</span> <span class="fl">.3</span>, legend_text_size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
+
+<span class="va">water_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_water</span>, <span class="va">cdf_water</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org//reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">SampleType</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span> <span class="op">(</span>strip.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> 
+
+
+<span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">water_plot</span>, <span class="va">water_legend</span>,  rel_widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">.25</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="microshades-GP_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<p>Land samples</p>
+<div class="sourceCode"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">land_legend</span> <span class="op">&lt;-</span><span class="fu"><a href="../reference/custom_legend.html">custom_legend</a></span><span class="op">(</span><span class="va">mdf_land</span>, <span class="va">cdf_land</span>, legend_key_size <span class="op">=</span> <span class="fl">.3</span>, legend_text_size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
+
+<span class="va">land_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_land</span>, <span class="va">cdf_land</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org//reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">SampleType</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span> <span class="op">(</span>strip.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> 
+
+
+<span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">land_plot</span>, <span class="va">land_legend</span>,  rel_widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">.25</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="microshades-GP_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p>Human Samples</p>
+<div class="sourceCode"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">human_legend</span> <span class="op">&lt;-</span><span class="fu"><a href="../reference/custom_legend.html">custom_legend</a></span><span class="op">(</span><span class="va">mdf_human</span>, <span class="va">cdf_human</span>, legend_key_size <span class="op">=</span> <span class="fl">.3</span>, legend_text_size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
+
+<span class="va">human_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_human</span>, <span class="va">cdf_human</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org//reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">SampleType</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span> <span class="op">(</span>strip.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> 
+
+
+<span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">human_plot</span>, <span class="va">human_legend</span>,  rel_widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">.25</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="microshades-GP_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 </div>
 </div>
 </div>

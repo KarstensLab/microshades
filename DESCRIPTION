@@ -16,7 +16,7 @@ Imports:
   phyloseq,
   speedyseq,
   dplyr (>= 1.0),
-  tidyr (>= 1.1.2),
+  tidyr (>= 1.1.0),
   purrr,
   forcats,
   tidyselect

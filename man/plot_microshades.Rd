@@ -6,7 +6,7 @@
 \usage{
 plot_microshades(
   mdf_group,
-  color_df,
+  cdf,
   group_label = "Phylum Genus",
   x = "Sample",
   y = "Abundance"
@@ -15,7 +15,7 @@ plot_microshades(
 \arguments{
 \item{mdf_group}{data.frame, melted data frame processed by microshades functions}
 
-\item{color_df}{data.frame containing the color key}
+\item{cdf}{data.frame containing the color key}
 
 \item{group_label}{string of smaller taxonomic group}
 
@@ -30,5 +30,5 @@ A \code{\link{ggplot}}2 plot.
 Plot the mdf created with the microshades package
 }
 \examples{
-plot <- plot_microshades(mdf_group, color_df)
+plot <- plot_microshades(mdf_group, cdf)
 }

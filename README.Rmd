@@ -46,7 +46,7 @@ Here is a list of the microshades palettes, including the CVD friendly shades
 ```{r shades, warning = FALSE}
 library(microshades)
 
-#default shades
+# main shades
 names(microshades_palettes)
 
 # cvd shades

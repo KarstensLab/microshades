@@ -2,7 +2,8 @@
 % Please edit documentation in R/custom_legend.R
 \name{custom_legend}
 \alias{custom_legend}
-\title{This function creates a custom legend that is organized by same group classifications}
+\title{This function creates a custom legend that sections the group taxonomy as headers
+and lists the subgroup taxonomies below each group header, for all the groups.}
 \usage{
 custom_legend(
   mdf,
@@ -30,7 +31,8 @@ custom_legend(
 complete_legend ggplot
 }
 \description{
-This function creates a custom legend that is organized by same group classifications
+This function creates a custom legend that sections the group taxonomy as headers
+and lists the subgroup taxonomies below each group header, for all the groups.
 }
 \examples{
 legend_new <- custom_legend(mdf_GP, cdf_GP)

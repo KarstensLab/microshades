@@ -11,7 +11,7 @@ create_color_dfs(
   top_n_subgroups = 4,
   group_level = "Phylum",
   subgroup_level = "Genus",
-  cvdf = FALSE
+  cvd = FALSE
 )
 }
 \arguments{
@@ -29,13 +29,13 @@ the max is 4 top subgroups}
 
 \item{subgroup_level}{string of smaller taxonomic group}
 
-\item{cvdf}{logical stands for Color Vision Deficent Friendly palette}
+\item{cvd}{logical stands for Color Vision Deficent Friendly palette}
 }
 \value{
 list
 \itemize{
 \item{"mdf"}{ melted data frame to pass into ggplot2}
-\item{"color_df"}{ mapping to be used in manual color filling}
+\item{"cdf"}{ mapping to be used in manual color filling}
 }
 }
 \description{
@@ -54,5 +54,5 @@ passing in the vector
 \examples{
 colorframe <- create_color_dfs(mdf)
 colorframe <- create_color_dfs(mdf, selected_groups = c("Proteobacteria", "Actinobacteriota", "Bacteroidota", "Firmicutes"))
-colorframe <- create_color_dfs(mdf, cvdf = TRUE)
+colorframe <- create_color_dfs(mdf, cvd = TRUE)
 }

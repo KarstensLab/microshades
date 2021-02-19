@@ -22,8 +22,8 @@ microshades_cvd_palettes <- list(
   micro_cvd_green = c("#DDFFA0",  "#BDEC6F",  "#97CE2F", "#6D9F06","#4E7705"),
   micro_cvd_orange = c("#FFD5AF",  "#FCB076","#F09163", "#C17754", "#9D654C"),
   micro_cvd_blue = c("#E7F4FF", "#BCE1FF", "#7DCCFF", "#56B4E9","#098BD9"),
-  micro_cvd_turquoise = c("#68D7AC",  "#43BA8F",  "#009E73", "#026D4E","#00402C"),
-  micro_cvd_purple = c("#E794C1", "#CC79A7", "#A1527F", "#7D3560", "#5C1943")
+  micro_cvd_turquoise = c("#A3E4D7", "#48C9B0",  "#43BA8F",  "#009E73", "#148F77"),
+  micro_cvd_purple = c("#EFB6D6", "#E794C1", "#CC79A7", "#A1527F", "#7D3560")
 )
 
 #' Microshades sequential color shading palettes

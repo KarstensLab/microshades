@@ -51,12 +51,12 @@ Begin using microshades functions to evaluate abundance and apply advanced color
 mdf_prep <- prep_mdf(ps_v1v3_stool, subgroup_level = "FAMILY")
 
 # Create a color object for the specified data
-color_obj_v1v3_stool <- create_color_dfs(mdf_prep, group_level = "PHYLUM", subgroup_level = "FAMILY")
+color_obj_v1v3_stool <- create_color_dfs(mdf_prep, group_level = "PHYLUM", subgroup_level = "FAMILY", cvd = TRUE)
 
 
 # Extract
 mdf_v1v3_stool <- color_obj_v1v3_stool$mdf
-cdf_v1v3_stool <- color_obj_v1v3_stool$color_df
+cdf_v1v3_stool <- color_obj_v1v3_stool$cdf
 ```
 
 ## Plot 
@@ -87,7 +87,7 @@ Reodering the samples can help users notice additional visual trends.
 new_sample_order_v1v3_stool <- reorder_samples_by(mdf_v1v3_stool, cdf_v1v3_stool, order = "Bacteroidaceae", group_level = "PHYLUM", subgroup_level = "FAMILY", sink_abundant_groups = FALSE)
 
 mdf_new_smample_order <-new_sample_order_v1v3_stool$mdf
-cdf_new_smample_order <-new_sample_order_v1v3_stool$color_df
+cdf_new_smample_order <-new_sample_order_v1v3_stool$cdf
 
 plot_2 <- plot_microshades(mdf_new_smample_order, cdf_new_smample_order)
 
@@ -103,7 +103,7 @@ plot_2 + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
 new_group_order_v1v3_stool <- reorder_samples_by(mdf_v1v3_stool, cdf_v1v3_stool, group_level = "PHYLUM", subgroup_level = "FAMILY", sink_abundant_groups = TRUE)
 
 mdf_new_group_order <-new_group_order_v1v3_stool$mdf
-cdf_new_group_order <-new_group_order_v1v3_stool$color_df
+cdf_new_group_order <-new_group_order_v1v3_stool$cdf
 
 plot_3 <- plot_microshades(mdf_new_group_order, cdf_new_group_order)
 
@@ -120,7 +120,7 @@ plot_3 + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
 reordered_v1v3_stool <- reorder_samples_by(mdf_v1v3_stool, cdf_v1v3_stool, order = "Bacteroidaceae", group_level = "PHYLUM", subgroup_level = "FAMILY", sink_abundant_groups = TRUE)
 
 mdf_reordered <-reordered_v1v3_stool$mdf
-cdf_reordered <-reordered_v1v3_stool$color_df
+cdf_reordered <-reordered_v1v3_stool$cdf
 
 plot_3 <- plot_microshades(mdf_reordered, cdf_reordered)
 

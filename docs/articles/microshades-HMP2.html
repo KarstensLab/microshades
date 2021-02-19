@@ -85,7 +85,7 @@
       <h1 data-toc-skip>microshades-HMP2</h1>
                         <h4 class="author">Erin Dahl</h4>
             
-            <h4 class="date">February 16, 2021</h4>
+            <h4 class="date">February 19, 2021</h4>
       
       
       <div class="hidden name"><code>microshades-HMP2.Rmd</code></div>
@@ -151,7 +151,7 @@
 
 <span class="co"># Extract</span>
 <span class="va">mdf_momspi16S_unordered</span> <span class="op">&lt;-</span> <span class="va">color_objs_momspi16S</span><span class="op">$</span><span class="va">mdf</span>
-<span class="va">cdf_momspi16S</span> <span class="op">&lt;-</span> <span class="va">color_objs_momspi16S</span><span class="op">$</span><span class="va">color_df</span></code></pre></div>
+<span class="va">cdf_momspi16S</span> <span class="op">&lt;-</span> <span class="va">color_objs_momspi16S</span><span class="op">$</span><span class="va">cdf</span></code></pre></div>
 <div id="plot" class="section level3">
 <h3 class="hasAnchor">
 <a href="#plot" class="anchor"></a>Plot</h3>
@@ -176,7 +176,7 @@
 <span class="va">momspi16S_ordered</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reorder_samples_by.html">reorder_samples_by</a></span><span class="op">(</span><span class="va">mdf_momspi16S_unordered</span>,<span class="va">cdf_momspi16S</span>, order <span class="op">=</span> <span class="st">"Lactobacillus"</span><span class="op">)</span>
 
 <span class="va">mdf_momspi16S_ordered</span> <span class="op">&lt;-</span> <span class="va">momspi16S_ordered</span><span class="op">$</span><span class="va">mdf</span>
-<span class="va">cdf_momspi16S_ordered</span> <span class="op">&lt;-</span> <span class="va">momspi16S_ordered</span><span class="op">$</span><span class="va">color_df</span>
+<span class="va">cdf_momspi16S_ordered</span> <span class="op">&lt;-</span> <span class="va">momspi16S_ordered</span><span class="op">$</span><span class="va">cdf</span>
 
 <span class="va">plot_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_momspi16S_ordered</span>, <span class="va">cdf_momspi16S_ordered</span><span class="op">)</span>
 

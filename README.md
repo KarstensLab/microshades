@@ -23,7 +23,7 @@ Here is a list of the microshades palettes, including the CVD friendly shades
 ``` r
 library(microshades)
 
-#default shades
+# main shades
 names(microshades_palettes)
 #> [1] "micro_gray"   "micro_brown"  "micro_green"  "micro_orange" "micro_blue"  
 #> [6] "micro_purple"

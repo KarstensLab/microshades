@@ -85,7 +85,7 @@
       <h1 data-toc-skip>microshades-HMP</h1>
                         <h4 class="author">Erin Dahl</h4>
             
-            <h4 class="date">February 16, 2021</h4>
+            <h4 class="date">February 19, 2021</h4>
       
       
       <div class="hidden name"><code>microshades-HMP.Rmd</code></div>
@@ -134,12 +134,12 @@
 <span class="va">mdf_prep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">ps_v1v3_stool</span>, subgroup_level <span class="op">=</span> <span class="st">"FAMILY"</span><span class="op">)</span>
 
 <span class="co"># Create a color object for the specified data</span>
-<span class="va">color_obj_v1v3_stool</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_color_dfs.html">create_color_dfs</a></span><span class="op">(</span><span class="va">mdf_prep</span>, group_level <span class="op">=</span> <span class="st">"PHYLUM"</span>, subgroup_level <span class="op">=</span> <span class="st">"FAMILY"</span><span class="op">)</span></code></pre></div>
+<span class="va">color_obj_v1v3_stool</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_color_dfs.html">create_color_dfs</a></span><span class="op">(</span><span class="va">mdf_prep</span>, group_level <span class="op">=</span> <span class="st">"PHYLUM"</span>, subgroup_level <span class="op">=</span> <span class="st">"FAMILY"</span>, cvd <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Unknown or uninitialised column: `Top_Genus`.</code></pre>
 <div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Extract</span>
 <span class="va">mdf_v1v3_stool</span> <span class="op">&lt;-</span> <span class="va">color_obj_v1v3_stool</span><span class="op">$</span><span class="va">mdf</span>
-<span class="va">cdf_v1v3_stool</span> <span class="op">&lt;-</span> <span class="va">color_obj_v1v3_stool</span><span class="op">$</span><span class="va">color_df</span></code></pre></div>
+<span class="va">cdf_v1v3_stool</span> <span class="op">&lt;-</span> <span class="va">color_obj_v1v3_stool</span><span class="op">$</span><span class="va">cdf</span></code></pre></div>
 </div>
 <div id="plot" class="section level2">
 <h2 class="hasAnchor">
@@ -167,7 +167,7 @@
 <span class="va">new_sample_order_v1v3_stool</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reorder_samples_by.html">reorder_samples_by</a></span><span class="op">(</span><span class="va">mdf_v1v3_stool</span>, <span class="va">cdf_v1v3_stool</span>, order <span class="op">=</span> <span class="st">"Bacteroidaceae"</span>, group_level <span class="op">=</span> <span class="st">"PHYLUM"</span>, subgroup_level <span class="op">=</span> <span class="st">"FAMILY"</span>, sink_abundant_groups <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="va">mdf_new_smample_order</span> <span class="op">&lt;-</span><span class="va">new_sample_order_v1v3_stool</span><span class="op">$</span><span class="va">mdf</span>
-<span class="va">cdf_new_smample_order</span> <span class="op">&lt;-</span><span class="va">new_sample_order_v1v3_stool</span><span class="op">$</span><span class="va">color_df</span>
+<span class="va">cdf_new_smample_order</span> <span class="op">&lt;-</span><span class="va">new_sample_order_v1v3_stool</span><span class="op">$</span><span class="va">cdf</span>
 
 <span class="va">plot_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_new_smample_order</span>, <span class="va">cdf_new_smample_order</span><span class="op">)</span>
 
@@ -181,7 +181,7 @@
 <span class="va">new_group_order_v1v3_stool</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reorder_samples_by.html">reorder_samples_by</a></span><span class="op">(</span><span class="va">mdf_v1v3_stool</span>, <span class="va">cdf_v1v3_stool</span>, group_level <span class="op">=</span> <span class="st">"PHYLUM"</span>, subgroup_level <span class="op">=</span> <span class="st">"FAMILY"</span>, sink_abundant_groups <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="va">mdf_new_group_order</span> <span class="op">&lt;-</span><span class="va">new_group_order_v1v3_stool</span><span class="op">$</span><span class="va">mdf</span>
-<span class="va">cdf_new_group_order</span> <span class="op">&lt;-</span><span class="va">new_group_order_v1v3_stool</span><span class="op">$</span><span class="va">color_df</span>
+<span class="va">cdf_new_group_order</span> <span class="op">&lt;-</span><span class="va">new_group_order_v1v3_stool</span><span class="op">$</span><span class="va">cdf</span>
 
 <span class="va">plot_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_new_group_order</span>, <span class="va">cdf_new_group_order</span><span class="op">)</span>
 
@@ -198,7 +198,7 @@
 <span class="va">reordered_v1v3_stool</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reorder_samples_by.html">reorder_samples_by</a></span><span class="op">(</span><span class="va">mdf_v1v3_stool</span>, <span class="va">cdf_v1v3_stool</span>, order <span class="op">=</span> <span class="st">"Bacteroidaceae"</span>, group_level <span class="op">=</span> <span class="st">"PHYLUM"</span>, subgroup_level <span class="op">=</span> <span class="st">"FAMILY"</span>, sink_abundant_groups <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="va">mdf_reordered</span> <span class="op">&lt;-</span><span class="va">reordered_v1v3_stool</span><span class="op">$</span><span class="va">mdf</span>
-<span class="va">cdf_reordered</span> <span class="op">&lt;-</span><span class="va">reordered_v1v3_stool</span><span class="op">$</span><span class="va">color_df</span>
+<span class="va">cdf_reordered</span> <span class="op">&lt;-</span><span class="va">reordered_v1v3_stool</span><span class="op">$</span><span class="va">cdf</span>
 
 <span class="va">plot_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_reordered</span>, <span class="va">cdf_reordered</span><span class="op">)</span>
 

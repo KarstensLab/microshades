@@ -61,7 +61,7 @@ color_objs_momspi16S <- create_color_dfs(mdf_prep)
 
 # Extract
 mdf_momspi16S_unordered <- color_objs_momspi16S$mdf
-cdf_momspi16S <- color_objs_momspi16S$color_df
+cdf_momspi16S <- color_objs_momspi16S$cdf
 ```
 
 ### Plot 
@@ -88,7 +88,7 @@ The plot above indicates that Lactobacillus is the most abundant genera in the F
 momspi16S_ordered <- reorder_samples_by(mdf_momspi16S_unordered,cdf_momspi16S, order = "Lactobacillus")
 
 mdf_momspi16S_ordered <- momspi16S_ordered$mdf
-cdf_momspi16S_ordered <- momspi16S_ordered$color_df
+cdf_momspi16S_ordered <- momspi16S_ordered$cdf
 
 plot_2 <- plot_microshades(mdf_momspi16S_ordered, cdf_momspi16S_ordered)
 

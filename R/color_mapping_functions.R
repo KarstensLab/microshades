@@ -12,7 +12,7 @@
 #' @param subgroup_level string of smaller taxonomic group
 #'
 #' @import phyloseq
-#' @importFrom speedyseq tax_glom transform_sample_counts psmelt
+#' @importFrom speedyseq tax_glom psmelt
 #'
 #' @return data.frame, a melted phyloseq object from `psmelt()`
 #' @export
@@ -47,7 +47,7 @@ prep_mdf <- function(ps,
 #' Returns a built-in data frame with hex code.
 #'
 #' @param n_groups integer of number of selected groups
-#' @param cvdf logical Color Vision Deficent Friendly palette useage
+#' @param cvd logical Color Vision Deficent Friendly palette useage
 #'
 #' @import dplyr
 #' @return data.frame
@@ -59,11 +59,11 @@ prep_mdf <- function(ps,
 #'
 #' # Get hex codes for 3 groups with CVD palette
 #' hex_df <- default_hex(3, TRUE)
-default_hex <- function(n_groups = 5, cvdf = FALSE) {
+default_hex <- function(n_groups = 5, cvd = FALSE) {
     # Hex is ordered light to dark
     # Numbers in name refer to the bottom up order in color stack
 
-    if (cvdf)
+    if (cvd)
       {
         hex_df <- data.frame(sapply(microshades_cvd_palettes, c))
       } else {
@@ -109,7 +109,7 @@ default_hex <- function(n_groups = 5, cvdf = FALSE) {
 #'   the max is 4 top subgroups
 #' @param group_level string of larger taxonomic group
 #' @param subgroup_level string of smaller taxonomic group
-#' @param cvdf logical stands for Color Vision Deficent Friendly palette
+#' @param cvd logical stands for Color Vision Deficent Friendly palette
 #'
 #' @import phyloseq
 #' @import dplyr
@@ -121,7 +121,7 @@ default_hex <- function(n_groups = 5, cvdf = FALSE) {
 #' @return list
 #'   \itemize{
 #'     \item{"mdf"}{ melted data frame to pass into ggplot2}
-#'     \item{"color_df"}{ mapping to be used in manual color filling}
+#'     \item{"cdf"}{ mapping to be used in manual color filling}
 #'   }
 #'
 #' @export
@@ -129,7 +129,7 @@ default_hex <- function(n_groups = 5, cvdf = FALSE) {
 #' @examples
 #' colorframe <- create_color_dfs(mdf)
 #' colorframe <- create_color_dfs(mdf, selected_groups = c("Proteobacteria", "Actinobacteriota", "Bacteroidota", "Firmicutes"))
-#' colorframe <- create_color_dfs(mdf, cvdf = TRUE)
+#' colorframe <- create_color_dfs(mdf, cvd = TRUE)
 create_color_dfs <- function(mdf,
                              selected_groups = c("Proteobacteria",
                                                  "Actinobacteria",
@@ -138,7 +138,7 @@ create_color_dfs <- function(mdf,
                              top_n_subgroups = 4,
                              group_level = "Phylum",
                              subgroup_level = "Genus",
-                             cvdf = FALSE)
+                             cvd = FALSE)
     {
     # Throws error if too many subgroups
     if (top_n_subgroups > 4) {
@@ -238,7 +238,7 @@ create_color_dfs <- function(mdf,
     # Rank bacteria by group-subgroup abundances -----
     # Get beginning of color data frame with top groups/subgroups
     # E.g., 4 selected_groups + 1 Other, 4 top_n_groups + 1 Other => 25 groups
-    prep_color_df <- group_info %>%
+    prep_cdf <- group_info %>%
         select(c("group", "order", col_name_group, col_name_subgroup)) %>%
         filter(order <= top_n_subgroups + 1) %>%  # "+ 1" for other subgroup
         arrange(!!sym(col_name_group), order)
@@ -250,13 +250,13 @@ create_color_dfs <- function(mdf,
     # Generates default 5 row x 6 cols of 5 colors for 6 phylum categories
     # Parameter for number of selected phylum
     # "+ 1" is for "Other" group
-    hex_df <- default_hex(length(selected_groups) + 1, cvdf)
+    hex_df <- default_hex(length(selected_groups) + 1, cvd)
 
     # Add hex codes in ranked way
     # creates nested data frame
     # https://tidyr.tidyverse.org/articles/nest.html
     # https://tidyr.tidyverse.org/reference/nest.html
-    color_df <- prep_color_df %>%
+    cdf <- prep_cdf %>%
         group_by_at(all_of(vars(col_name_group))) %>%
         tidyr::nest() %>%
         arrange(!!sym(col_name_group))
@@ -265,11 +265,11 @@ create_color_dfs <- function(mdf,
     # Higher row number = less abundant = lighter color
     # "+ 1" is "Other"
     for (i in 1:(length(selected_groups) + 1)) {
-      color_df$data[[i]]$hex <- hex_df[1:length(color_df$data[[i]]$group),i]
+      cdf$data[[i]]$hex <- hex_df[1:length(cdf$data[[i]]$group),i]
     }
 
     # Unnest colors and groups and polish for output
-    color_df <- color_df %>%
+    cdf <- cdf %>%
         ungroup() %>%
         arrange(desc(row_number())) %>%
         tidyr::unnest(data) %>%
@@ -278,14 +278,16 @@ create_color_dfs <- function(mdf,
                group, hex) %>%
         mutate_all(as.character)  # Remove factor from hex codes
 
-    level_assign = unique(rev(color_df$group))
+    cdf <- cdf %>% filter( !is.na(hex))
+
+    level_assign = unique(rev(cdf$group))
 
     mdf_group$group <- factor(mdf_group$group, levels = level_assign)
 
     # Return final objects -----
     list(
         mdf = mdf_group,
-        color_df = color_df
+        cdf = cdf
     )
 }
 
@@ -313,10 +315,10 @@ create_color_dfs <- function(mdf,
 #' @export
 #'
 #' @examples
-#' mdf_to_plot <- match_color_df(mdf, mdf_group)
+#' mdf_to_plot <- match_cdf(mdf, mdf_group)
 #'
 
-match_color_df <- function(mdf,
+match_cdf <- function(mdf,
                             mdf_group,
                             selected_groups = c("Proteobacteria",
                                                 "Actinobacteria",
@@ -392,7 +394,7 @@ match_color_df <- function(mdf,
 #'
 #'
 #' @param mdf_group data.frame, melted data frame
-#' @param color_df data.frame containing the color key
+#' @param cdf data.frame containing the color key
 #' @param order string of subgroup to reorder by
 #' @param group_level string of larger taxonomic group
 #' @param subgroup_level string of smaller taxonomic group
@@ -405,7 +407,7 @@ match_color_df <- function(mdf,
 #' @return list
 #'   \itemize{
 #'     \item{"mdf"}{ reordered melted data frame, ready for plotting}
-#'     \item{"color_df"}{ reordered manual color filling according to new order}
+#'     \item{"cdf"}{ reordered manual color filling according to new order}
 #'   }
 #'
 #' @export
@@ -413,7 +415,7 @@ match_color_df <- function(mdf,
 #' @examples
 #' mdf_to_plot <- reorder_samples_by(mdf_group)
 reorder_samples_by <- function (mdf_group,
-                                color_df,
+                                cdf,
                                 order = "NA",
                                 group_level = "Phylum",
                                 subgroup_level = "Genus",
@@ -468,12 +470,12 @@ reorder_samples_by <- function (mdf_group,
 
     # cdf
     reverse_group_order <-rev(group_order)
-    color_df <- color_df %>% filter( !is.na(hex))
-    color_df$group <- factor(color_df$group, reverse_group_order)
+    cdf <- cdf %>% filter( !is.na(hex))
+    cdf$group <- factor(cdf$group, reverse_group_order)
 
-    color_df <- color_df %>%
+    cdf <- cdf %>%
       arrange(group)
-    color_df$group <- as.character(color_df$group)
+    cdf$group <- as.character(cdf$group)
   }
 
   if (order != "NA")
@@ -498,7 +500,7 @@ reorder_samples_by <- function (mdf_group,
 
   list(
     mdf = mdf_group,
-    color_df = color_df
+    cdf = cdf
   )
 }
 
@@ -508,7 +510,7 @@ reorder_samples_by <- function (mdf_group,
 #'
 #'
 #' @param mdf_group data.frame, melted data frame processed by microshades functions
-#' @param color_df data.frame containing the color key
+#' @param cdf data.frame containing the color key
 #' @param group_label string of smaller taxonomic group
 #' @param x string x-axis element
 #' @param y string y-axis element
@@ -521,10 +523,10 @@ reorder_samples_by <- function (mdf_group,
 #' @export
 #'
 #' @examples
-#' plot <- plot_microshades(mdf_group, color_df)
+#' plot <- plot_microshades(mdf_group, cdf)
 
 plot_microshades <- function (mdf_group,
-                                color_df,
+                                cdf,
                                 group_label = "Phylum Genus",
                                 x = "Sample",
                                 y = "Abundance")
@@ -539,11 +541,11 @@ plot_microshades <- function (mdf_group,
     ggplot(aes_string(x = x, y = y), fill = group_label) +
     geom_col(position = "fill") +
     scale_fill_manual(name = group_label,
-                      values = color_df$hex,
-                      breaks = color_df$group) +
+                      values = cdf$hex,
+                      breaks = cdf$group) +
     scale_colour_manual(name = group_label,
-                        values = color_df$hex,
-                        breaks = color_df$group) +
+                        values = cdf$hex,
+                        breaks = cdf$group) +
     geom_bar(aes(color=group, fill=group), stat="identity", position="stack") +
     theme(axis.text.x = element_text(angle = 45, hjust = 1))
 

@@ -38,11 +38,11 @@ mdf_prep <- prep_mdf(GlobalPatterns)
 
 # Generate a color object for the specified data
 color_objs_GP <- create_color_dfs(mdf_prep,selected_groups = c("Verrucomicrobia", "Proteobacteria", "Actinobacteria", "Bacteroidetes",
-    "Firmicutes") , cvdf = TRUE)
+    "Firmicutes") , cvd = TRUE)
 
 # Extract
 mdf_GP <- color_objs_GP$mdf
-cdf_GP <- color_objs_GP$color_df
+cdf_GP <- color_objs_GP$cdf
 ```
 
 ### Plot 
@@ -76,7 +76,7 @@ plot_2
 ```
 
 Use custom legend Format
-```{r fig.width= 9, fig.height= 4}
+```{r fig.width= 9, fig.height= 5}
 
 GP_legend <-custom_legend(mdf_GP, cdf_GP)
 
@@ -107,29 +107,29 @@ mdf_human <- prep_mdf(ps_human)
 
 # Generate a color object for the specified data
 color_objs_water <- create_color_dfs(mdf_water,selected_groups = c("Verrucomicrobia", "Proteobacteria", "Actinobacteria", "Bacteroidetes",
-    "Firmicutes") , cvdf = TRUE)
+    "Firmicutes") , cvd = TRUE)
 
-color_objs_water <- reorder_samples_by(color_objs_water$mdf, color_objs_water$color_df)
+color_objs_water <- reorder_samples_by(color_objs_water$mdf, color_objs_water$cdf)
 
 color_objs_land <- create_color_dfs(mdf_land,selected_groups = c("Verrucomicrobia", "Proteobacteria", "Actinobacteria", "Bacteroidetes",
-    "Firmicutes") , cvdf = TRUE)
+    "Firmicutes") , cvd = TRUE)
 
-color_objs_land <- reorder_samples_by(color_objs_land$mdf, color_objs_land$color_df)
+color_objs_land <- reorder_samples_by(color_objs_land$mdf, color_objs_land$cdf)
 
 color_objs_human <- create_color_dfs(mdf_human,selected_groups = c("Verrucomicrobia", "Proteobacteria", "Actinobacteria", "Bacteroidetes",
-    "Firmicutes") , cvdf = TRUE)
+    "Firmicutes") , cvd = TRUE)
 
-color_objs_human <- reorder_samples_by(color_objs_human$mdf, color_objs_human$color_df)
+color_objs_human <- reorder_samples_by(color_objs_human$mdf, color_objs_human$cdf)
 
 # Extract
 mdf_water <- color_objs_water$mdf
-cdf_water <- color_objs_water$color_df
+cdf_water <- color_objs_water$cdf
 
 mdf_land <- color_objs_land$mdf
-cdf_land <- color_objs_land$color_df
+cdf_land <- color_objs_land$cdf
 
 mdf_human <- color_objs_human$mdf
-cdf_human <- color_objs_human$color_df
+cdf_human <- color_objs_human$cdf
 ```
 
 Water Samples 

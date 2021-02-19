@@ -1,4 +1,5 @@
-#' This function creates a custom legend that is organized by same group classifications
+#' This function creates a custom legend that sections the group taxonomy as headers
+#' and lists the subgroup taxonomies below each group header, for all the groups.
 #'
 #' @param mdf data.frame melted dataframe
 #' @param cdf data.frame color dataframe
@@ -20,6 +21,18 @@
 #'
 custom_legend <- function (mdf, cdf, group_level = "Phylum", subgroup_level = "Genus", legend_key_size = 0.4, legend_text_size = 10)
 {
+  if (is.null(mdf[[group_level]])) {
+    stop("mdf 'group_level' does not exist")
+  }
+
+  if (is.null(mdf[[subgroup_level]])) {
+    stop("mdf 'subgroup_level' does not exist")
+  }
+
+  if (is.null(cdf$hex)) {
+    stop("cdf 'hex' does not exist")
+  }
+
   col_name_group <- paste0("Top_", group_level)
 
   group_level_names <- unique(cdf[[col_name_group]])
@@ -44,7 +57,8 @@ custom_legend <- function (mdf, cdf, group_level = "Phylum", subgroup_level = "G
 }
 
 
-#' This function creates a custom legend that is organized by same group classifications
+#' This function creates a custom legend for an individual group taxonomy with the
+#' subgroup taxonomy below
 #'
 #' @param mdf data.frame melted dataframe
 #' @param cdf data.frame color dataframe

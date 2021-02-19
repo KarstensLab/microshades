@@ -4,12 +4,12 @@
 \alias{default_hex}
 \title{Return default hex colors}
 \usage{
-default_hex(n_groups = 5, cvdf = FALSE)
+default_hex(n_groups = 5, cvd = FALSE)
 }
 \arguments{
 \item{n_groups}{integer of number of selected groups}
 
-\item{cvdf}{logical Color Vision Deficent Friendly palette useage}
+\item{cvd}{logical Color Vision Deficent Friendly palette useage}
 }
 \value{
 data.frame

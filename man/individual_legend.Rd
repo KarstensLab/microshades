@@ -2,7 +2,8 @@
 % Please edit documentation in R/custom_legend.R
 \name{individual_legend}
 \alias{individual_legend}
-\title{This function creates a custom legend that is organized by same group classifications}
+\title{This function creates a custom legend for an individual group taxonomy with the
+subgroup taxonomy below}
 \usage{
 individual_legend(
   mdf,
@@ -33,5 +34,6 @@ individual_legend(
 legend ggplot
 }
 \description{
-This function creates a custom legend that is organized by same group classifications
+This function creates a custom legend for an individual group taxonomy with the
+subgroup taxonomy below
 }

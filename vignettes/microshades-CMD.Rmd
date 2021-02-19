@@ -63,7 +63,7 @@ color_objs_britol <- create_color_dfs(mdf_britol_pre)
 
 # Extract
 mdf_britol<- color_objs_britol$mdf
-cdf_britol <- color_objs_britol$color_df
+cdf_britol <- color_objs_britol$cdf
 ```
 
 ### Plot Britol
@@ -93,7 +93,7 @@ color_objs_HMP <- create_color_dfs(mdf_HMP_pre)
 
 # Extract
 mdf_HMP <- color_objs_HMP$mdf
-cdf_HMP <- color_objs_HMP$color_df
+cdf_HMP <- color_objs_HMP$cdf
 ```
 
 ### Plot HMP
@@ -128,13 +128,13 @@ Notice that the Britol and HMP Legends are similar, but not the exact same, due 
 ## Use Britol legend for HMP Plot
 
 If the plots are being compared, it may be confusing visually if the genus shading colors account for different genera between the two plots.
-In this case, the function `match_color_df()` can apply the color factoring information from one processed mdf to a different, unprocessed mdf.
+In this case, the function `match_cdf()` can apply the color factoring information from one processed mdf to a different, unprocessed mdf.
 
 To use the Britol color legend with the HMP data, apply the Britol color factoring to the HMP data.
 
 ```{r fig.width= 3.75, fig.height= 4}
 
-mdf_HMP_matched <- match_color_df(mdf_HMP_pre, mdf_britol)
+mdf_HMP_matched <- match_cdf(mdf_HMP_pre, mdf_britol)
 
 # Use the Britol cdf for color reference
 plot_HMP_matched <- plot_microshades(mdf_HMP_matched, cdf_britol)

@@ -85,7 +85,7 @@
       <h1 data-toc-skip>microshades-CMD</h1>
                         <h4 class="author">Erin Dahl</h4>
             
-            <h4 class="date">February 16, 2021</h4>
+            <h4 class="date">February 19, 2021</h4>
       
       
       <div class="hidden name"><code>microshades-CMD.Rmd</code></div>
@@ -145,7 +145,7 @@
 
 <span class="co"># Extract</span>
 <span class="va">mdf_britol</span><span class="op">&lt;-</span> <span class="va">color_objs_britol</span><span class="op">$</span><span class="va">mdf</span>
-<span class="va">cdf_britol</span> <span class="op">&lt;-</span> <span class="va">color_objs_britol</span><span class="op">$</span><span class="va">color_df</span></code></pre></div>
+<span class="va">cdf_britol</span> <span class="op">&lt;-</span> <span class="va">color_objs_britol</span><span class="op">$</span><span class="va">cdf</span></code></pre></div>
 <div id="plot-britol" class="section level3">
 <h3 class="hasAnchor">
 <a href="#plot-britol" class="anchor"></a>Plot Britol</h3>
@@ -172,7 +172,7 @@
 
 <span class="co"># Extract</span>
 <span class="va">mdf_HMP</span> <span class="op">&lt;-</span> <span class="va">color_objs_HMP</span><span class="op">$</span><span class="va">mdf</span>
-<span class="va">cdf_HMP</span> <span class="op">&lt;-</span> <span class="va">color_objs_HMP</span><span class="op">$</span><span class="va">color_df</span></code></pre></div>
+<span class="va">cdf_HMP</span> <span class="op">&lt;-</span> <span class="va">color_objs_HMP</span><span class="op">$</span><span class="va">cdf</span></code></pre></div>
 <div id="plot-hmp" class="section level3">
 <h3 class="hasAnchor">
 <a href="#plot-hmp" class="anchor"></a>Plot HMP</h3>
@@ -200,10 +200,10 @@
 <div id="use-britol-legend-for-hmp-plot" class="section level2">
 <h2 class="hasAnchor">
 <a href="#use-britol-legend-for-hmp-plot" class="anchor"></a>Use Britol legend for HMP Plot</h2>
-<p>If the plots are being compared, it may be confusing visually if the genus shading colors account for different genera between the two plots. In this case, the function <code><a href="../reference/match_color_df.html">match_color_df()</a></code> can apply the color factoring information from one processed mdf to a different, unprocessed mdf.</p>
+<p>If the plots are being compared, it may be confusing visually if the genus shading colors account for different genera between the two plots. In this case, the function <code><a href="../reference/match_cdf.html">match_cdf()</a></code> can apply the color factoring information from one processed mdf to a different, unprocessed mdf.</p>
 <p>To use the Britol color legend with the HMP data, apply the Britol color factoring to the HMP data.</p>
 <div class="sourceCode"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mdf_HMP_matched</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/match_color_df.html">match_color_df</a></span><span class="op">(</span><span class="va">mdf_HMP_pre</span>, <span class="va">mdf_britol</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">mdf_HMP_matched</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/match_cdf.html">match_cdf</a></span><span class="op">(</span><span class="va">mdf_HMP_pre</span>, <span class="va">mdf_britol</span><span class="op">)</span>
 
 <span class="co"># Use the Britol cdf for color reference</span>
 <span class="va">plot_HMP_matched</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_HMP_matched</span>, <span class="va">cdf_britol</span><span class="op">)</span>

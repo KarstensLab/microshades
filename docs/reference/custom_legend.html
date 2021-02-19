@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>This function creates a custom legend that is organized by same group classifications — custom_legend • microshades</title>
+<title>This function creates a custom legend that sections the group taxonomy as headers
+and lists the subgroup taxonomies below each group header, for all the groups. — custom_legend • microshades</title>
 
 
 <!-- jquery -->
@@ -39,8 +40,10 @@
 
 
 
-<meta property="og:title" content="This function creates a custom legend that is organized by same group classifications — custom_legend" />
-<meta property="og:description" content="This function creates a custom legend that is organized by same group classifications" />
+<meta property="og:title" content="This function creates a custom legend that sections the group taxonomy as headers
+and lists the subgroup taxonomies below each group header, for all the groups. — custom_legend" />
+<meta property="og:description" content="This function creates a custom legend that sections the group taxonomy as headers
+and lists the subgroup taxonomies below each group header, for all the groups." />
 
 
 
@@ -124,13 +127,15 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>This function creates a custom legend that is organized by same group classifications</h1>
+    <h1>This function creates a custom legend that sections the group taxonomy as headers
+and lists the subgroup taxonomies below each group header, for all the groups.</h1>
     
     <div class="hidden name"><code>custom_legend.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function creates a custom legend that is organized by same group classifications</p>
+    <p>This function creates a custom legend that sections the group taxonomy as headers
+and lists the subgroup taxonomies below each group header, for all the groups.</p>
     </div>
 
     <pre class="usage"><span class='fu'>custom_legend</span><span class='op'>(</span>
@@ -177,7 +182,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>legend_new</span> <span class='op'>&lt;-</span> <span class='fu'>custom_legend</span><span class='op'>(</span><span class='va'>mdf_GP</span>, <span class='va'>cdf_GP</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in unique(cdf[[col_name_group]]): object 'cdf_GP' not found</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error in custom_legend(mdf_GP, cdf_GP): object 'mdf_GP' not found</span></div><div class='input'>
 
 </div></pre>
   </div>

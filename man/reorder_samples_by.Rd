@@ -7,7 +7,7 @@ reorder the groups levels based on abundance with the sink_abundant_groups flag}
 \usage{
 reorder_samples_by(
   mdf_group,
-  color_df,
+  cdf,
   order = "NA",
   group_level = "Phylum",
   subgroup_level = "Genus",
@@ -17,7 +17,7 @@ reorder_samples_by(
 \arguments{
 \item{mdf_group}{data.frame, melted data frame}
 
-\item{color_df}{data.frame containing the color key}
+\item{cdf}{data.frame containing the color key}
 
 \item{order}{string of subgroup to reorder by}
 
@@ -31,7 +31,7 @@ reorder_samples_by(
 list
 \itemize{
 \item{"mdf"}{ reordered melted data frame, ready for plotting}
-\item{"color_df"}{ reordered manual color filling according to new order}
+\item{"cdf"}{ reordered manual color filling according to new order}
 }
 }
 \description{

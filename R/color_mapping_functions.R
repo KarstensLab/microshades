@@ -551,3 +551,52 @@ plot_microshades <- function (mdf_group,
 
   plot
 }
+
+#' Reassign the microshades colors to different groups
+#'
+#'
+#'
+#' @param cdf data.frame containing the color key
+#' @param group_assignment string vector of taxonomic groups
+#' @param color_assignment sting vector of corresponding color assignment
+#' @param group_level string indiating the taxonomic level of group_assignment
+#'
+#' @import dplyr
+#'
+#' @return cdf data.frame
+#'
+#' @export
+#'
+#' @examples
+#' new_cdf <- color_reassign(cdf,
+#'                           group_assignment = c("Firmicutes", "Actinobacteria"),
+#'                           color_assignment = c("micro_cvd_blue", "micro_cvd_purple"))
+#'
+color_reassign <- function (cdf, group_assignment, color_assignment, group_level = "Phylum")
+{
+  col_name_group <- paste0("Top_", group_level)
+
+  if (is.null(cdf[[col_name_group]])) {
+    stop(paste0("cdf Top_", group_level, " does not exist"))
+  }
+
+  if (is.null(cdf$hex)) {
+    stop("cdf 'hex' column does not exist in the data")
+  }
+
+  for ( i in 1:length(group_assignment))
+  {
+    temp <- cdf %>% filter(!!sym(col_name_group) == group_assignment[i])
+    temp$hex <- rev(microshades_palette(color_assignment[i], nrow(temp)))
+
+    # replace the old hex with new hex
+    cdf$hex[cdf[[col_name_group]] == group_assignment[i]] <- temp$hex
+  }
+
+  if (length(unique(cdf$hex)) != nrow(cdf))
+  {
+    warning("Duplicate Hexcodes")
+  }
+
+  cdf
+}

@@ -81,6 +81,24 @@ plot_britol + scale_y_continuous(labels = scales::percent, expand = expansion(0)
   theme(axis.text.x = element_text(size= 6)) 
 
 ```
+## Reassign colors as desired
+
+To change the colors assignment, use the function `color_reassign` to specify the groups and colors in order of reassignment. For example, we can change the color assignment of Bacteroidetes to `micro_green` and the color assignment of Proteobacteria to `micro_blue`
+
+```{r}
+
+new_cdf_britol <- color_reassign(cdf_britol, 
+                                 group_assignment = c("Bacteroidetes", "Proteobacteria"),
+                                 color_assignment = c("micro_green", "micro_blue"))
+
+new_plot_britol <- plot_microshades(mdf_britol, new_cdf_britol)
+
+new_plot_britol + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
+  theme(axis.text.x = element_text(size= 6)) 
+
+```
+
 
 ## Apply the microshades functions to the HMP dataset.
 
@@ -116,7 +134,7 @@ HMP_legend <- get_legend(plot_HMP)
 
 plot_grid(HMP_legend)
 
-britol_legend <- get_legend(plot_britol)
+britol_legend <- get_legend(new_plot_britol)
 
 plot_grid(britol_legend)
 
@@ -137,7 +155,7 @@ To use the Britol color legend with the HMP data, apply the Britol color factori
 mdf_HMP_matched <- match_cdf(mdf_HMP_pre, mdf_britol)
 
 # Use the Britol cdf for color reference
-plot_HMP_matched <- plot_microshades(mdf_HMP_matched, cdf_britol)
+plot_HMP_matched <- plot_microshades(mdf_HMP_matched, new_cdf_britol)
 
 plot_HMP_matched + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
   theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +

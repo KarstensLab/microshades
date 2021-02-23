@@ -19,7 +19,7 @@ Secondary link https://bioconductor.org/packages/release/bioc/html/phyloseq.html
 
 ## Load the required packages
 
-```{r warning=FALSE}
+```{r message = FALSE, warning=FALSE}
 library(microshades)
 library(phyloseq)
 library(ggplot2)

@@ -11,7 +11,8 @@ create_color_dfs(
   top_n_subgroups = 4,
   group_level = "Phylum",
   subgroup_level = "Genus",
-  cvd = FALSE
+  cvd = FALSE,
+  top_orientation = FALSE
 )
 }
 \arguments{
@@ -30,6 +31,9 @@ the max is 4 top subgroups}
 \item{subgroup_level}{string of smaller taxonomic group}
 
 \item{cvd}{logical stands for Color Vision Deficent Friendly palette}
+
+\item{top_orientation}{logical most abundant shades oriented at the top of the stack
+otherwise, most abundant shades are bottom oriented}
 }
 \value{
 list

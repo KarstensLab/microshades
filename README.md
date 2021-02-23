@@ -52,12 +52,7 @@ microshades_palette("micro_cvd_blue")
 
 ## Phyloseq useage
 
-For detailed tutorials on how to use microshades function with phyloseq objects, please reference the following vignettes.
-
--   [Global Patterns](https://KarstensLab.github.io/Microshades/articles/microshades-GP.html)
--   [Human Microbiome Project](https://KarstensLab.github.io/Microshades/articles/microshades-HMP.html)
--   [Human Microbiome Project 2](https://KarstensLab.github.io/Microshades/articles/microshades-HMP2.html)
--   [Curated Metagenomic Data](https://KarstensLab.github.io/Microshades/articles/microshades-CMD.html)
+For detailed tutorials on how to use microshades function with phyloseq objects, please reference vignette articles on the [website](https://KarstensLab.github.io/microshades).
 
 Here is an example of the plot generated with microshades on Curated Metagenomic Data of the Human Microbiome.
 

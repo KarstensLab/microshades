@@ -85,7 +85,7 @@
       <h1 data-toc-skip>microshades-CMD</h1>
                         <h4 class="author">Erin Dahl</h4>
             
-            <h4 class="date">February 19, 2021</h4>
+            <h4 class="date">February 22, 2021</h4>
       
       
       <div class="hidden name"><code>microshades-CMD.Rmd</code></div>
@@ -136,12 +136,13 @@
 <div id="apply-the-microshades-functions-to-the-britol-dataset-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#apply-the-microshades-functions-to-the-britol-dataset-" class="anchor"></a>Apply the microshades functions to the Britol dataset.</h2>
+<p>To orient the shades from the top darkest to lightest instead of from the bottom darkest to lightest, use the <code>top_orientation = TRUE</code> parameter in the <code><a href="../reference/create_color_dfs.html">create_color_dfs()</a></code></p>
 <div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Use microshades function prep_mdf to agglomerate, normalize, and melt the phyloseq object</span>
 <span class="va">mdf_britol_pre</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">ps_britol_sub</span><span class="op">)</span>
 
 <span class="co"># Create a color object for the specified data</span>
-<span class="va">color_objs_britol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_color_dfs.html">create_color_dfs</a></span><span class="op">(</span><span class="va">mdf_britol_pre</span><span class="op">)</span>
+<span class="va">color_objs_britol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_color_dfs.html">create_color_dfs</a></span><span class="op">(</span><span class="va">mdf_britol_pre</span>, top_orientation <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co"># Extract</span>
 <span class="va">mdf_britol</span><span class="op">&lt;-</span> <span class="va">color_objs_britol</span><span class="op">$</span><span class="va">mdf</span>
@@ -157,7 +158,12 @@
 <span class="va">plot_britol</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org//reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
-<p><img src="microshades-CMD_files/figure-html/unnamed-chunk-5-1.png" width="576"> ## Reassign colors as desired</p>
+<p><img src="microshades-CMD_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
+</div>
+</div>
+<div id="reassign-colors-as-desired" class="section level2">
+<h2 class="hasAnchor">
+<a href="#reassign-colors-as-desired" class="anchor"></a>Reassign colors as desired</h2>
 <p>To change the colors assignment, use the function <code>color_reassign</code> to specify the groups and colors in order of reassignment. For example, we can change the color assignment of Bacteroidetes to <code>micro_green</code> and the color assignment of Proteobacteria to <code>micro_blue</code></p>
 <div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_cdf_britol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/color_reassign.html">color_reassign</a></span><span class="op">(</span><span class="va">cdf_britol</span>, 
@@ -170,7 +176,6 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
 <p><img src="microshades-CMD_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
-</div>
 </div>
 <div id="apply-the-microshades-functions-to-the-hmp-dataset-" class="section level2">
 <h2 class="hasAnchor">

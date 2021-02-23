@@ -1,0 +1,22 @@
+destination: docs
+reference:
+- title: "microshades palettes"
+  desc: >
+    Access the microshades color palettes
+- contents:
+  - microshades_palettes
+  - microshades_cvd_palettes
+  - microshades_palette
+  - default_hex
+- title: "Apply microshades to phyloseq objects"
+  desc: "Functions for using microshades advanced color organization on phyloseq objects."
+- contents:
+  - prep_mdf
+  - create_color_dfs
+  - plot_microshades
+  - reorder_samples_by
+  - match_cdf
+  - color_reassign
+  - custom_legend
+  - individual_legend
+

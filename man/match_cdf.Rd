@@ -4,22 +4,12 @@
 \alias{match_cdf}
 \title{Apply the color factoring from one color df to a different melted phyloseq object.}
 \usage{
-match_cdf(
-  mdf,
-  mdf_group,
-  selected_groups = c("Proteobacteria", "Actinobacteria", "Bacteroidetes",
-    "Firmicutes"),
-  group_level = "Phylum",
-  subgroup_level = "Genus"
-)
+match_cdf(mdf, mdf_group, group_level = "Phylum", subgroup_level = "Genus")
 }
 \arguments{
 \item{mdf}{data.frame, melted data frame to apply legend to}
 
 \item{mdf_group}{data.frame, melted data frame to use legend from}
-
-\item{selected_groups}{list. "Other" is always on the top of the stack,
-but then the rest will follow, with Firmicutes as the base of the stack}
 
 \item{group_level}{string of larger taxonomic group}
 

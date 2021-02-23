@@ -54,12 +54,13 @@ Now `ps_britol_sub` object contains 18 samples, and `ps_HMP_sub` contains 6 samp
 
 ## Apply the microshades functions to the Britol dataset.
 
+To orient the shades from the top darkest to lightest instead of from the bottom darkest to lightest, use the `top_orientation = TRUE` parameter in the `create_color_dfs()`
 ```{r}
 # Use microshades function prep_mdf to agglomerate, normalize, and melt the phyloseq object
 mdf_britol_pre <- prep_mdf(ps_britol_sub)
 
 # Create a color object for the specified data
-color_objs_britol <- create_color_dfs(mdf_britol_pre)
+color_objs_britol <- create_color_dfs(mdf_britol_pre, top_orientation = TRUE)
 
 # Extract
 mdf_britol<- color_objs_britol$mdf
@@ -81,6 +82,7 @@ plot_britol + scale_y_continuous(labels = scales::percent, expand = expansion(0)
   theme(axis.text.x = element_text(size= 6)) 
 
 ```
+
 ## Reassign colors as desired
 
 To change the colors assignment, use the function `color_reassign` to specify the groups and colors in order of reassignment. For example, we can change the color assignment of Bacteroidetes to `micro_green` and the color assignment of Proteobacteria to `micro_blue`

@@ -12,6 +12,7 @@
 #' @param subgroup_level string of smaller taxonomic group
 #'
 #' @import phyloseq
+#' @import dplyr
 #' @importFrom speedyseq tax_glom psmelt
 #'
 #' @return data.frame, a melted phyloseq object from `psmelt()`
@@ -29,6 +30,11 @@ prep_mdf <- function(ps,
                      subgroup_level = "Genus")
     {
     # Agglomerate, normalizes, and melts phyloseq object -----
+
+    if (!(subgroup_level %in% colnames(ps@tax_table))) {
+      stop("'subgroup_level' does not exist")
+    }
+
     mdf <- ps %>%
         tax_glom(subgroup_level) %>%
         transform_sample_counts(function(x) { x/sum(x) }) %>%
@@ -110,6 +116,8 @@ default_hex <- function(n_groups = 5, cvd = FALSE) {
 #' @param group_level string of larger taxonomic group
 #' @param subgroup_level string of smaller taxonomic group
 #' @param cvd logical stands for Color Vision Deficent Friendly palette
+#' @param top_orientation logical most abundant shades oriented at the top of the stack
+#'   otherwise, most abundant shades are bottom oriented
 #'
 #' @import phyloseq
 #' @import dplyr
@@ -138,7 +146,8 @@ create_color_dfs <- function(mdf,
                              top_n_subgroups = 4,
                              group_level = "Phylum",
                              subgroup_level = "Genus",
-                             cvd = FALSE)
+                             cvd = FALSE,
+                             top_orientation = FALSE)
     {
     # Throws error if too many subgroups
     if (top_n_subgroups > 4) {
@@ -224,7 +233,7 @@ create_color_dfs <- function(mdf,
                              sep = "-"))
 
     # Ensure that the "Other" subgroup is always the lightest shade
-    group_info$order[group_info$Top_Genus == "Other"] <- top_n_subgroups +1
+    group_info$order[group_info[[col_name_subgroup]] == "Other"] <- top_n_subgroups +1
 
     # Merge group info back to melted phyloseq -----
     # Get relevant columns from data frame with group info
@@ -250,7 +259,9 @@ create_color_dfs <- function(mdf,
     # Generates default 5 row x 6 cols of 5 colors for 6 phylum categories
     # Parameter for number of selected phylum
     # "+ 1" is for "Other" group
-    hex_df <- default_hex(length(selected_groups) + 1, cvd)
+    num_group_colors <- length(selected_groups) + 1
+
+    hex_df <- default_hex(num_group_colors, cvd)
 
     # Add hex codes in ranked way
     # creates nested data frame
@@ -263,9 +274,19 @@ create_color_dfs <- function(mdf,
 
     # Loop through top group and add colors by nested data frame
     # Higher row number = less abundant = lighter color
-    # "+ 1" is "Other"
-    for (i in 1:(length(selected_groups) + 1)) {
-      cdf$data[[i]]$hex <- hex_df[1:length(cdf$data[[i]]$group),i]
+
+    if ("Other" %in% mdf[[col_name_group]])
+    {
+      start <- 1
+    } else
+    {
+      start <- 2
+      num_group_colors <- num_group_colors -1
+    }
+
+    for (i in 1:num_group_colors) {
+      cdf$data[[i]]$hex <- hex_df[1:length(cdf$data[[i]]$group),start]
+      start = start + 1
     }
 
     # Unnest colors and groups and polish for output
@@ -280,7 +301,15 @@ create_color_dfs <- function(mdf,
 
     cdf <- cdf %>% filter( !is.na(hex))
 
-    level_assign = unique(rev(cdf$group))
+    if (top_orientation)
+    {
+      level_assign = unique(cdf$group)
+    }
+    else
+    {
+      level_assign = unique(rev(cdf$group))
+    }
+
 
     mdf_group$group <- factor(mdf_group$group, levels = level_assign)
 
@@ -299,8 +328,6 @@ create_color_dfs <- function(mdf,
 #'
 #' @param mdf data.frame, melted data frame to apply legend to
 #' @param mdf_group data.frame, melted data frame to use legend from
-#' @param selected_groups list. "Other" is always on the top of the stack,
-#'   but then the rest will follow, with Firmicutes as the base of the stack
 #' @param group_level string of larger taxonomic group
 #' @param subgroup_level string of smaller taxonomic group
 #'
@@ -320,10 +347,6 @@ create_color_dfs <- function(mdf,
 
 match_cdf <- function(mdf,
                             mdf_group,
-                            selected_groups = c("Proteobacteria",
-                                                "Actinobacteria",
-                                                "Bacteroidetes",
-                                                "Firmicutes"),
                             group_level = "Phylum",
                             subgroup_level = "Genus"
                             )
@@ -354,6 +377,9 @@ match_cdf <- function(mdf,
       # Add "Other" category immediately
       col_name_group <- paste0("Top_", group_level)
       mdf[[col_name_group]] <- "Other"
+
+      selected_groups <- levels(mdf_group[[col_name_group]])
+      selected_groups <- selected_groups[selected_groups != "Other"]
 
       # Index and find rows to change
       rows_to_change <- mdf[[group_level]] %in% selected_groups
@@ -441,7 +467,19 @@ reorder_samples_by <- function (mdf_group,
   col_name_group <- paste0("Top_", group_level)
   col_name_subgroup <- paste0("Top_", subgroup_level)
 
-  if(!(order %in% as.character(unique(mdf_group[[col_name_subgroup]]))) && order != "NA")
+  if (order %in% as.character(unique(mdf_group[[col_name_subgroup]])))
+  {
+    col_name_order <- col_name_subgroup
+  }
+  else if (order %in% as.character(unique(mdf_group[[col_name_group]])))
+  {
+    col_name_order <- col_name_group
+  }
+  else if (order == "NA")
+  {
+    col_name_order <- NULL
+  }
+  else
   {
     stop("variable 'order' does not exist in the dataset")
   }
@@ -483,7 +521,7 @@ reorder_samples_by <- function (mdf_group,
     # Reorder samples
     reorder_samples <- mdf_group %>%
       group_by(Sample) %>%
-      filter(!!sym(col_name_subgroup) == order) %>%
+      filter(!!sym(col_name_order) == order) %>%
       dplyr::summarise(rank_abundance = sum(Abundance))
 
 

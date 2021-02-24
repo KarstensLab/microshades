@@ -66,6 +66,15 @@ To only use and apply a microshades palette color to an existing graph, use `sca
 
 ``` r
 library(palmerpenguins)
+library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 library("ggplot2")
  
 data(package = 'palmerpenguins')
@@ -75,3 +84,64 @@ ggplot(penguins, aes(species, fill = island)) + geom_bar() +
 ```
 
 <img src="man/figures/README-plot example-1.png" width="100%" />
+
+``` r
+penguins_mod <- penguins %>% mutate(combination_variable = paste(species, year, sep = "-"))
+
+hex_values <-c(microshades_palette("micro_green", 3, lightest = FALSE), 
+               microshades_palette("micro_blue", 3, lightest = FALSE), 
+               microshades_palette("micro_purple", 3, lightest = FALSE))
+
+ggplot(penguins_mod, aes(x = flipper_length_mm,
+                            y = body_mass_g)) +
+  geom_point(aes(color = combination_variable)) +
+  theme_minimal() +
+  scale_color_manual(values = hex_values, na.translate = FALSE) +
+  labs(title = "Penguin flipper and body mass",
+       x = "Flipper length (mm)",
+       y = "Body mass (g)",
+       color = "Penguin Species and Year") +
+  theme(legend.position = "bottom",
+        legend.background = element_rect(fill = "white", color = NA),
+        plot.title.position = "plot",
+        plot.caption = element_text(hjust = 0, face= "italic"),
+        plot.caption.position = "plot") +
+  facet_wrap(~species)
+#> Warning: Removed 2 rows containing missing values (geom_point).
+```
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+
+``` r
+
+
+  
+bill_len_dep <- ggplot(data = penguins_mod,
+                         aes(x = bill_length_mm,
+                             y = bill_depth_mm,
+                             group = combination_variable)) +
+  geom_point(aes(color = combination_variable),
+             size = 3,
+             alpha = 0.8) +
+  geom_smooth(method = "lm", se = FALSE, aes(color = combination_variable)) +
+  theme_minimal() +
+  scale_color_manual(values = hex_values, na.translate = FALSE) +
+  labs(title = "Penguin bill dimensions",
+       subtitle = "Bill length and depth for Adelie, Chinstrap and Gentoo Penguins at Palmer Station LTER over the years 2007-2009",
+       x = "Bill length (mm)",
+       y = "Bill depth (mm)",
+       color = "Penguin species",
+       shape = "Penguin species") +
+  theme(legend.position = "right",
+        legend.background = element_rect(fill = "white", color = NA),
+        plot.title.position = "plot",
+        plot.caption = element_text(hjust = 0, face= "italic"),
+        plot.caption.position = "plot")
+
+bill_len_dep
+#> `geom_smooth()` using formula 'y ~ x'
+#> Warning: Removed 2 rows containing non-finite values (stat_smooth).
+#> Warning: Removed 2 rows containing missing values (geom_point).
+```
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />

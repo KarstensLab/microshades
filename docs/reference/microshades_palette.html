@@ -133,7 +133,7 @@
     <p>These palettes use a base color paired with lighter versions of the base color</p>
     </div>
 
-    <pre class="usage"><span class='fu'>microshades_palette</span><span class='op'>(</span><span class='va'>name</span>, <span class='va'>n</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>microshades_palette</span><span class='op'>(</span><span class='va'>name</span>, <span class='va'>n</span>, lightest <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -150,6 +150,11 @@
       <th>n</th>
       <td><p>Number of colors desired. Palettes contain 5 shades
 If omitted, uses all colours.</p></td>
+    </tr>
+    <tr>
+      <th>lightest</th>
+      <td><p>logical, if user requests n &lt; 5 it will reutrn n lightest shades if TRUE.
+If FALSE, it will return n darkest shades</p></td>
     </tr>
     </table>
 

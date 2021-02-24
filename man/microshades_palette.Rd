@@ -4,7 +4,7 @@
 \alias{microshades_palette}
 \title{Microshades sequential color shading palettes}
 \usage{
-microshades_palette(name, n)
+microshades_palette(name, n, lightest = TRUE)
 }
 \arguments{
 \item{name}{Name of desired palette. Choices are:
@@ -15,6 +15,9 @@ microshades_palette(name, n)
 
 \item{n}{Number of colors desired. Palettes contain 5 shades
 If omitted, uses all colours.}
+
+\item{lightest}{logical, if user requests n < 5 it will reutrn n lightest shades if TRUE.
+If FALSE, it will return n darkest shades}
 }
 \value{
 A vector of colours.

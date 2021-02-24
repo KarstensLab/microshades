@@ -32,6 +32,8 @@ microshades_cvd_palettes <- list(
 #'
 #' @param n Number of colors desired. Palettes contain 5 shades
 #'   If omitted, uses all colours.
+#' @param lightest logical, if user requests n < 5 it will reutrn n lightest shades if TRUE.
+#'   If FALSE, it will return n darkest shades
 #' @param name Name of desired palette. Choices are:
 #'   \code{micro_gray}, \code{micro_brown},  \code{micro_green},
 #'   \code{micro_orange}, \code{micro_blue},  \code{micro_purple}
@@ -48,7 +50,7 @@ microshades_cvd_palettes <- list(
 #' microshades_palette("micro_orange", 3)
 #'
 
-microshades_palette <- function(name, n) {
+microshades_palette <- function(name, n, lightest = TRUE) {
 
   if (is.null(microshades_palettes[[name]]))
   {
@@ -70,7 +72,16 @@ microshades_palette <- function(name, n) {
     stop("Number of requested shades is greater than what palette can offer")
   }
 
-  out <- pal[1:n]
+  if (lightest)
+  {
+    out <- pal[1:n]
+  }
+  else
+  {
+    start <- 5 - n + 1
+    out <- pal[start:5]
+  }
+
 
   structure(out, class = "palette", name = name)
 }

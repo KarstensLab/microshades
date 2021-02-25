@@ -49,7 +49,7 @@ cdf_GP <- color_objs_GP$cdf
 
 Use `mdf_GP` as the object to plot and use `cdf_GP` to assign the correct color assignments. 
 
-```{r fig.width= 9, fig.height= 8}
+```{r fig.width= 9, fig.height= 4}
 # Plot
 plot <- plot_microshades(mdf_GP, cdf_GP)
 
@@ -75,7 +75,11 @@ plot_2 <- plot + scale_y_continuous(labels = scales::percent, expand = expansion
 plot_2
 ```
 
-Use custom legend Format
+
+#### Plot with custom legend
+
+To Ensure that all elements of the custom legend are visible, adjust the `legend_key_size` and `legend_text_size`. Additionaly, the `fig.height` and `fig.width` may need to be declared.
+
 ```{r fig.width= 9, fig.height= 5}
 
 GP_legend <-custom_legend(mdf_GP, cdf_GP)
@@ -88,7 +92,6 @@ plot_diff <- plot + scale_y_continuous(labels = scales::percent, expand = expans
   theme(plot.margin = margin(6,20,6,6))
 
 plot_grid(plot_diff, GP_legend,  rel_widths = c(1, .25))
-
 ```
 
 Re-examine data with smaller groups
@@ -133,34 +136,33 @@ cdf_human <- color_objs_human$cdf
 ```
 
 Water Samples 
-```{r}
-water_legend <-custom_legend(mdf_water, cdf_water, legend_key_size = .3, legend_text_size = 8)
+```{r fig.width= 9, fig.height= 5}
+water_legend <-custom_legend(mdf_water, cdf_water)
 
 water_plot <- plot_microshades(mdf_water, cdf_water) + 
   scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
   theme(legend.position = "none") +
-  theme(axis.text.x = element_text(size= 6)) +
+  theme(axis.text.x = element_text(size= 8)) +
   facet_wrap(~SampleType, scales = "free_x") +
-  theme (strip.text.x = element_text(size = 6)) 
+  theme (strip.text.x = element_text(size = 8)) 
 
 
 plot_grid(water_plot, water_legend,  rel_widths = c(1, .25))
-
 
 ```
 
 Land samples
 
-```{r}
+```{r fig.width= 9, fig.height= 5}
 
-land_legend <-custom_legend(mdf_land, cdf_land, legend_key_size = .3, legend_text_size = 8)
+land_legend <-custom_legend(mdf_land, cdf_land)
 
 land_plot <- plot_microshades(mdf_land, cdf_land) + 
   scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
   theme(legend.position = "none") +
-  theme(axis.text.x = element_text(size= 6)) +
+  theme(axis.text.x = element_text(size= 8)) +
   facet_wrap(~SampleType, scales = "free_x") +
-  theme (strip.text.x = element_text(size = 6)) 
+  theme (strip.text.x = element_text(size = 8)) 
 
 
 plot_grid(land_plot, land_legend,  rel_widths = c(1, .25))
@@ -169,16 +171,16 @@ plot_grid(land_plot, land_legend,  rel_widths = c(1, .25))
 
 
 Human Samples
-```{r}
+```{r fig.width= 9, fig.height= 5}
 
-human_legend <-custom_legend(mdf_human, cdf_human, legend_key_size = .3, legend_text_size = 8)
+human_legend <-custom_legend(mdf_human, cdf_human)
 
 human_plot <- plot_microshades(mdf_human, cdf_human) + 
   scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
   theme(legend.position = "none") +
-  theme(axis.text.x = element_text(size= 6)) +
+  theme(axis.text.x = element_text(size= 8)) +
   facet_wrap(~SampleType, scales = "free_x") +
-  theme (strip.text.x = element_text(size = 6)) 
+  theme (strip.text.x = element_text(size = 8)) 
 
 
 plot_grid(human_plot, human_legend,  rel_widths = c(1, .25))

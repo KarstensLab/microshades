@@ -1,4 +1,6 @@
-#' This function creates a custom legend that sections the group taxonomy as headers
+#' Create a custom legend
+#'
+#' A customized legend sections the group taxonomy as headers
 #' and lists the subgroup taxonomies below each group header, for all the groups.
 #'
 #' @param mdf data.frame melted dataframe
@@ -34,6 +36,7 @@ custom_legend <- function (mdf, cdf, group_level = "Phylum", subgroup_level = "G
   }
 
   col_name_group <- paste0("Top_", group_level)
+  col_name_subgroup <- paste0("Top_", subgroup_level)
 
   group_level_names <- unique(cdf[[col_name_group]])
 
@@ -41,11 +44,11 @@ custom_legend <- function (mdf, cdf, group_level = "Phylum", subgroup_level = "G
   {
     if( i == 1)
     {
-      complete_legend <-individual_legend (mdf, cdf, group_level_names[i], group_level, subgroup_level, legend_key_size, legend_text_size)
+      complete_legend <-individual_legend (mdf, cdf, group_level_names[i], col_name_group, col_name_subgroup, legend_key_size = legend_key_size, legend_text_size = legend_text_size)
     }
     else
     {
-      new_legend <-individual_legend (mdf, cdf, group_level_names[i], group_level, subgroup_level, legend_key_size, legend_text_size)
+      new_legend <-individual_legend (mdf, cdf, group_level_names[i], col_name_group, col_name_subgroup, legend_key_size = legend_key_size, legend_text_size =legend_text_size)
 
       complete_height <- i -1
       new_height <- 1
@@ -57,14 +60,15 @@ custom_legend <- function (mdf, cdf, group_level = "Phylum", subgroup_level = "G
 }
 
 
-#' This function creates a custom legend for an individual group taxonomy with the
-#' subgroup taxonomy below
+#' Creates a small custom legend for one group variable
+#'
+#' Create a custom legend for one individual group, with the subgroups below
 #'
 #' @param mdf data.frame melted dataframe
 #' @param cdf data.frame color dataframe
 #' @param group_name name of the larger taxonomic group to extract small legend from
-#' @param group_level string of larger taxonomic group
-#' @param subgroup_level string of smaller taxonomic group
+#' @param col_name_group string column name of larger taxonomic group
+#' @param col_name_subgroup string column nameof smaller taxonomic group
 #' @param legend_key_size numeric determines overall size of the legend keys
 #' @param legend_text_size integer determines size of legend text
 #'
@@ -77,16 +81,21 @@ custom_legend <- function (mdf, cdf, group_level = "Phylum", subgroup_level = "G
 #'
 #'
 #'
-individual_legend <- function (mdf, cdf, group_name, group_level = "Phylum", subgroup_level = "Genus", legend_key_size = 0.4, legend_text_size = 10)
+individual_legend <- function (mdf,
+                               cdf,
+                               group_name,
+                               col_name_group = "Top_Phylum",
+                               col_name_subgroup = "Top_Genus",
+                               x = "Sample",
+                               y = "Abundance",
+                               legend_key_size = 0.4,
+                               legend_text_size = 10)
 {
-  col_name_group <- paste0("Top_", group_level)
-  col_name_subgroup <- paste0("Top_", subgroup_level)
-
   select_mdf <- mdf %>% filter(!!sym(col_name_group) == group_name)
   select_cdf <- cdf %>% filter(!!sym(col_name_group) == group_name)
 
-  select_plot <- ggplot(select_mdf, aes(x = Sample, y = Abundance)) +
-    aes_string(fill = col_name_subgroup, text = col_name_subgroup) +
+  select_plot <- ggplot(select_mdf,
+    aes_string(x = x, y = y, fill = col_name_subgroup, text = col_name_subgroup)) +
     geom_col( position="fill") +
     scale_fill_manual(name = group_name,
                       values = select_cdf$hex,

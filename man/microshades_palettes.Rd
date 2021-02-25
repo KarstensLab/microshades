@@ -13,4 +13,13 @@ microshades_palettes
 \description{
 Use \code{\link{microshades_palette}} to construct palettes of desired length.
 }
+\examples{
+microshades_palette("micro_gray")
+microshades_palette("micro_brown")
+microshades_palette("micro_green")
+microshades_palette("micro_orange")
+microshades_palette("micro_blue")
+microshades_palette("micro_purple")
+
+}
 \keyword{datasets}

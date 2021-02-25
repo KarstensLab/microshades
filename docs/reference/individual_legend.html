@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>This function creates a custom legend for an individual group taxonomy with the
-subgroup taxonomy below — individual_legend • microshades</title>
+<title>Creates a small custom legend for one group variable — individual_legend • microshades</title>
 
 
 <!-- jquery -->
@@ -40,10 +39,8 @@ subgroup taxonomy below — individual_legend • microshades</title>
 
 
 
-<meta property="og:title" content="This function creates a custom legend for an individual group taxonomy with the
-subgroup taxonomy below — individual_legend" />
-<meta property="og:description" content="This function creates a custom legend for an individual group taxonomy with the
-subgroup taxonomy below" />
+<meta property="og:title" content="Creates a small custom legend for one group variable — individual_legend" />
+<meta property="og:description" content="Create a custom legend for one individual group, with the subgroups below" />
 
 
 
@@ -127,23 +124,23 @@ subgroup taxonomy below" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>This function creates a custom legend for an individual group taxonomy with the
-subgroup taxonomy below</h1>
+    <h1>Creates a small custom legend for one group variable</h1>
     
     <div class="hidden name"><code>individual_legend.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function creates a custom legend for an individual group taxonomy with the
-subgroup taxonomy below</p>
+    <p>Create a custom legend for one individual group, with the subgroups below</p>
     </div>
 
     <pre class="usage"><span class='fu'>individual_legend</span><span class='op'>(</span>
   <span class='va'>mdf</span>,
   <span class='va'>cdf</span>,
   <span class='va'>group_name</span>,
-  group_level <span class='op'>=</span> <span class='st'>"Phylum"</span>,
-  subgroup_level <span class='op'>=</span> <span class='st'>"Genus"</span>,
+  col_name_group <span class='op'>=</span> <span class='st'>"Top_Phylum"</span>,
+  col_name_subgroup <span class='op'>=</span> <span class='st'>"Top_Genus"</span>,
+  x <span class='op'>=</span> <span class='st'>"Sample"</span>,
+  y <span class='op'>=</span> <span class='st'>"Abundance"</span>,
   legend_key_size <span class='op'>=</span> <span class='fl'>0.4</span>,
   legend_text_size <span class='op'>=</span> <span class='fl'>10</span>
 <span class='op'>)</span></pre>
@@ -164,12 +161,12 @@ subgroup taxonomy below</p>
       <td><p>name of the larger taxonomic group to extract small legend from</p></td>
     </tr>
     <tr>
-      <th>group_level</th>
-      <td><p>string of larger taxonomic group</p></td>
+      <th>col_name_group</th>
+      <td><p>string column name of larger taxonomic group</p></td>
     </tr>
     <tr>
-      <th>subgroup_level</th>
-      <td><p>string of smaller taxonomic group</p></td>
+      <th>col_name_subgroup</th>
+      <td><p>string column nameof smaller taxonomic group</p></td>
     </tr>
     <tr>
       <th>legend_key_size</th>

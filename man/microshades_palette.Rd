@@ -2,7 +2,7 @@
 % Please edit documentation in R/palettes.R
 \name{microshades_palette}
 \alias{microshades_palette}
-\title{Microshades sequential color shading palettes}
+\title{Microshades sequential color shading palette accessor}
 \usage{
 microshades_palette(name, n, lightest = TRUE)
 }
@@ -20,16 +20,18 @@ If omitted, uses all colours.}
 If FALSE, it will return n darkest shades}
 }
 \value{
-A vector of colours.
+A microshades palette of colors.
 }
 \description{
-These palettes use a base color paired with lighter versions of the base color
+This function can be used to access the microshades palette desired.
+Each palette contains a base color paired with lighter versions of the base color.
+}
+\details{
+Use this function to get the values needed to set the manual color values when applying to different plots
 }
 \examples{
-microshades_palette("micro_gray")
-microshades_palette("micro_brown")
 microshades_palette("micro_cvd_green")
-microshades_palette("micro_orange", 3)
+microshades_palette("micro_orange", 3, lightest = FALSE)
 
 }
 \keyword{colors}

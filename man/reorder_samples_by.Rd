@@ -2,8 +2,7 @@
 % Please edit documentation in R/color_mapping_functions.R
 \name{reorder_samples_by}
 \alias{reorder_samples_by}
-\title{Reorder the samples by abundance of user selected subgroup taxa and/or
-reorder the groups levels based on abundance with the sink_abundant_groups flag}
+\title{Reorder the samples or stacked group levels by abundance}
 \usage{
 reorder_samples_by(
   mdf_group,
@@ -15,7 +14,7 @@ reorder_samples_by(
 )
 }
 \arguments{
-\item{mdf_group}{data.frame, melted data frame}
+\item{mdf_group}{data.frame, melted phyloseq data frame}
 
 \item{cdf}{data.frame containing the color key}
 
@@ -35,8 +34,8 @@ list
 }
 }
 \description{
-Reorder the samples by abundance of user selected subgroup taxa and/or
-reorder the groups levels based on abundance with the sink_abundant_groups flag
+This function will reorder the user selected subgroup taxa based on abundance, and can also
+reorder the stacked groups levels based on abundance, using \code{sink_abundant_groups}
 }
 \examples{
 mdf_to_plot <- reorder_samples_by(mdf_group)

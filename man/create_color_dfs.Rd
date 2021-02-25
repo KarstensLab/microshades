@@ -2,7 +2,7 @@
 % Please edit documentation in R/color_mapping_functions.R
 \name{create_color_dfs}
 \alias{create_color_dfs}
-\title{Generate melted data frame and color palette data frame}
+\title{Generates abundance sorted data frame and a color palette data frame}
 \usage{
 create_color_dfs(
   mdf,
@@ -16,7 +16,7 @@ create_color_dfs(
 )
 }
 \arguments{
-\item{mdf}{data.frame, melted data frame}
+\item{mdf}{data.frame, melted phyloseq data frame containing microbiome data}
 
 \item{selected_groups}{list of groups in group_level taxomomy to specify and color in plot.
 The vector order is the stacking order. "Other" is always on the top of the stack,
@@ -30,7 +30,8 @@ the max is 4 top subgroups}
 
 \item{subgroup_level}{string of smaller taxonomic group}
 
-\item{cvd}{logical stands for Color Vision Deficent Friendly palette}
+\item{cvd}{logical, determines which palette to use,
+color vision deficent (microshades_cvd_palettes) or microshades_palettes}
 
 \item{top_orientation}{logical most abundant shades oriented at the top of the stack
 otherwise, most abundant shades are bottom oriented}
@@ -43,11 +44,15 @@ list
 }
 }
 \description{
-The "Top" group and subgroup categories are dynamically generated. For the
-top group, the categories not in \code{selected_groups} will be changed to
-"Other". The \code{top_n_subgroups} will be determined for each selected group.
+Use \code{create_color_dfs()} to create a specialized data frames containing color
+and abundance organized microbiome data.
 }
 \details{
+The top group categories are user specified through the \code{selected_groups} parameter,
+and top subgroup categories are dynamically generated based on abundance.
+For the top group, the categories not in \code{selected_groups} will be changed to
+"Other". The \code{top_n_subgroups} will be determined for each selected group.
+
 Notes:
 \itemize{
 \item In SILVA 138, some phylum names are different and you should consider

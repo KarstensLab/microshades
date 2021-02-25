@@ -13,4 +13,13 @@ microshades_cvd_palettes
 \description{
 Use \code{\link{microshades_cvd_palette}} to construct palettes of desired length.
 }
+\examples{
+microshades_palette("micro_cvd_gray")
+microshades_palette("micro_cvd_green")
+microshades_palette("micro_cvd_orange")
+microshades_palette("micro_cvd_blue")
+microshades_palette("micro_cvd_turquoise")
+microshades_palette("micro_cvd_purple")
+
+}
 \keyword{datasets}

@@ -94,10 +94,15 @@ default_hex <- function(n_groups = 5, cvd = FALSE) {
 }
 
 
-#' Generate melted data frame and color palette data frame
+#' Generates abundance sorted data frame and a color palette data frame
 #'
-#' The "Top" group and subgroup categories are dynamically generated. For the
-#' top group, the categories not in `selected_groups` will be changed to
+#' Use `create_color_dfs()` to create a specialized data frames containing color
+#' and abundance organized microbiome data.
+#'
+#'
+#' The top group categories are user specified through the `selected_groups` parameter,
+#' and top subgroup categories are dynamically generated based on abundance.
+#' For the top group, the categories not in `selected_groups` will be changed to
 #' "Other". The `top_n_subgroups` will be determined for each selected group.
 #'
 #'  Notes:
@@ -106,7 +111,7 @@ default_hex <- function(n_groups = 5, cvd = FALSE) {
 #'   passing in the vector
 #'   `c("Proteobacteria", "Actinobacteriota", "Bacteroidota", "Firmicutes")`
 #'
-#' @param mdf data.frame, melted data frame
+#' @param mdf data.frame, melted phyloseq data frame containing microbiome data
 #' @param selected_groups list of groups in group_level taxomomy to specify and color in plot.
 #'   The vector order is the stacking order. "Other" is always on the top of the stack,
 #'   but then the rest will follow. The default is "Proteobacteria", "Actinobacteria",
@@ -115,7 +120,8 @@ default_hex <- function(n_groups = 5, cvd = FALSE) {
 #'   the max is 4 top subgroups
 #' @param group_level string of larger taxonomic group
 #' @param subgroup_level string of smaller taxonomic group
-#' @param cvd logical stands for Color Vision Deficent Friendly palette
+#' @param cvd logical, determines which palette to use,
+#' color vision deficent (microshades_cvd_palettes) or microshades_palettes
 #' @param top_orientation logical most abundant shades oriented at the top of the stack
 #'   otherwise, most abundant shades are bottom oriented
 #'
@@ -322,9 +328,10 @@ create_color_dfs <- function(mdf,
 
 
 
-#' Apply the color factoring from one color df to a different melted phyloseq object.
+#' Apply the color factoring from one cdf to a different melted phyloseq data frame
 #'
-#' Now both melted dataframes will contain the same color mapping information
+#' Now both melted dataframes will contain the same color mapping information.
+#' This can be useful if you want to make sure that different graphs have consistent legends
 #'
 #' @param mdf data.frame, melted data frame to apply legend to
 #' @param mdf_group data.frame, melted data frame to use legend from
@@ -414,12 +421,12 @@ match_cdf <- function(mdf,
       mdf
   }
 
-#' Reorder the samples by abundance of user selected subgroup taxa and/or
-#' reorder the groups levels based on abundance with the sink_abundant_groups flag
+#' Reorder the samples or stacked group levels by abundance
 #'
+#' This function will reorder the user selected subgroup taxa based on abundance, and can also
+#' reorder the stacked groups levels based on abundance, using `sink_abundant_groups`
 #'
-#'
-#' @param mdf_group data.frame, melted data frame
+#' @param mdf_group data.frame, melted phyloseq data frame
 #' @param cdf data.frame containing the color key
 #' @param order string of subgroup to reorder by
 #' @param group_level string of larger taxonomic group
@@ -545,7 +552,7 @@ reorder_samples_by <- function (mdf_group,
 
 #' Plot the mdf created with the microshades package
 #'
-#'
+#' Creates a stacked abundance ggplot with color abundance organization
 #'
 #' @param mdf_group data.frame, melted data frame processed by microshades functions
 #' @param cdf data.frame containing the color key
@@ -592,7 +599,8 @@ plot_microshades <- function (mdf_group,
 
 #' Reassign the microshades colors to different groups
 #'
-#'
+#' To customize the color order in the plot, use this function to directly assign
+#' groups a specific color
 #'
 #' @param cdf data.frame containing the color key
 #' @param group_assignment string vector of taxonomic groups

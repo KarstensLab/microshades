@@ -2,7 +2,7 @@
 % Please edit documentation in R/color_mapping_functions.R
 \name{match_cdf}
 \alias{match_cdf}
-\title{Apply the color factoring from one color df to a different melted phyloseq object.}
+\title{Apply the color factoring from one cdf to a different melted phyloseq data frame}
 \usage{
 match_cdf(mdf, mdf_group, group_level = "Phylum", subgroup_level = "Genus")
 }
@@ -19,7 +19,8 @@ match_cdf(mdf, mdf_group, group_level = "Phylum", subgroup_level = "Genus")
 data.frame, melted df with ordered factor that are consistent with the legend
 }
 \description{
-Now both melted dataframes will contain the same color mapping information
+Now both melted dataframes will contain the same color mapping information.
+This can be useful if you want to make sure that different graphs have consistent legends
 }
 \examples{
 mdf_to_plot <- match_cdf(mdf, mdf_group)

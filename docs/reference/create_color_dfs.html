@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate melted data frame and color palette data frame — create_color_dfs • microshades</title>
+<title>Generates abundance sorted data frame and a color palette data frame — create_color_dfs • microshades</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,9 @@
 
 
 
-<meta property="og:title" content="Generate melted data frame and color palette data frame — create_color_dfs" />
-<meta property="og:description" content="The &quot;Top&quot; group and subgroup categories are dynamically generated. For the
-top group, the categories not in selected_groups will be changed to
-&quot;Other&quot;. The top_n_subgroups will be determined for each selected group." />
+<meta property="og:title" content="Generates abundance sorted data frame and a color palette data frame — create_color_dfs" />
+<meta property="og:description" content="Use create_color_dfs() to create a specialized data frames containing color
+and abundance organized microbiome data." />
 
 
 
@@ -126,15 +125,14 @@ top group, the categories not in selected_groups will be changed to
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate melted data frame and color palette data frame</h1>
+    <h1>Generates abundance sorted data frame and a color palette data frame</h1>
     
     <div class="hidden name"><code>create_color_dfs.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The "Top" group and subgroup categories are dynamically generated. For the
-top group, the categories not in <code>selected_groups</code> will be changed to
-"Other". The <code>top_n_subgroups</code> will be determined for each selected group.</p>
+    <p>Use <code>create_color_dfs()</code> to create a specialized data frames containing color
+and abundance organized microbiome data.</p>
     </div>
 
     <pre class="usage"><span class='fu'>create_color_dfs</span><span class='op'>(</span>
@@ -153,7 +151,7 @@ top group, the categories not in <code>selected_groups</code> will be changed to
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>mdf</th>
-      <td><p>data.frame, melted data frame</p></td>
+      <td><p>data.frame, melted phyloseq data frame containing microbiome data</p></td>
     </tr>
     <tr>
       <th>selected_groups</th>
@@ -177,7 +175,8 @@ the max is 4 top subgroups</p></td>
     </tr>
     <tr>
       <th>cvd</th>
-      <td><p>logical stands for Color Vision Deficent Friendly palette</p></td>
+      <td><p>logical, determines which palette to use,
+color vision deficent (microshades_cvd_palettes) or microshades_palettes</p></td>
     </tr>
     <tr>
       <th>top_orientation</th>
@@ -195,7 +194,11 @@ otherwise, most abundant shades are bottom oriented</p></td>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Notes:</p><ul>
+    <p>The top group categories are user specified through the <code>selected_groups</code> parameter,
+and top subgroup categories are dynamically generated based on abundance.
+For the top group, the categories not in <code>selected_groups</code> will be changed to
+"Other". The <code>top_n_subgroups</code> will be determined for each selected group.</p>
+<p>Notes:</p><ul>
 <li><p>In SILVA 138, some phylum names are different and you should consider
 passing in the vector
 <code><a href='https://rdrr.io/r/base/c.html'>c("Proteobacteria", "Actinobacteriota", "Bacteroidota", "Firmicutes")</a></code></p></li>

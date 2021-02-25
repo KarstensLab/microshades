@@ -19,7 +19,8 @@ color_reassign(cdf, group_assignment, color_assignment, group_level = "Phylum")
 cdf data.frame
 }
 \description{
-Reassign the microshades colors to different groups
+To customize the color order in the plot, use this function to directly assign
+groups a specific color
 }
 \examples{
 new_cdf <- color_reassign(cdf,

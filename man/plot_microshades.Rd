@@ -27,7 +27,7 @@ plot_microshades(
 A \code{\link{ggplot}}2 plot.
 }
 \description{
-Plot the mdf created with the microshades package
+Creates a stacked abundance ggplot with color abundance organization
 }
 \examples{
 plot <- plot_microshades(mdf_group, cdf)

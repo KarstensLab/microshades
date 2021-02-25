@@ -3,6 +3,15 @@
 #' Use \code{\link{microshades_palette}} to construct palettes of desired length.
 #'
 #' @export
+#'
+#' @examples
+#' microshades_palette("micro_gray")
+#' microshades_palette("micro_brown")
+#' microshades_palette("micro_green")
+#' microshades_palette("micro_orange")
+#' microshades_palette("micro_blue")
+#' microshades_palette("micro_purple")
+#'
 microshades_palettes <- list(
   micro_gray = c("#d9d9d9","#bdbdbd", "#969696","#737373","#525252"),
   micro_brown = c("#D8C7BE", "#CAA995", "#B78560", "#9E5C00", "#7D3200"),
@@ -17,6 +26,15 @@ microshades_palettes <- list(
 #' Use \code{\link{microshades_cvd_palette}} to construct palettes of desired length.
 #'
 #' @export
+#'
+#' @examples
+#' microshades_palette("micro_cvd_gray")
+#' microshades_palette("micro_cvd_green")
+#' microshades_palette("micro_cvd_orange")
+#' microshades_palette("micro_cvd_blue")
+#' microshades_palette("micro_cvd_turquoise")
+#' microshades_palette("micro_cvd_purple")
+#'
 microshades_cvd_palettes <- list(
   micro_cvd_gray = c("#F5F5F5", "#D6D6D6", "#B7B7B7", "#8B8B8B","#616161"),
   micro_cvd_green = c("#DDFFA0",  "#BDEC6F",  "#97CE2F", "#6D9F06","#4E7705"),
@@ -26,9 +44,12 @@ microshades_cvd_palettes <- list(
   micro_cvd_purple = c("#EFB6D6", "#E794C1", "#CC79A7", "#A1527F", "#7D3560")
 )
 
-#' Microshades sequential color shading palettes
+#' Microshades sequential color shading palette accessor
 #'
-#' These palettes use a base color paired with lighter versions of the base color
+#' This function can be used to access the microshades palette desired.
+#' Each palette contains a base color paired with lighter versions of the base color.
+#'
+#' Use this function to get the values needed to set the manual color values when applying to different plots
 #'
 #' @param n Number of colors desired. Palettes contain 5 shades
 #'   If omitted, uses all colours.
@@ -40,14 +61,12 @@ microshades_cvd_palettes <- list(
 #'   \code{micro_cvd_gray}, \code{micro_cvd_brown},  \code{micro_cvd_green},
 #'   \code{micro_cvd_orange}, \code{micro_cvd_blue},  \code{micro_cvd_purple}
 #'
-#' @return A vector of colours.
+#' @return A microshades palette of colors.
 #' @export
 #' @keywords colors
 #' @examples
-#' microshades_palette("micro_gray")
-#' microshades_palette("micro_brown")
 #' microshades_palette("micro_cvd_green")
-#' microshades_palette("micro_orange", 3)
+#' microshades_palette("micro_orange", 3, lightest = FALSE)
 #'
 
 microshades_palette <- function(name, n, lightest = TRUE) {
@@ -87,8 +106,7 @@ microshades_palette <- function(name, n, lightest = TRUE) {
 }
 
 #' @export
-#' @importFrom graphics rect par image text
-#' @importFrom grDevices rgb
+#' @importFrom graphics par image
 print.palette <- function(x, ...) {
   n <- length(x)
   old <- par(mar = c(0.5, 0.5, 0.5, 0.5))

@@ -2,15 +2,16 @@
 % Please edit documentation in R/custom_legend.R
 \name{individual_legend}
 \alias{individual_legend}
-\title{This function creates a custom legend for an individual group taxonomy with the
-subgroup taxonomy below}
+\title{Creates a small custom legend for one group variable}
 \usage{
 individual_legend(
   mdf,
   cdf,
   group_name,
-  group_level = "Phylum",
-  subgroup_level = "Genus",
+  col_name_group = "Top_Phylum",
+  col_name_subgroup = "Top_Genus",
+  x = "Sample",
+  y = "Abundance",
   legend_key_size = 0.4,
   legend_text_size = 10
 )
@@ -22,9 +23,9 @@ individual_legend(
 
 \item{group_name}{name of the larger taxonomic group to extract small legend from}
 
-\item{group_level}{string of larger taxonomic group}
+\item{col_name_group}{string column name of larger taxonomic group}
 
-\item{subgroup_level}{string of smaller taxonomic group}
+\item{col_name_subgroup}{string column nameof smaller taxonomic group}
 
 \item{legend_key_size}{numeric determines overall size of the legend keys}
 
@@ -34,6 +35,5 @@ individual_legend(
 legend ggplot
 }
 \description{
-This function creates a custom legend for an individual group taxonomy with the
-subgroup taxonomy below
+Create a custom legend for one individual group, with the subgroups below
 }

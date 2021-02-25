@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Reorder the samples by abundance of user selected subgroup taxa and/or
-reorder the groups levels based on abundance with the sink_abundant_groups flag — reorder_samples_by • microshades</title>
+<title>Reorder the samples or stacked group levels by abundance — reorder_samples_by • microshades</title>
 
 
 <!-- jquery -->
@@ -40,10 +39,9 @@ reorder the groups levels based on abundance with the sink_abundant_groups flag 
 
 
 
-<meta property="og:title" content="Reorder the samples by abundance of user selected subgroup taxa and/or
-reorder the groups levels based on abundance with the sink_abundant_groups flag — reorder_samples_by" />
-<meta property="og:description" content="Reorder the samples by abundance of user selected subgroup taxa and/or
-reorder the groups levels based on abundance with the sink_abundant_groups flag" />
+<meta property="og:title" content="Reorder the samples or stacked group levels by abundance — reorder_samples_by" />
+<meta property="og:description" content="This function will reorder the user selected subgroup taxa based on abundance, and can also
+reorder the stacked groups levels based on abundance, using sink_abundant_groups" />
 
 
 
@@ -127,15 +125,14 @@ reorder the groups levels based on abundance with the sink_abundant_groups flag"
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Reorder the samples by abundance of user selected subgroup taxa and/or
-reorder the groups levels based on abundance with the sink_abundant_groups flag</h1>
+    <h1>Reorder the samples or stacked group levels by abundance</h1>
     
     <div class="hidden name"><code>reorder_samples_by.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Reorder the samples by abundance of user selected subgroup taxa and/or
-reorder the groups levels based on abundance with the sink_abundant_groups flag</p>
+    <p>This function will reorder the user selected subgroup taxa based on abundance, and can also
+reorder the stacked groups levels based on abundance, using <code>sink_abundant_groups</code></p>
     </div>
 
     <pre class="usage"><span class='fu'>reorder_samples_by</span><span class='op'>(</span>
@@ -152,7 +149,7 @@ reorder the groups levels based on abundance with the sink_abundant_groups flag<
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>mdf_group</th>
-      <td><p>data.frame, melted data frame</p></td>
+      <td><p>data.frame, melted phyloseq data frame</p></td>
     </tr>
     <tr>
       <th>cdf</th>

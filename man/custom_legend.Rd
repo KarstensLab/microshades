@@ -2,8 +2,7 @@
 % Please edit documentation in R/custom_legend.R
 \name{custom_legend}
 \alias{custom_legend}
-\title{This function creates a custom legend that sections the group taxonomy as headers
-and lists the subgroup taxonomies below each group header, for all the groups.}
+\title{Create a custom legend}
 \usage{
 custom_legend(
   mdf,
@@ -31,7 +30,7 @@ custom_legend(
 complete_legend ggplot
 }
 \description{
-This function creates a custom legend that sections the group taxonomy as headers
+A customized legend sections the group taxonomy as headers
 and lists the subgroup taxonomies below each group header, for all the groups.
 }
 \examples{

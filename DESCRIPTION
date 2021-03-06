@@ -5,7 +5,8 @@ Authors@R:
     c(person("Erin","Dahl", role = c("aut", "cre"), email = "erind@pacificu.edu"),
       person("Lisa", "Karstens", role = "aut"),
       person("Eric", "Leung", role = "aut"),
-      person("Emory", "Neer", role = "aut"))
+      person("Emory", "Neer", role = "aut"), 
+      person("Kate", "Bowie", role = "aut"))
 Description: This package contains custom built color palettes that are availible for 
             plotting. This package can also be used to improve phyloseq abundance 
             plots with color abundance organization.

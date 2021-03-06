@@ -16,6 +16,8 @@ Additionally, microshades colors can be incorporated into any plot by using our 
 remotes::install_github("KarstensLab/microshades")
 ```
 
+If you are having trouble with installation, you may need to install packages such as [phyloseq](https://joey711.github.io/phyloseq/index.html) or [speedyseq](https://mikemc.github.io/speedyseq) before installing microshades.
+
 ## The shades
 
 Here is a list of the microshades palettes, including the CVD friendly shades

@@ -66,7 +66,7 @@ The dataframe `mdf_v1v3_stool` contains sample data and abundance info. The data
 `plot_microshades` produces a stacked barplot with ordered subgroup taxonomy. The darkest shade is the most abundant, and the lightest shade is the least abundant. (excluding the "other" subgroup from each of the selected groups)
 
 ```{r fig.width= 8, fig.height= 4}
-plot_1 <- plot_microshades(mdf_v1v3_stool, cdf_v1v3_stool, group_label = "Pylum Family")
+plot_1 <- plot_microshades(mdf_v1v3_stool, cdf_v1v3_stool, group_label = "Phylum Family")
 
 plot_1 + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
   theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
@@ -89,14 +89,18 @@ new_sample_order_v1v3_stool <- reorder_samples_by(mdf_v1v3_stool, cdf_v1v3_stool
 mdf_new_smample_order <-new_sample_order_v1v3_stool$mdf
 cdf_new_smample_order <-new_sample_order_v1v3_stool$cdf
 
-plot_2 <- plot_microshades(mdf_new_smample_order, cdf_new_smample_order)
+plot_2 <- plot_microshades(mdf_new_smample_order, cdf_new_smample_order, group_label = "Phylum Family")
 
 plot_2 + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
   theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
   theme(axis.text.x = element_text(size= 6))
 
 ```
+
+
 ### Reorder by Abundance of Group levels Only
+
+
 ```{r fig.width= 8, fig.height= 4}
 # reorder_samples_by will change the order of samples based on an abundance of a specified subgroup taxonomy
 # The default subgroup_level is "Genus" 
@@ -105,7 +109,7 @@ new_group_order_v1v3_stool <- reorder_samples_by(mdf_v1v3_stool, cdf_v1v3_stool,
 mdf_new_group_order <-new_group_order_v1v3_stool$mdf
 cdf_new_group_order <-new_group_order_v1v3_stool$cdf
 
-plot_3 <- plot_microshades(mdf_new_group_order, cdf_new_group_order)
+plot_3 <- plot_microshades(mdf_new_group_order, cdf_new_group_order, group_label = "Phylum Family")
 
 plot_3 + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
   theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
@@ -122,12 +126,14 @@ reordered_v1v3_stool <- reorder_samples_by(mdf_v1v3_stool, cdf_v1v3_stool, order
 mdf_reordered <-reordered_v1v3_stool$mdf
 cdf_reordered <-reordered_v1v3_stool$cdf
 
-plot_3 <- plot_microshades(mdf_reordered, cdf_reordered)
+plot_3 <- plot_microshades(mdf_reordered, cdf_reordered, group_label = "Phylum Family")
 
 plot_3 + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
   theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
   theme(axis.text.x = element_text(size= 6))
 
 ```
+
+
 
 

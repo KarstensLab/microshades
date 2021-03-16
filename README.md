@@ -52,19 +52,25 @@ microshades_palette("micro_cvd_blue")
 
 <img src="man/figures/README-cvd_blue-1.png" width="100%" />
 
-## Phyloseq useage
+To learn more about the different functions and shades in microshades, please visit the [reference](https://KarstensLab.github.io/microshades/reference) section of our website.
 
-For detailed tutorials on how to use microshades function with phyloseq objects, please reference vignette articles on the [website](https://KarstensLab.github.io/microshades).
+## Phyloseq Combatibility
 
-Here is an example of the plot generated with microshades on Curated Metagenomic Data of the Human Microbiome.
+For detailed tutorials on how to use microshades function with phyloseq objects, please review the [vignette articles](https://KarstensLab.github.io/microshades) articles on the website.
+
+Here is an example of the plot generated with microshades on Curated Metagenomic Data of the Human Microbiome. On the left is the original stacked barplot made using phyloseq. On the right are two barplot of the same data, with microshades palettes and functions applied.
 
 <img src="man/figures/plot_CMD.png" width="100%" style="display: block; margin: auto;" />
 
-microshades uses coloring to correspond with taxonomic group and subgroup levels. In this example, the phylum and genus information are explored. Darker shades indicate the most abundant genera for each phylum, and lighter shades are less abundant. Users can additionally reorder the samples based on a specified taxonomic rank and name, in this example by genus "Eubacterium" abundance.
+microshades uses coloring to correspond with taxonomic group and subgroup levels. In this example, the phylum and genus information are explored. Darker shades indicate the most abundant genera for each phylum, and lighter shades are less abundant. Users can additionally reorder the samples based on a specified taxonomic rank and name, or reorder the phylum groups.
 
-## Apply the microshades palette to other plots
+## Apply the microshades palette to non-microbiome data
 
-To only use and apply a microshades palette color to an existing graph, use `scale_fill_manual()`. Below is an example of how to apply the color palettes to a different type of plot.
+To apply a microshades palette color to a plot, use `scale_fill_manual()`.
+
+The following examples use the palmerpenguins dataset to show how to apply the color palettes to non-microbiome data.
+
+This first example examines the number of each species of penguin. The different color shades represent the island that the penguin was located.
 
 ``` r
 library(palmerpenguins)
@@ -86,6 +92,8 @@ ggplot(penguins, aes(species, fill = island)) + geom_bar() +
 ```
 
 <img src="man/figures/README-plot example-1.png" width="100%" />
+
+This next example examines the flipper length to body mass measurements between different penguin species. To add an enhanced detail to the visual, a combination variable was created in this example that contains the species and year. The different base colors represent the species and the shades represent the year that the data was collected.
 
 ``` r
 penguins_mod <- penguins %>% mutate(combination_variable = paste(species, year, sep = "-"))
@@ -114,10 +122,10 @@ ggplot(penguins_mod, aes(x = flipper_length_mm,
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
+This last example examines the bill length to depth measurements between different penguin species. The combination variable generated for the previous example is used for this plot as well. The different base colors represent the species and the shades represent the year that the data was collected.
+
 ``` r
-
-
-  
+ 
 bill_len_dep <- ggplot(data = penguins_mod,
                          aes(x = bill_length_mm,
                              y = bill_depth_mm,
@@ -129,7 +137,6 @@ bill_len_dep <- ggplot(data = penguins_mod,
   theme_minimal() +
   scale_color_manual(values = hex_values, na.translate = FALSE) +
   labs(title = "Penguin bill dimensions",
-       subtitle = "Bill length and depth for Adelie, Chinstrap and Gentoo Penguins at Palmer Station LTER over the years 2007-2009",
        x = "Bill length (mm)",
        y = "Bill depth (mm)",
        color = "Penguin species",

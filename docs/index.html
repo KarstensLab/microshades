@@ -120,19 +120,22 @@
 <div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/microshades_palette.html">microshades_palette</a></span><span class="op">(</span><span class="st">"micro_cvd_blue"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-cvd_blue-1.png" width="100%"></p>
+<p>To learn more about the different functions and shades in microshades, please visit the <a href="https://KarstensLab.github.io/microshades/reference">reference</a> section of our website.</p>
 </div>
-<div id="phyloseq-useage" class="section level2">
+<div id="phyloseq-combatibility" class="section level2">
 <h2 class="hasAnchor">
-<a href="#phyloseq-useage" class="anchor"></a>Phyloseq useage</h2>
-<p>For detailed tutorials on how to use microshades function with phyloseq objects, please reference vignette articles on the <a href="https://KarstensLab.github.io/microshades">website</a>.</p>
-<p>Here is an example of the plot generated with microshades on Curated Metagenomic Data of the Human Microbiome.</p>
+<a href="#phyloseq-combatibility" class="anchor"></a>Phyloseq Combatibility</h2>
+<p>For detailed tutorials on how to use microshades function with phyloseq objects, please review the <a href="https://KarstensLab.github.io/microshades">vignette articles</a> articles on the website.</p>
+<p>Here is an example of the plot generated with microshades on Curated Metagenomic Data of the Human Microbiome. On the left is the original stacked barplot made using phyloseq. On the right are two barplot of the same data, with microshades palettes and functions applied.</p>
 <p><img src="reference/figures/plot_CMD.png" width="100%" style="display: block; margin: auto;"></p>
-<p>microshades uses coloring to correspond with taxonomic group and subgroup levels. In this example, the phylum and genus information are explored. Darker shades indicate the most abundant genera for each phylum, and lighter shades are less abundant. Users can additionally reorder the samples based on a specified taxonomic rank and name, in this example by genus “Eubacterium” abundance.</p>
+<p>microshades uses coloring to correspond with taxonomic group and subgroup levels. In this example, the phylum and genus information are explored. Darker shades indicate the most abundant genera for each phylum, and lighter shades are less abundant. Users can additionally reorder the samples based on a specified taxonomic rank and name, or reorder the phylum groups.</p>
 </div>
-<div id="apply-the-microshades-palette-to-other-plots" class="section level2">
+<div id="apply-the-microshades-palette-to-non-microbiome-data" class="section level2">
 <h2 class="hasAnchor">
-<a href="#apply-the-microshades-palette-to-other-plots" class="anchor"></a>Apply the microshades palette to other plots</h2>
-<p>To only use and apply a microshades palette color to an existing graph, use <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code>. Below is an example of how to apply the color palettes to a different type of plot.</p>
+<a href="#apply-the-microshades-palette-to-non-microbiome-data" class="anchor"></a>Apply the microshades palette to non-microbiome data</h2>
+<p>To apply a microshades palette color to a plot, use <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code>.</p>
+<p>The following examples use the palmerpenguins dataset to show how to apply the color palettes to non-microbiome data.</p>
+<p>This first example examines the number of each species of penguin. The different color shades represent the island that the penguin was located.</p>
 <div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
@@ -151,6 +154,7 @@
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">species</span>, fill <span class="op">=</span> <span class="va">island</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="reference/microshades_palette.html">microshades_palette</a></span><span class="op">(</span><span class="st">"micro_green"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-plot%20example-1.png" width="100%"></p>
+<p>This next example examines the flipper length to body mass measurements between different penguin species. To add an enhanced detail to the visual, a combination variable was created in this example that contains the species and year. The different base colors represent the species and the shades represent the year that the data was collected.</p>
 <div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">penguins_mod</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>combination_variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">year</span>, sep <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span><span class="op">)</span>
 
@@ -175,10 +179,9 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">species</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Removed 2 rows containing missing values (geom_point).</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="100%"></p>
+<p>This last example examines the bill length to depth measurements between different penguin species. The combination variable generated for the previous example is used for this plot as well. The different base colors represent the species and the shades represent the year that the data was collected.</p>
 <div class="sourceCode"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-
-  
+<code class="sourceCode R"> 
 <span class="va">bill_len_dep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_mod</span>,
                          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,
                              y <span class="op">=</span> <span class="va">bill_depth_mm</span>,
@@ -190,7 +193,6 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">hex_values</span>, na.translate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Penguin bill dimensions"</span>,
-       subtitle <span class="op">=</span> <span class="st">"Bill length and depth for Adelie, Chinstrap and Gentoo Penguins at Palmer Station LTER over the years 2007-2009"</span>,
        x <span class="op">=</span> <span class="st">"Bill length (mm)"</span>,
        y <span class="op">=</span> <span class="st">"Bill depth (mm)"</span>,
        color <span class="op">=</span> <span class="st">"Penguin species"</span>,

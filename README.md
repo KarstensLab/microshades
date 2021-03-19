@@ -4,11 +4,11 @@
 
 <!-- badges: start -->
 <!-- badges: end -->
-The goal of microshades is to provide a custom color organization palette that can be applied to enhance current data visualization methods. To increase accessibility of visuals created, users may select to use color vision deficient (CVD) friendly colors.
+The microshades R package is designed to provide custom color shading palettes that improve accessibility and data organization. Approximately 300 million people in the world have Color Vision Deficiency (CVD), which is comparable to the most recent estimate of the US population. When creating figures and graphics that use color, it is important to consider that individuals with CVD will interact with this material, and may not perceive all of the information tied to the colors correctly. This package includes two crafted color palettes, microshades\_cvd\_palettes and microshades\_palettes. Each color palette contains six base colors with five incremental light to dark shades, for a total of 30 available colors per palette type that can be directly applied to any plot. The microshades\_cvd\_palettes contain colors that are universally CVD friendly. The individual microshades\_palettes are CVD friendly, but when used in conjunction with multiple microshades\_palettes, are not universally accessible.
 
-This package includes functions that work with phyloseq organized microbiome data to create stacked bar plots with advanced color organization. With microshades color organization, plots are more intuitive and accessible.
+In addition to color palettes, the microshades package contains functions to aid in data visualization including functions for creating stacked bar plots organized by a data-driven hierarchy. The microshades package can be used in conjunction with common microbiome R packages, such as phyloseq, to enhance microbiome data visualization. In the case of microbiome data, the base colors correspond with a higher order taxonomic group (e.g. phylum) and shades of the base color represent subgroups of the taxonomic group (e.g. genus). Subgroup shading is determined by the abundance in the dataset. Darker shades indicate the most abundant subgroup for each group, and lighter shades represent less abundant subgroups. To further assist users with data storytelling, we have functions to sort data both vertically and horizontally based on ranked abundance or user specification. The accessibility and advanced color organization features described help data reviewers and consumers notice visual patterns and trends easier.
 
-Additionally, microshades colors can be incorporated into any plot by using our palette selecting functions.
+Please visit our [website](https://karstenslab.github.io/microshades) to learn more about microshades.
 
 ## Installation
 
@@ -56,9 +56,9 @@ To learn more about the different functions and shades in microshades, please vi
 
 ## Phyloseq Combatibility
 
-For detailed tutorials on how to use microshades function with phyloseq objects, please review the [vignette articles](https://KarstensLab.github.io/microshades) articles on the website.
+For detailed tutorials on how to use microshades function with phyloseq objects, please review the [vignette articles](https://KarstensLab.github.io/microshades) on the website.
 
-Here is an example of the plot generated with microshades on Curated Metagenomic Data of the Human Microbiome. On the left is the original stacked barplot made using phyloseq. On the right are two barplot of the same data, with microshades palettes and functions applied.
+Below is an example of a plot generated with microshades on Curated Metagenomic Data of the Human Microbiome. On the left is the original stacked barplot made using phyloseq. On the right are two barplot of the same data, with microshades palettes and functions applied.
 
 <img src="man/figures/plot_CMD.png" width="100%" style="display: block; margin: auto;" />
 

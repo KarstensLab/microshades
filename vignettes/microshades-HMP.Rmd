@@ -1,5 +1,5 @@
 ---
-title: "microshades-HMP"
+title: "Human Microbiome Project"
 author: "Erin Dahl"
 date: '`r format(Sys.Date(), "%B %e, %Y")`'
 output: rmarkdown::html_document
@@ -12,13 +12,12 @@ vignette: >
 # Human Microbiome Project 16S Data Vignette
 
 This vignette uses 16S rRNA sequencing data from variable region v1-v3 in the Human Microbiome Project.
+Stool samples from male subjects will be explored at the Phylum & Family taxonomic levels.
 
 
 This data is available in the HMP16SData library. To download use `BiocManager::install("HMP16SData")`.
 
-Learn more about the HMP16S Data [here](https://github.com/waldronlab/HMP16SData)
-Secondary link https://bioconductor.org/packages/release/data/experiment/html/HMP16SData.html
-
+Learn more about the HMP16S Data [here](https://bioconductor.org/packages/release/data/experiment/html/HMP16SData.html)
 
 
 ## Load the necessary packages for this tutorial

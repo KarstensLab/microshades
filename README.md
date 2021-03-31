@@ -4,11 +4,7 @@
 
 <!-- badges: start -->
 <!-- badges: end -->
-The microshades R package is designed to provide custom color shading palettes that improve accessibility and data organization. Approximately 300 million people in the world have Color Vision Deficiency (CVD), which is comparable to the most recent estimate of the US population. When creating figures and graphics that use color, it is important to consider that individuals with CVD will interact with this material, and may not perceive all of the information tied to the colors correctly.
-
-This package includes two crafted color palettes, microshades\_cvd\_palettes and microshades\_palettes. Each color palette contains six base colors with five incremental light to dark shades, for a total of 30 available colors per palette type that can be directly applied to any plot. The microshades\_cvd\_palettes contain colors that are universally CVD friendly. The individual microshades\_palettes are CVD friendly, but when used in conjunction with multiple microshades\_palettes, are not universally accessible.
-
-In addition to color palettes, this package can also be used in conjunction with the R package phyloseq to enhance microbiome data visualization. The microshades functions create stacked bar plots from phyloseq objects, color organized by a data-driven hierarchy. The accessibility and advanced color organization features described help data reviewers and consumers notice visual patterns and trends easier.
+The microshades R package is designed to provide custom color shading palettes that improve accessibility and data organization. Approximately 300 million people in the world have Color Vision Deficiency (CVD), which is comparable to the most recent estimate of the US population. When creating figures and graphics that use color, it is important to consider that individuals with CVD will interact with this material, and may not perceive all of the information tied to the colors correctly. This package includes carefully crafted palettes that improve CVD accessibility and may be applied to any plot. Additionally, there are functions to apply microshades palettes to microbiome data in a color-oriented orginazation.
 
 Please visit our [website](https://karstenslab.github.io/microshades) to learn more about microshades.
 
@@ -22,137 +18,60 @@ If you are having trouble with installation, you may need to install packages su
 
 ## The shades
 
-Here is a list of the microshades palettes, including the CVD friendly shades
+Here are the two crafted color palettes, microshades\_cvd\_palettes and microshades\_palettes. Each color palette contains six base colors with five incremental light to dark shades, for a total of 30 available colors per palette type that can be directly applied to any plot.
 
-``` r
-library(microshades)
+<img src="man/figures/microshades_all.png" width="100%" style="display: block; margin: auto;" />
 
-# main shades
-names(microshades_palettes)
-#> [1] "micro_gray"   "micro_brown"  "micro_green"  "micro_orange" "micro_blue"  
-#> [6] "micro_purple"
+### CVD Visualization
 
-# cvd shades
-names(microshades_cvd_palettes)
-#> [1] "micro_cvd_gray"      "micro_cvd_green"     "micro_cvd_orange"   
-#> [4] "micro_cvd_blue"      "micro_cvd_turquoise" "micro_cvd_purple"
-```
+The palettes above provide accesibilty to individuals with CVD. Below are visualizations of the palettes under a [CVD simulation](http://hclwizard.org:3000/cvdemulator).
 
-To view any shade, use the function `microshades_palette` and specify the shade to view.
+The three main types of CVD
 
-``` r
-microshades_palette("micro_blue")
-```
+-   Deuteranope : This is the most common type of CVD, also know as "red-green color blindness"
+-   Protanope : Less common than Deuteranope, described as mutated red pigment and less ability to discriminate colors
+-   Tritanope : Relatively Rare, also known as "blue-yellow color blindness"
 
-<img src="man/figures/README-blue-1.png" width="100%" />
+#### microshades\_cvd\_palettes
 
-The CVD shades use the same function.
+The microshades\_cvd\_palettes contain colors that are universally CVD friendly.
 
-``` r
-microshades_palette("micro_cvd_blue")
-```
+<img src="man/figures/microshades_cvd_palettes_cvd.png" width="100%" style="display: block; margin: auto;" />
 
-<img src="man/figures/README-cvd_blue-1.png" width="100%" />
+#### microshades\_palettes
+
+The individual microshades\_palettes are CVD friendly, and some microshades\_palette combinations are universially CVD friendly. When using multiple microshades\_palettes carefully consider color palette choices, since they may not be universally accessible.
+
+<img src="man/figures/microshades_palettes_cvd.png" width="100%" style="display: block; margin: auto;" />
 
 To learn more about the different functions and shades in microshades, please visit the [reference](https://KarstensLab.github.io/microshades/reference) section of our website.
 
 ## Phyloseq Combatibility
 
-For detailed tutorials on how to use microshades function with phyloseq objects, please review the [vignette articles](https://KarstensLab.github.io/microshades) on the website.
+In addition to color palettes, this package can also be used in conjunction with the R package phyloseq to enhance microbiome data visualization. The microshades functions create stacked bar plots from phyloseq objects, color organized by a data-driven hierarchy. The accessibility and advanced color organization features described help data reviewers and consumers notice visual patterns and trends easier.
 
-Below is an example of a plot generated with microshades on Curated Metagenomic Data of the Human Microbiome. On the left is the original stacked barplot made using phyloseq. On the right are two barplot of the same data, with microshades palettes and functions applied.
+For detailed tutorials on how to use microshades function with phyloseq objects, please review the vignettes provided:
+
+-   [Curated Metagenomic Data](https://karstenslab.github.io/microshades/articles/microshades-CMD.html)
+-   [Global Patterns](https://karstenslab.github.io/microshades/articles/microshades-GP.html)
+-   [Human Microbiome Project](https://karstenslab.github.io/microshades/articles/microshades-HMP.html)
+-   [Human Microbiome Project 2](https://karstenslab.github.io/microshades/articles/microshades-HMP2.html)
+
+Below is an example of a plot generated with microshades on Curated Metagenomic Data of the Human Microbiome. On the left is the original stacked barplot made using phyloseq. On the right are two barplot of the same data, with microshades palettes and functions applied. microshades uses coloring to correspond with taxonomic group and subgroup levels.
 
 <img src="man/figures/plot_CMD.png" width="100%" style="display: block; margin: auto;" />
 
-microshades uses coloring to correspond with taxonomic group and subgroup levels. In this example, the phylum and genus information are explored. Darker shades indicate the most abundant genera for each phylum, and lighter shades are less abundant. Users can additionally reorder the samples based on a specified taxonomic rank and name, or reorder the phylum groups.
+In this example, the phylum and genus information are explored. Darker shades indicate the most abundant genera for each phylum, and lighter shades are less abundant. Users can additionally reorder the samples based on a specified taxonomic rank and name, or reorder the phylum groups.
 
 ## Apply the microshades palette to non-microbiome data
 
-To apply a microshades palette color to a plot, use `scale_fill_manual()`.
+Users can apply a microshades palette color to a plot using `scale_fill_manual()` to set the custom colors and `microshades_palette()` to select a desired palette.
 
-The following examples use the palmerpenguins dataset to show how to apply the color palettes to non-microbiome data.
+Please refer to the following examples with microshades on non-microbiome:
 
-This first example examines the number of each species of penguin. The different color shades represent the island that the penguin was located.
+-   [Palmer Penguins Data Vignette](https://karstenslab.github.io/microshades/articles/non-microbiome_data.html)
+-   [Titanic Data](https://karstenslab.github.io/microshades/articles/titanic_data_example.html)
 
-``` r
-library(palmerpenguins)
-library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
-library("ggplot2")
- 
-data(package = 'palmerpenguins')
+The example below uses the palmerpenguins dataset to show how to apply the color palettes to non-microbiome data. This first plot contains the default colors from ggplot and is colored by species. The second plot uses microshades colors for a combination variable of penguin species and year of data collection. This organization can help data reviewers notice trends easier with more variables visible in the data.
 
-ggplot(penguins, aes(species, fill = island)) + geom_bar() + 
-         scale_fill_manual(values = microshades_palette("micro_green"))
-```
-
-<img src="man/figures/README-plot example-1.png" width="100%" />
-
-This next example examines the flipper length to body mass measurements between different penguin species. To add an enhanced detail to the visual, a combination variable was created in this example that contains the species and year. The different base colors represent the species and the shades represent the year that the data was collected.
-
-``` r
-penguins_mod <- penguins %>% mutate(combination_variable = paste(species, year, sep = "-"))
-
-hex_values <-c(microshades_palette("micro_green", 3, lightest = FALSE), 
-               microshades_palette("micro_blue", 3, lightest = FALSE), 
-               microshades_palette("micro_purple", 3, lightest = FALSE))
-
-ggplot(penguins_mod, aes(x = flipper_length_mm,
-                            y = body_mass_g)) +
-  geom_point(aes(color = combination_variable)) +
-  theme_minimal() +
-  scale_color_manual(values = hex_values, na.translate = FALSE) +
-  labs(title = "Penguin flipper and body mass",
-       x = "Flipper length (mm)",
-       y = "Body mass (g)",
-       color = "Penguin Species and Year") +
-  theme(legend.position = "bottom",
-        legend.background = element_rect(fill = "white", color = NA),
-        plot.title.position = "plot",
-        plot.caption = element_text(hjust = 0, face= "italic"),
-        plot.caption.position = "plot") +
-  facet_wrap(~species)
-#> Warning: Removed 2 rows containing missing values (geom_point).
-```
-
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
-
-This last example examines the bill length to depth measurements between different penguin species. The combination variable generated for the previous example is used for this plot as well. The different base colors represent the species and the shades represent the year that the data was collected.
-
-``` r
- 
-bill_len_dep <- ggplot(data = penguins_mod,
-                         aes(x = bill_length_mm,
-                             y = bill_depth_mm,
-                             group = combination_variable)) +
-  geom_point(aes(color = combination_variable),
-             size = 3,
-             alpha = 0.8) +
-  geom_smooth(method = "lm", se = FALSE, aes(color = combination_variable)) +
-  theme_minimal() +
-  scale_color_manual(values = hex_values, na.translate = FALSE) +
-  labs(title = "Penguin bill dimensions",
-       x = "Bill length (mm)",
-       y = "Bill depth (mm)",
-       color = "Penguin species",
-       shape = "Penguin species") +
-  theme(legend.position = "right",
-        legend.background = element_rect(fill = "white", color = NA),
-        plot.title.position = "plot",
-        plot.caption = element_text(hjust = 0, face= "italic"),
-        plot.caption.position = "plot")
-
-bill_len_dep
-#> `geom_smooth()` using formula 'y ~ x'
-#> Warning: Removed 2 rows containing non-finite values (stat_smooth).
-#> Warning: Removed 2 rows containing missing values (geom_point).
-```
-
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/penguin_example.png" width="100%" style="display: block; margin: auto;" />

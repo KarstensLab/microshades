@@ -1,5 +1,5 @@
 ---
-title: "microshades-GP"
+title: "Global Patterns Data"
 author: "Erin Dahl"
 date: '`r format(Sys.Date(), "%B %e, %Y")`'
 output: rmarkdown::html_document
@@ -11,11 +11,10 @@ vignette: >
 
 # Global Patterns Data Vignette
 
-This vignette uses the Global Patterns microbiome data available from phyloseq.
+This vignette explores the Global Patterns microbiome data available from phyloseq, which includes water samples, land samples, and human samples.
 
-Learn more about the phyloseq [here](https://github.com/joey711/phyloseq).
+Learn more about the phyloseq package [here](https://bioconductor.org/packages/release/bioc/html/phyloseq.html).
 
-Secondary link https://bioconductor.org/packages/release/bioc/html/phyloseq.html
 
 ## Load the required packages
 
@@ -45,7 +44,7 @@ mdf_GP <- color_objs_GP$mdf
 cdf_GP <- color_objs_GP$cdf
 ```
 
-### Plot 
+## Plot 
 
 Use `mdf_GP` as the object to plot and use `cdf_GP` to assign the correct color assignments. 
 
@@ -76,7 +75,7 @@ plot_2
 ```
 
 
-#### Plot with custom legend
+### Plot with custom legend
 
 To Ensure that all elements of the custom legend are visible, adjust the `legend_key_size` and `legend_text_size`. Additionaly, the `fig.height` and `fig.width` may need to be declared.
 
@@ -135,7 +134,7 @@ mdf_human <- color_objs_human$mdf
 cdf_human <- color_objs_human$cdf
 ```
 
-Water Samples 
+#### Water Samples 
 ```{r fig.width= 9, fig.height= 5}
 water_legend <-custom_legend(mdf_water, cdf_water)
 
@@ -151,7 +150,7 @@ plot_grid(water_plot, water_legend,  rel_widths = c(1, .25))
 
 ```
 
-Land samples
+#### Land samples
 
 ```{r fig.width= 9, fig.height= 5}
 
@@ -170,7 +169,7 @@ plot_grid(land_plot, land_legend,  rel_widths = c(1, .25))
 ```
 
 
-Human Samples
+#### Human Samples
 ```{r fig.width= 9, fig.height= 5}
 
 human_legend <-custom_legend(mdf_human, cdf_human)

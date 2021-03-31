@@ -1,5 +1,5 @@
 ---
-title: "microshades-CMD"
+title: "Curated Metagenomic Data"
 author: "Erin Dahl"
 date: '`r format(Sys.Date(), "%B %e, %Y")`'
 output: rmarkdown::html_document
@@ -10,13 +10,12 @@ vignette: >
 ---
 # Curated Metagenomic Data Vignette
 
-This vignette uses Curated Metagenomic Data of the Human Microbiome.
+For this tutorial, we will be exploring human microbiome profiles from the Curated Metagenomic Data library. We will use microshades functions to examine stool samples of school age children and compare samples from different locations. 
 
 
 This data is available in the curatedMetagenomicData library. To download use `BiocManager::install("curatedMetagenomicData")`.
 
-Learn more about the Curated Metagenomic Data [here](https://github.com/waldronlab/curatedMetagenomicData).
-Secondary link https://bioconductor.org/packages/release/data/experiment/html/curatedMetagenomicData.html
+Learn more about the Curated Metagenomic Data [here](https://bioconductor.org/packages/release/data/experiment/html/curatedMetagenomicData.html).
 
 
 ## Load the necessary packages for this tutorial

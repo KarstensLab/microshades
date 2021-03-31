@@ -1,5 +1,5 @@
 ---
-title: "microshades-HMP2"
+title: "Human Microbiome Project 2"
 author: "Erin Dahl"
 date: '`r format(Sys.Date(), "%B %e, %Y")`'
 output: rmarkdown::html_document
@@ -12,12 +12,12 @@ vignette: >
 # Human Microbiome Project 2 Data Vignette
 
 This vignette uses 16s rRNA sequencing data from the Human Microbiome Project 2.
+Vaginal microbiome samples from moms will be examined in this tutorial at the Phylum & Genus taxonomic levels.
 
 
 This data is available in the HMP2Data library. To download use `BiocManager::install("HMP2Data")`.
 
-Learn more about the HMP2 Data [here](https://github.com/jstansfield0/HMP2Data)
-Secondary link https://bioconductor.org/packages/release/data/experiment/html/HMP2Data.html
+Learn more about the HMP2 Data [here](https://bioconductor.org/packages/release/data/experiment/html/HMP2Data.html)
 
 
 ## Load the necessary packages for this toutorial

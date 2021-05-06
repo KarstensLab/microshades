@@ -37,3 +37,4 @@ legend ggplot
 \description{
 Create a custom legend for one individual group, with the subgroups below
 }
+\keyword{internal}

@@ -57,7 +57,7 @@ prep_mdf <- function(ps,
 #'
 #' @import dplyr
 #' @return data.frame
-#' @export
+#' @keywords internal
 #'
 #' @examples
 #' # Get hex codes for 5 groups
@@ -177,22 +177,18 @@ create_color_dfs <- function(mdf,
     }
 
 
-
-
     # Create new column for group level -----
     # Add "Other" category immediately
     col_name_group <- paste0("Top_", group_level)
     mdf[[col_name_group]] <- "Other"
 
-    # Index and find rows to change
+    # Index and find rows containing the selected groups
     rows_to_change <- mdf[[group_level]] %in% selected_groups
     taxa_names_mdf <- row.names(mdf[rows_to_change, ])
     mdf[taxa_names_mdf, col_name_group] <-
         as.character(mdf[taxa_names_mdf, group_level])
 
-
-    # Induce phylum ordering -----
-    col_name_group <- paste0("Top_", group_level)
+    # Create factor for the group level column
     mdf[[col_name_group]] <- factor(mdf[[col_name_group]],
                                     levels = c("Other", selected_groups))
 
@@ -202,7 +198,6 @@ create_color_dfs <- function(mdf,
       stop("some 'selected_groups' do not exist in the dataset. Consider SILVA 138 c('Proteobacteria', 'Actinobacteriota', 'Bacteroidota', 'Firmicutes')")
     }
 
-    # Assigning "Other" for subgroup -----
     # Rename missing genera
     mdf_unknown_subgroup <- mdf %>%
         mutate(!!sym (subgroup_level) := fct_explicit_na(!!sym(subgroup_level), "Unknown"))
@@ -228,7 +223,6 @@ create_color_dfs <- function(mdf,
     subgroup_ranks[rows_to_change, col_name_subgroup] <-
         as.vector(subgroup_ranks[rows_to_change, subgroup_level])
 
-
     # Generate group-subgroup categories -----
     # There are `top_n_subgroups` additional groups because each group level has
     # an additional subgroup of "Other"
@@ -249,16 +243,12 @@ create_color_dfs <- function(mdf,
     mdf_group <- mdf_unknown_subgroup %>%
         left_join(group_info_to_merge, by = c(col_name_group, subgroup_level))
 
-
-    # Rank bacteria by group-subgroup abundances -----
     # Get beginning of color data frame with top groups/subgroups
     # E.g., 4 selected_groups + 1 Other, 4 top_n_groups + 1 Other => 25 groups
     prep_cdf <- group_info %>%
         select(c("group", "order", col_name_group, col_name_subgroup)) %>%
         filter(order <= top_n_subgroups + 1) %>%  # "+ 1" for other subgroup
         arrange(!!sym(col_name_group), order)
-        # mutate(group = fct_inorder(group))
-
 
     # Prepare hex colors -----
 
@@ -316,7 +306,6 @@ create_color_dfs <- function(mdf,
       level_assign = unique(rev(cdf$group))
     }
 
-
     mdf_group$group <- factor(mdf_group$group, levels = level_assign)
 
     # Return final objects -----
@@ -325,7 +314,6 @@ create_color_dfs <- function(mdf,
         cdf = cdf
     )
 }
-
 
 
 #' Apply the color factoring from one cdf to a different melted phyloseq data frame
@@ -579,6 +567,11 @@ plot_microshades <- function (mdf_group,
   if (class(mdf_group) == "phyloseq")
   {
     stop("mdf_group argument must be a data frame. Melt the 'phyloseq' object.")
+  }
+
+  if(is.na(cdf$hex) || is.na(cdf$group))
+  {
+    stop("cdf does not contain complete color information - missing hex or group info")
   }
 
 

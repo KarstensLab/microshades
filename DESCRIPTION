@@ -25,7 +25,9 @@ Imports:
 Suggests:
     ggplot2 (>= 3.3.2),
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
+Config/testthat/edition: 3

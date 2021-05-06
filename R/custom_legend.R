@@ -77,7 +77,7 @@ custom_legend <- function (mdf, cdf, group_level = "Phylum", subgroup_level = "G
 #' @import cowplot
 #'
 #' @return legend ggplot
-#' @export
+#' @keywords internal
 #'
 #'
 #'

@@ -84,14 +84,14 @@
 
       
 
-      </header><link href="microshades-CMD_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+      </header><script src="microshades-CMD_files/header-attrs-2.5/header-attrs.js"></script><link href="microshades-CMD_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
 <script src="microshades-CMD_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Curated Metagenomic Data</h1>
                         <h4 class="author">Erin Dahl</h4>
             
-            <h4 class="date">March 31, 2021</h4>
+            <h4 class="date">May 6, 2021</h4>
       
       
       <div class="hidden name"><code>microshades-CMD.Rmd</code></div>
@@ -109,7 +109,7 @@
 <div id="load-the-necessary-packages-for-this-tutorial" class="section level2">
 <h2 class="hasAnchor">
 <a href="#load-the-necessary-packages-for-this-tutorial" class="anchor"></a>Load the necessary packages for this tutorial</h2>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/waldronlab/curatedMetagenomicData">curatedMetagenomicData</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.plos.org/10.1371/journal.pone.0061217">phyloseq</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
@@ -120,7 +120,7 @@
 <div id="load-datasets-and-convert-to-phyloseq-objects" class="section level2">
 <h2 class="hasAnchor">
 <a href="#load-datasets-and-convert-to-phyloseq-objects" class="anchor"></a>Load datasets and convert to phyloseq objects</h2>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load the CMD data </span>
 <span class="va">britol</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/curatedMetagenomicData/man/BritoIL_2016.html">BritoIL_2016.metaphlan_bugs_list.stool</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">ps_britol</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/curatedMetagenomicData/man/ExpressionSet2phyloseq.html">ExpressionSet2phyloseq</a></span> <span class="op">(</span><span class="va">britol</span><span class="op">)</span></code></pre></div>
@@ -128,11 +128,11 @@
 ## Please use `tibble()` instead.
 ## This warning is displayed once every 8 hours.
 ## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">HMP</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/curatedMetagenomicData/man/HMP_2012.html">HMP_2012.metaphlan_bugs_list.stool</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">ps_HMP</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/curatedMetagenomicData/man/ExpressionSet2phyloseq.html">ExpressionSet2phyloseq</a></span> <span class="op">(</span><span class="va">HMP</span><span class="op">)</span></code></pre></div>
 <p>The <code>ps_britol</code> object contains 112 samples, and <code>ps_HMP</code> contains 141 samples. To focus on a smaller sample size, use phyloseq function <code><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html">subset_samples()</a></code>. In this scenario, only schoolage subjects samples will be included.</p>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Subset the samples</span>
 <span class="va">ps_britol_sub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html">subset_samples</a></span><span class="op">(</span><span class="va">ps_britol</span>,<span class="va">age_category</span> <span class="op">==</span> <span class="st">"schoolage"</span><span class="op">)</span>
 
@@ -143,7 +143,7 @@
 <h2 class="hasAnchor">
 <a href="#apply-the-microshades-functions-to-the-britol-dataset-" class="anchor"></a>Apply the microshades functions to the Britol dataset.</h2>
 <p>To orient the shades from the top darkest to lightest instead of from the bottom darkest to lightest, use the <code>top_orientation = TRUE</code> parameter in the <code><a href="../reference/create_color_dfs.html">create_color_dfs()</a></code></p>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Use microshades function prep_mdf to agglomerate, normalize, and melt the phyloseq object</span>
 <span class="va">mdf_britol_pre</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">ps_britol_sub</span><span class="op">)</span>
 
@@ -157,8 +157,8 @@
 <h3 class="hasAnchor">
 <a href="#plot-britol" class="anchor"></a>Plot Britol</h3>
 <p>The dataframe <code>mdf_britol</code> contains sample data and abundance info. The dataframe <code>cdf_britol</code> stores the color mapping information used for plotting.</p>
-<p><code>plot_microshades</code> produces a stacked barplot with ordered subgroup taxonomy. The darkest shade is the most abundant, and the lightest shade is the least abundant. (excluding the "other" subgroup from each of the selected groups)</p>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<p><code>plot_microshades</code> produces a stacked barplot with ordered subgroup taxonomy. The darkest shade is the most abundant, and the lightest shade is the least abundant. (excluding the “other” subgroup from each of the selected groups)</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_britol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_britol</span>, <span class="va">cdf_britol</span><span class="op">)</span>
 
 <span class="va">plot_britol</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -171,7 +171,7 @@
 <h2 class="hasAnchor">
 <a href="#reassign-colors-as-desired" class="anchor"></a>Reassign colors as desired</h2>
 <p>To change the colors assignment, use the function <code>color_reassign</code> to specify the groups and colors in order of reassignment. For example, we can change the color assignment of Bacteroidetes to <code>micro_green</code> and the color assignment of Proteobacteria to <code>micro_blue</code></p>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_cdf_britol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/color_reassign.html">color_reassign</a></span><span class="op">(</span><span class="va">cdf_britol</span>, 
                                  group_assignment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Bacteroidetes"</span>, <span class="st">"Proteobacteria"</span><span class="op">)</span>,
                                  color_assignment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"micro_green"</span>, <span class="st">"micro_blue"</span><span class="op">)</span><span class="op">)</span>
@@ -186,7 +186,7 @@
 <div id="apply-the-microshades-functions-to-the-hmp-dataset-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#apply-the-microshades-functions-to-the-hmp-dataset-" class="anchor"></a>Apply the microshades functions to the HMP dataset.</h2>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Use microshades function prep_mdf to agglomerate, normalize, and melt the phyloseq object</span>
 <span class="va">mdf_HMP_pre</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">ps_HMP_sub</span><span class="op">)</span>
 
@@ -199,7 +199,7 @@
 <div id="plot-hmp" class="section level3">
 <h3 class="hasAnchor">
 <a href="#plot-hmp" class="anchor"></a>Plot HMP</h3>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_HMP</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_HMP</span>, <span class="va">cdf_HMP</span><span class="op">)</span>
 
 <span class="va">plot_HMP</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -207,12 +207,12 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="microshades-CMD_files/figure-html/unnamed-chunk-8-1.png" width="576"></p>
 <p>Examine Legends</p>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">HMP_legend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wilkelab.org/cowplot/reference/get_legend.html">get_legend</a></span><span class="op">(</span><span class="va">plot_HMP</span><span class="op">)</span>
 
 <span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">HMP_legend</span><span class="op">)</span></code></pre></div>
 <p><img src="microshades-CMD_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">britol_legend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wilkelab.org/cowplot/reference/get_legend.html">get_legend</a></span><span class="op">(</span><span class="va">new_plot_britol</span><span class="op">)</span>
 
 <span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">britol_legend</span><span class="op">)</span></code></pre></div>
@@ -225,7 +225,7 @@
 <a href="#use-britol-legend-for-hmp-plot" class="anchor"></a>Use Britol legend for HMP Plot</h2>
 <p>If the plots are being compared, it may be confusing visually if the genus shading colors account for different genera between the two plots. In this case, the function <code><a href="../reference/match_cdf.html">match_cdf()</a></code> can apply the color factoring information from one processed mdf to a different, unprocessed mdf.</p>
 <p>To use the Britol color legend with the HMP data, apply the Britol color factoring to the HMP data.</p>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mdf_HMP_matched</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/match_cdf.html">match_cdf</a></span><span class="op">(</span><span class="va">mdf_HMP_pre</span>, <span class="va">mdf_britol</span><span class="op">)</span>
 
 <span class="co"># Use the Britol cdf for color reference</span>

@@ -28,7 +28,7 @@ titanic_data <- as.data.frame(Titanic)
 ggplot(titanic_data, aes(x=Sex, y= Freq, fill = Class)) + 
   geom_col() +
   geom_bar(stat="identity") +
-  scale_fill_manual(values = microshades_palette("micro_green"))
+  scale_fill_manual(values = microshades_palette("micro_cvd_turquoise"))
 
        
 ```

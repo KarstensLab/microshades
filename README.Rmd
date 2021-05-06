@@ -1,5 +1,8 @@
 ---
 output: github_document
+pandoc_args: [
+      "--markdown-headings=atx"
+    ]
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -21,7 +24,7 @@ knitr::include_graphics("man/figures/microshades_logo.png")
 <!-- badges: start -->
 <!-- badges: end -->
 
-The microshades R package is designed to provide custom color shading palettes that improve accessibility and data organization. Approximately 300 million people in the world have Color Vision Deficiency (CVD), which is comparable to the most recent estimate of the US population. When creating  figures and graphics that use color, it is important to consider that individuals with CVD will interact with this material, and may not perceive all of the information tied to the colors correctly. This package includes carefully crafted palettes that improve CVD accessibility and may be applied to any plot. Additionally, there are functions to apply microshades palettes to microbiome data in a color-oriented orginazation. 
+The microshades R package is designed to provide custom color shading palettes that improve accessibility and data organization. Approximately 300 million people in the world have Color Vision Deficiency (CVD), which is comparable to the most recent estimate of the US population. When creating  figures and graphics that use color, it is important to consider that individuals with CVD will interact with this material, and may not perceive all of the information tied to the colors as intended. This package includes carefully crafted palettes that improve CVD accessibility and may be applied to any plot. Additionally, there are functions to apply microshades palettes to microbiome data in a color-oriented orginazation. 
 
 
 

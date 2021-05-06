@@ -57,7 +57,7 @@ Now that the sample size is reduced (22 samples), begin using microshades functi
 mdf_prep <- prep_mdf(ps_momspi16S_sub)
 
 # Create a color object for the specified data
-color_objs_momspi16S <- create_color_dfs(mdf_prep)
+color_objs_momspi16S <- create_color_dfs(mdf_prep, cvd = TRUE)
 
 # Extract
 mdf_momspi16S_unordered <- color_objs_momspi16S$mdf
@@ -93,7 +93,7 @@ cdf_momspi16S_ordered <- momspi16S_ordered$cdf
 plot_2 <- plot_microshades(mdf_momspi16S_ordered, cdf_momspi16S_ordered)
 
 plot_2 + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
-  theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=10)) +
-  theme(axis.text.x = element_text(size= 6))
+  theme(legend.key.size = unit(0.2, "cm"), text=element_text(size=12)) +
+  theme(axis.text.x = element_blank())
 
 ```

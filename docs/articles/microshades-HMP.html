@@ -84,14 +84,14 @@
 
       
 
-      </header><link href="microshades-HMP_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+      </header><script src="microshades-HMP_files/header-attrs-2.5/header-attrs.js"></script><link href="microshades-HMP_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
 <script src="microshades-HMP_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Human Microbiome Project</h1>
                         <h4 class="author">Erin Dahl</h4>
             
-            <h4 class="date">March 31, 2021</h4>
+            <h4 class="date">May 6, 2021</h4>
       
       
       <div class="hidden name"><code>microshades-HMP.Rmd</code></div>
@@ -109,7 +109,7 @@
 <div id="load-the-necessary-packages-for-this-tutorial" class="section level2">
 <h2 class="hasAnchor">
 <a href="#load-the-necessary-packages-for-this-tutorial" class="anchor"></a>Load the necessary packages for this tutorial</h2>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/waldronlab/HMP16SData">HMP16SData</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.plos.org/10.1371/journal.pone.0061217">phyloseq</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
@@ -119,7 +119,7 @@
 <div id="load-and-subset-the-hmp-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#load-and-subset-the-hmp-data" class="anchor"></a>Load and subset the HMP data</h2>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">v1v3_stool</span> <span class="op">&lt;-</span>
     <span class="fu"><a href="https://rdrr.io/pkg/HMP16SData/man/V13.html">V13</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span>select <span class="op">=</span> <span class="va">HMP_BODY_SUBSITE</span> <span class="op">==</span> <span class="st">"Stool"</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -127,7 +127,7 @@
 <pre><code>## snapshotDate(): 2020-10-27</code></pre>
 <pre><code>## see ?HMP16SData and browseVignettes('HMP16SData') for documentation</code></pre>
 <pre><code>## loading from cache</code></pre>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ps_v1v3_stool</span> <span class="op">&lt;-</span>
     <span class="fu"><a href="https://rdrr.io/pkg/HMP16SData/man/as_phyloseq.html">as_phyloseq</a></span><span class="op">(</span><span class="va">v1v3_stool</span><span class="op">)</span></code></pre></div>
 </div>
@@ -135,7 +135,7 @@
 <h2 class="hasAnchor">
 <a href="#apply-microshades-functions" class="anchor"></a>Apply microshades functions</h2>
 <p>Begin using microshades functions to evaluate abundance and apply advanced color organization at the Phylum Family level.</p>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Use microshades function prep_mdf to agglomerate, normalize, and melt the phyloseq object</span>
 <span class="va">mdf_prep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">ps_v1v3_stool</span>, subgroup_level <span class="op">=</span> <span class="st">"FAMILY"</span><span class="op">)</span>
 
@@ -151,8 +151,8 @@
 <h2 class="hasAnchor">
 <a href="#plot" class="anchor"></a>Plot</h2>
 <p>The dataframe <code>mdf_v1v3_stool</code> contains sample data and abundance info. The dataframe <code>cdf_v1v3_stool</code> stores the color mapping information used for plotting.</p>
-<p><code>plot_microshades</code> produces a stacked barplot with ordered subgroup taxonomy. The darkest shade is the most abundant, and the lightest shade is the least abundant. (excluding the "other" subgroup from each of the selected groups)</p>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<p><code>plot_microshades</code> produces a stacked barplot with ordered subgroup taxonomy. The darkest shade is the most abundant, and the lightest shade is the least abundant. (excluding the “other” subgroup from each of the selected groups)</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_v1v3_stool</span>, <span class="va">cdf_v1v3_stool</span>, group_label <span class="op">=</span> <span class="st">"Phylum Family"</span><span class="op">)</span>
 
 <span class="va">plot_1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -168,7 +168,7 @@
 <div id="reorder-the-samples-by-bacteroidaceae-abundance" class="section level3">
 <h3 class="hasAnchor">
 <a href="#reorder-the-samples-by-bacteroidaceae-abundance" class="anchor"></a>Reorder the samples by Bacteroidaceae Abundance</h3>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># reorder_samples_by will change the order of samples based on an abundance of a specified subgroup taxonomy</span>
 <span class="va">new_sample_order_v1v3_stool</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reorder_samples_by.html">reorder_samples_by</a></span><span class="op">(</span><span class="va">mdf_v1v3_stool</span>, <span class="va">cdf_v1v3_stool</span>, order <span class="op">=</span> <span class="st">"Bacteroidaceae"</span>, group_level <span class="op">=</span> <span class="st">"PHYLUM"</span>, subgroup_level <span class="op">=</span> <span class="st">"FAMILY"</span>, sink_abundant_groups <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
@@ -185,7 +185,7 @@
 <div id="reorder-by-abundance-of-group-levels-only" class="section level3">
 <h3 class="hasAnchor">
 <a href="#reorder-by-abundance-of-group-levels-only" class="anchor"></a>Reorder by Abundance of Group levels Only</h3>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># reorder_samples_by will change the order of samples based on an abundance of a specified subgroup taxonomy</span>
 <span class="co"># The default subgroup_level is "Genus" </span>
 <span class="va">new_group_order_v1v3_stool</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reorder_samples_by.html">reorder_samples_by</a></span><span class="op">(</span><span class="va">mdf_v1v3_stool</span>, <span class="va">cdf_v1v3_stool</span>, group_level <span class="op">=</span> <span class="st">"PHYLUM"</span>, subgroup_level <span class="op">=</span> <span class="st">"FAMILY"</span>, sink_abundant_groups <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
@@ -203,7 +203,7 @@
 <div id="reorder-by-both-samples-and-abundance-of-group-levels" class="section level3">
 <h3 class="hasAnchor">
 <a href="#reorder-by-both-samples-and-abundance-of-group-levels" class="anchor"></a>Reorder by both Samples and Abundance of Group levels</h3>
-<div class="sourceCode"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># reorder_samples_by will change the order of samples based on Family an abundance of "Bacteroidaceae" and reorder the Phylum to sink the most abundant groups</span>
 <span class="va">reordered_v1v3_stool</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reorder_samples_by.html">reorder_samples_by</a></span><span class="op">(</span><span class="va">mdf_v1v3_stool</span>, <span class="va">cdf_v1v3_stool</span>, order <span class="op">=</span> <span class="st">"Bacteroidaceae"</span>, group_level <span class="op">=</span> <span class="st">"PHYLUM"</span>, subgroup_level <span class="op">=</span> <span class="st">"FAMILY"</span>, sink_abundant_groups <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 

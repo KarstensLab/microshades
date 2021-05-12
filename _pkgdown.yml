@@ -1,4 +1,7 @@
 destination: docs
+template:
+  params:
+    ganalytics: UA-196876408-1
 reference:
 - title: "microshades palettes"
   desc: >

@@ -14,7 +14,7 @@ reorder_samples_by(
 )
 }
 \arguments{
-\item{mdf_group}{data.frame, melted phyloseq data frame}
+\item{mdf_group}{data.frame, data frame containf microbiome data}
 
 \item{cdf}{data.frame containing the color key}
 

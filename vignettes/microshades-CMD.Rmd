@@ -65,7 +65,6 @@ color_objs_britol <- create_color_dfs(mdf_britol_pre, top_orientation = TRUE)
 mdf_britol<- color_objs_britol$mdf
 cdf_britol <- color_objs_britol$cdf
 
-
 ```
 
 
@@ -75,7 +74,7 @@ The dataframe `mdf_britol` contains sample data and abundance info. The datafram
 
 `plot_microshades` produces a stacked barplot with ordered subgroup taxonomy. The darkest shade is the most abundant, and the lightest shade is the least abundant. (excluding the "other" subgroup from each of the selected groups)
 
-```{r fig.width= 6, fig.height= 4}
+```{r fig.width= 8, fig.height= 4}
 
 plot_britol <- plot_microshades(mdf_britol, cdf_britol)
 
@@ -89,7 +88,7 @@ plot_britol + scale_y_continuous(labels = scales::percent, expand = expansion(0)
 
 To change the colors assignment, use the function `color_reassign` to specify the groups and colors in order of reassignment. For example, we can change the color assignment of Bacteroidetes to `micro_green` and the color assignment of Proteobacteria to `micro_blue`
 
-```{r}
+```{r fig.width= 8, fig.height= 4}
 
 new_cdf_britol <- color_reassign(cdf_britol, 
                                  group_assignment = c("Bacteroidetes", "Proteobacteria"),
@@ -106,7 +105,7 @@ new_plot_britol + scale_y_continuous(labels = scales::percent, expand = expansio
 
 ## Apply the microshades functions to the HMP dataset.
 
-```{r fig.width= 2, fig.height= 1}
+```{r}
 # Use microshades function prep_mdf to agglomerate, normalize, and melt the phyloseq object
 mdf_HMP_pre <- prep_mdf(ps_HMP_sub)
 
@@ -120,7 +119,7 @@ cdf_HMP <- color_objs_HMP$cdf
 
 ### Plot HMP
 
-```{r fig.width= 6, fig.height= 4}
+```{r fig.width= 7, fig.height= 4}
 
 plot_HMP <- plot_microshades(mdf_HMP, cdf_HMP)
 
@@ -130,22 +129,20 @@ plot_HMP + scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
 
 ```
 
-Examine Legends
+Examine/Compare Legends
 
-```{r}
+```{r fig.width=10, fig.height= 4}
 
 HMP_legend <- get_legend(plot_HMP)
-
-plot_grid(HMP_legend)
-
 britol_legend <- get_legend(new_plot_britol)
 
-plot_grid(britol_legend)
+# Plot The HMP legend on the left, and the britol legend on the right
+plot_grid(HMP_legend, britol_legend)
 
 ```
 
 Each legend is configured to reflect the dataset of the plot. 
-Notice that the Britol and HMP Legends are similar, but not the exact same, due to different top abundances for genera in each phylum.
+Notice that the HMP and Britol Legends are similar, but not the exact same, due to different top abundances for genera in each phylum.
 
 ## Use Britol legend for HMP Plot
 
@@ -154,7 +151,7 @@ In this case, the function `match_cdf()` can apply the color factoring informati
 
 To use the Britol color legend with the HMP data, apply the Britol color factoring to the HMP data.
 
-```{r fig.width= 3.75, fig.height= 4}
+```{r fig.width= 5, fig.height= 4}
 
 mdf_HMP_matched <- match_cdf(mdf_HMP_pre, mdf_britol)
 

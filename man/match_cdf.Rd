@@ -2,7 +2,7 @@
 % Please edit documentation in R/color_mapping_functions.R
 \name{match_cdf}
 \alias{match_cdf}
-\title{Apply the color factoring from one cdf to a different melted phyloseq data frame}
+\title{Apply the color factoring from one cdf to a different melted data frame}
 \usage{
 match_cdf(mdf, mdf_group, group_level = "Phylum", subgroup_level = "Genus")
 }

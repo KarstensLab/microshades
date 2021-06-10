@@ -18,20 +18,16 @@ accessibility and may be applied to any plot. Additionally, there are
 functions to apply microshades palettes to microbiome data in a
 color-oriented orginazation.
 
-Please visit our [website](https://karstenslab.github.io/microshades) to
-learn more about microshades.
-
 ## Installation
 
 ``` r
 remotes::install_github("KarstensLab/microshades")
 ```
 
-If you are having trouble with installation, you may need to install
-packages such as
+If you plan to use microshades with microbiome data, you may need to
+install packages such as
 [phyloseq](https://joey711.github.io/phyloseq/index.html) or
-[speedyseq](https://mikemc.github.io/speedyseq) before installing
-microshades.
+[speedyseq](https://mikemc.github.io/speedyseq).
 
 ## The shades
 

@@ -16,7 +16,7 @@ create_color_dfs(
 )
 }
 \arguments{
-\item{mdf}{data.frame, melted phyloseq data frame containing microbiome data}
+\item{mdf}{data.frame, melted data frame containing microbiome data}
 
 \item{selected_groups}{list of groups in group_level taxomomy to specify and color in plot.
 The vector order is the stacking order. "Other" is always on the top of the stack,

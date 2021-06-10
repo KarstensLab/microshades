@@ -15,18 +15,18 @@ URL: https://karstenslab.github.io/microshades
 Encoding: UTF-8
 LazyData: true
 Imports:
-  phyloseq,
-  speedyseq,
   dplyr (>= 1.0),
   tidyr (>= 1.1.0),
   purrr,
   forcats,
   tidyselect
 Suggests:
-    ggplot2 (>= 3.3.2),
-    knitr,
-    rmarkdown,
-    testthat (>= 3.0.0)
+  phyloseq,
+  speedyseq,
+  ggplot2 (>= 3.3.2),
+  knitr,
+  rmarkdown,
+  testthat (>= 3.0.0)
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr

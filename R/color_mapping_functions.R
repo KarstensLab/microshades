@@ -111,7 +111,7 @@ default_hex <- function(n_groups = 5, cvd = FALSE) {
 #'   passing in the vector
 #'   `c("Proteobacteria", "Actinobacteriota", "Bacteroidota", "Firmicutes")`
 #'
-#' @param mdf data.frame, melted phyloseq data frame containing microbiome data
+#' @param mdf data.frame, melted data frame containing microbiome data
 #' @param selected_groups list of groups in group_level taxomomy to specify and color in plot.
 #'   The vector order is the stacking order. "Other" is always on the top of the stack,
 #'   but then the rest will follow. The default is "Proteobacteria", "Actinobacteria",
@@ -125,7 +125,6 @@ default_hex <- function(n_groups = 5, cvd = FALSE) {
 #' @param top_orientation logical most abundant shades oriented at the top of the stack
 #'   otherwise, most abundant shades are bottom oriented
 #'
-#' @import phyloseq
 #' @import dplyr
 #' @import tidyr
 #' @import purrr
@@ -160,9 +159,9 @@ create_color_dfs <- function(mdf,
         stop("'top_n_subgroups' exceeds MAX value 4")
     }
 
-   if (class(mdf) == "phyloseq")
+   if (class(mdf) != "data.frame")
    {
-       stop("mdf argument must be a data frame. Melt the 'phyloseq' object.")
+       stop("mdf argument must be a data frame")
    }
     if (!is.null(mdf$group)) {
         stop("'group' column name already exists; consider renaming or removing")
@@ -235,7 +234,7 @@ create_color_dfs <- function(mdf,
     # Ensure that the "Other" subgroup is always the lightest shade
     group_info$order[group_info[[col_name_subgroup]] == "Other"] <- top_n_subgroups +1
 
-    # Merge group info back to melted phyloseq -----
+    # Merge group info back to df -----
     # Get relevant columns from data frame with group info
     group_info_to_merge <-
         group_info[, c(col_name_group, subgroup_level,
@@ -316,7 +315,7 @@ create_color_dfs <- function(mdf,
 }
 
 
-#' Apply the color factoring from one cdf to a different melted phyloseq data frame
+#' Apply the color factoring from one cdf to a different melted data frame
 #'
 #' Now both melted dataframes will contain the same color mapping information.
 #' This can be useful if you want to make sure that different graphs have consistent legends
@@ -326,7 +325,6 @@ create_color_dfs <- function(mdf,
 #' @param group_level string of larger taxonomic group
 #' @param subgroup_level string of smaller taxonomic group
 #'
-#' @import phyloseq
 #' @import dplyr
 #' @import tidyr
 #' @import forcats
@@ -348,9 +346,9 @@ match_cdf <- function(mdf,
 
     {
 
-      if (class(mdf) == "phyloseq")
+      if (class(mdf) != "data.frame")
       {
-        stop("mdf argument must be a data frame. Melt the 'phyloseq' object.")
+        stop("mdf argument must be a data frame")
       }
       if (!is.null(mdf$group)) {
         stop("mdf 'group' column name already exists; consider renaming or removing")
@@ -414,7 +412,7 @@ match_cdf <- function(mdf,
 #' This function will reorder the user selected subgroup taxa based on abundance, and can also
 #' reorder the stacked groups levels based on abundance, using `sink_abundant_groups`
 #'
-#' @param mdf_group data.frame, melted phyloseq data frame
+#' @param mdf_group data.frame, data frame containf microbiome data
 #' @param cdf data.frame containing the color key
 #' @param order string of subgroup to reorder by
 #' @param group_level string of larger taxonomic group
@@ -442,9 +440,9 @@ reorder_samples_by <- function (mdf_group,
                                 subgroup_level = "Genus",
                                 sink_abundant_groups = TRUE)
 {
-  if (class(mdf_group) == "phyloseq")
+  if (class(mdf_group) != "data.frame")
   {
-    stop("mdf_group argument must be a data frame. Melt the 'phyloseq' object.")
+    stop("mdf_group argument must be a data frame")
   }
 
   if (is.null(mdf_group$Sample)) {
@@ -564,9 +562,9 @@ plot_microshades <- function (mdf_group,
                                 x = "Sample",
                                 y = "Abundance")
 {
-  if (class(mdf_group) == "phyloseq")
+  if (class(mdf_group) != "data.frame")
   {
-    stop("mdf_group argument must be a data frame. Melt the 'phyloseq' object.")
+    stop("mdf_group argument must be a data frame")
   }
 
   if(is.na(cdf$hex) || is.na(cdf$group))

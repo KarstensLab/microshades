@@ -97,7 +97,7 @@
       <h1 data-toc-skip>Curated Metagenomic Data</h1>
                         <h4 class="author">Erin Dahl</h4>
             
-            <h4 class="date">May 12, 2021</h4>
+            <h4 class="date">June 10, 2021</h4>
       
       
       <div class="hidden name"><code>microshades-CMD.Rmd</code></div>
@@ -170,7 +170,7 @@
 <span class="va">plot_britol</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
-<p><img src="microshades-CMD_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
+<p><img src="microshades-CMD_files/figure-html/unnamed-chunk-5-1.png" width="768"></p>
 </div>
 </div>
 <div id="reassign-colors-as-desired" class="section level2">
@@ -187,7 +187,7 @@
 <span class="va">new_plot_britol</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
-<p><img src="microshades-CMD_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="microshades-CMD_files/figure-html/unnamed-chunk-6-1.png" width="768"></p>
 </div>
 <div id="apply-the-microshades-functions-to-the-hmp-dataset-" class="section level2">
 <h2 class="hasAnchor">
@@ -211,19 +211,16 @@
 <span class="va">plot_HMP</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="microshades-CMD_files/figure-html/unnamed-chunk-8-1.png" width="576"></p>
-<p>Examine Legends</p>
+<p><img src="microshades-CMD_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
+<p>Examine/Compare Legends</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">HMP_legend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wilkelab.org/cowplot/reference/get_legend.html">get_legend</a></span><span class="op">(</span><span class="va">plot_HMP</span><span class="op">)</span>
+<span class="va">britol_legend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wilkelab.org/cowplot/reference/get_legend.html">get_legend</a></span><span class="op">(</span><span class="va">new_plot_britol</span><span class="op">)</span>
 
-<span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">HMP_legend</span><span class="op">)</span></code></pre></div>
-<p><img src="microshades-CMD_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">britol_legend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wilkelab.org/cowplot/reference/get_legend.html">get_legend</a></span><span class="op">(</span><span class="va">new_plot_britol</span><span class="op">)</span>
-
-<span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">britol_legend</span><span class="op">)</span></code></pre></div>
-<p><img src="microshades-CMD_files/figure-html/unnamed-chunk-9-2.png" width="700"></p>
-<p>Each legend is configured to reflect the dataset of the plot. Notice that the Britol and HMP Legends are similar, but not the exact same, due to different top abundances for genera in each phylum.</p>
+<span class="co"># Plot The HMP legend on the left, and the britol legend on the right</span>
+<span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">HMP_legend</span>, <span class="va">britol_legend</span><span class="op">)</span></code></pre></div>
+<p><img src="microshades-CMD_files/figure-html/unnamed-chunk-9-1.png" width="960"></p>
+<p>Each legend is configured to reflect the dataset of the plot. Notice that the HMP and Britol Legends are similar, but not the exact same, due to different top abundances for genera in each phylum.</p>
 </div>
 </div>
 <div id="use-britol-legend-for-hmp-plot" class="section level2">
@@ -231,7 +228,7 @@
 <a href="#use-britol-legend-for-hmp-plot" class="anchor"></a>Use Britol legend for HMP Plot</h2>
 <p>If the plots are being compared, it may be confusing visually if the genus shading colors account for different genera between the two plots. In this case, the function <code><a href="../reference/match_cdf.html">match_cdf()</a></code> can apply the color factoring information from one processed mdf to a different, unprocessed mdf.</p>
 <p>To use the Britol color legend with the HMP data, apply the Britol color factoring to the HMP data.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mdf_HMP_matched</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/match_cdf.html">match_cdf</a></span><span class="op">(</span><span class="va">mdf_HMP_pre</span>, <span class="va">mdf_britol</span><span class="op">)</span>
 
 <span class="co"># Use the Britol cdf for color reference</span>
@@ -240,7 +237,7 @@
 <span class="va">plot_HMP_matched</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="microshades-CMD_files/figure-html/unnamed-chunk-10-1.png" width="360"></p>
+<p><img src="microshades-CMD_files/figure-html/unnamed-chunk-10-1.png" width="480"></p>
 </div>
 </div>
   </div>

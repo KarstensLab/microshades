@@ -4,12 +4,20 @@
 \alias{match_cdf}
 \title{Apply the color factoring from one cdf to a different melted data frame}
 \usage{
-match_cdf(mdf, mdf_group, group_level = "Phylum", subgroup_level = "Genus")
+match_cdf(
+  mdf,
+  df_match,
+  df_is_mdf = TRUE,
+  group_level = "Phylum",
+  subgroup_level = "Genus"
+)
 }
 \arguments{
 \item{mdf}{data.frame, melted data frame to apply legend to}
 
-\item{mdf_group}{data.frame, melted data frame to use legend from}
+\item{df_match}{data.frame, data frame to use legend from}
+
+\item{df_is_mdf}{logical, true if df_match is a mdf, false if df_match is a cdf}
 
 \item{group_level}{string of larger taxonomic group}
 
@@ -23,6 +31,6 @@ Now both melted dataframes will contain the same color mapping information.
 This can be useful if you want to make sure that different graphs have consistent legends
 }
 \examples{
-mdf_to_plot <- match_cdf(mdf, mdf_group)
+mdf_to_plot <- match_cdf(mdf, df_match)
 
 }

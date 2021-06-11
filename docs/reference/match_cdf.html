@@ -151,7 +151,13 @@ This can be useful if you want to make sure that different graphs have consisten
 This can be useful if you want to make sure that different graphs have consistent legends</p>
     </div>
 
-    <pre class="usage"><span class='fu'>match_cdf</span><span class='op'>(</span><span class='va'>mdf</span>, <span class='va'>mdf_group</span>, group_level <span class='op'>=</span> <span class='st'>"Phylum"</span>, subgroup_level <span class='op'>=</span> <span class='st'>"Genus"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>match_cdf</span><span class='op'>(</span>
+  <span class='va'>mdf</span>,
+  <span class='va'>df_match</span>,
+  df_is_mdf <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  group_level <span class='op'>=</span> <span class='st'>"Phylum"</span>,
+  subgroup_level <span class='op'>=</span> <span class='st'>"Genus"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,8 +167,12 @@ This can be useful if you want to make sure that different graphs have consisten
       <td><p>data.frame, melted data frame to apply legend to</p></td>
     </tr>
     <tr>
-      <th>mdf_group</th>
-      <td><p>data.frame, melted data frame to use legend from</p></td>
+      <th>df_match</th>
+      <td><p>data.frame, data frame to use legend from</p></td>
+    </tr>
+    <tr>
+      <th>df_is_mdf</th>
+      <td><p>logical, true if df_match is a mdf, false if df_match is a cdf</p></td>
     </tr>
     <tr>
       <th>group_level</th>
@@ -179,8 +189,8 @@ This can be useful if you want to make sure that different graphs have consisten
     <p>data.frame, melted df with ordered factor that are consistent with the legend</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>mdf_to_plot</span> <span class='op'>&lt;-</span> <span class='fu'>match_cdf</span><span class='op'>(</span><span class='va'>mdf</span>, <span class='va'>mdf_group</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in match_cdf(mdf, mdf_group): object 'mdf' not found</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='va'>mdf_to_plot</span> <span class='op'>&lt;-</span> <span class='fu'>match_cdf</span><span class='op'>(</span><span class='va'>mdf</span>, <span class='va'>df_match</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in match_cdf(mdf, df_match): object 'mdf' not found</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -321,7 +321,8 @@ create_color_dfs <- function(mdf,
 #' This can be useful if you want to make sure that different graphs have consistent legends
 #'
 #' @param mdf data.frame, melted data frame to apply legend to
-#' @param mdf_group data.frame, melted data frame to use legend from
+#' @param df_match data.frame, data frame to use legend from
+#' @param df_is_mdf logical, true if df_match is a mdf, false if df_match is a cdf
 #' @param group_level string of larger taxonomic group
 #' @param subgroup_level string of smaller taxonomic group
 #'
@@ -335,11 +336,12 @@ create_color_dfs <- function(mdf,
 #' @export
 #'
 #' @examples
-#' mdf_to_plot <- match_cdf(mdf, mdf_group)
+#' mdf_to_plot <- match_cdf(mdf, df_match)
 #'
 
 match_cdf <- function(mdf,
-                            mdf_group,
+                            df_match,
+                            df_is_mdf = TRUE,
                             group_level = "Phylum",
                             subgroup_level = "Genus"
                             )
@@ -362,8 +364,8 @@ match_cdf <- function(mdf,
         stop("mdf 'subgroup_level' does not exist")
       }
 
-      if (is.null(mdf_group$group)) {
-        stop("mdf_group 'group' column is missing")
+      if (is.null(df_match$group)) {
+        stop("df_match 'group' column is missing")
       }
 
       # Create new column for group level -----
@@ -371,7 +373,15 @@ match_cdf <- function(mdf,
       col_name_group <- paste0("Top_", group_level)
       mdf[[col_name_group]] <- "Other"
 
-      selected_groups <- levels(mdf_group[[col_name_group]])
+      if(df_is_mdf)
+      {
+        selected_groups <- levels(df_match[[col_name_group]])
+      }
+      else
+      {
+        selected_groups <-rev(unique(df_match[[col_name_group]]))
+      }
+
       selected_groups <- selected_groups[selected_groups != "Other"]
 
       # Index and find rows to change
@@ -387,7 +397,7 @@ match_cdf <- function(mdf,
       col_name_subgroup <- paste0("Top_", subgroup_level)
       mdf[[col_name_subgroup]] <- "Other"
 
-      selected_subgroups <- unique(mdf_group[[col_name_subgroup]])
+      selected_subgroups <- unique(df_match[[col_name_subgroup]])
       selected_subgroups <- selected_subgroups[selected_subgroups != "Other"]
 
       # Index and find rows to change
@@ -400,7 +410,14 @@ match_cdf <- function(mdf,
                                          !!sym(col_name_subgroup),
                                          sep = "-"))
 
-      new_levels <- levels(mdf_group$group)
+      if(df_is_mdf)
+      {
+        new_levels <- levels(df_match$group)
+      }
+      else
+      {
+        new_levels <- rev(unique(df_match$group))
+      }
 
       mdf$group <- factor(mdf$group, levels = new_levels)
 

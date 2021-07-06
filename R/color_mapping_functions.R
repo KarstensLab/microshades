@@ -11,9 +11,8 @@
 #' @param ps phyloseq-class object
 #' @param subgroup_level string of smaller taxonomic group
 #'
-#' @import phyloseq
 #' @import dplyr
-#' @importFrom speedyseq tax_glom psmelt
+#'
 #'
 #' @return data.frame, a melted phyloseq object from `psmelt()`
 #' @export
@@ -29,16 +28,28 @@
 prep_mdf <- function(ps,
                      subgroup_level = "Genus")
     {
+
+      if (!requireNamespace("phyloseq", quietly = TRUE)) {
+        stop("Package \"phyloseq\" needed for this function to work. Please install it.",
+             call. = FALSE)
+      }
+
+      if (!requireNamespace("speedyseq", quietly = TRUE)) {
+        stop("Package \"speedyseq\" needed for this function to work. Please install it.",
+             call. = FALSE)
+      }
+
+
     # Agglomerate, normalizes, and melts phyloseq object -----
 
-    if (!(subgroup_level %in% colnames(ps@tax_table))) {
+    if (!(subgroup_level %in% colnames(phyloseq::tax_table(ps)))) {
       stop("'subgroup_level' does not exist")
     }
 
     mdf <- ps %>%
-        tax_glom(subgroup_level) %>%
-        transform_sample_counts(function(x) { x/sum(x) }) %>%
-        psmelt()
+        speedyseq::tax_glom(subgroup_level) %>%
+        phyloseq::transform_sample_counts(function(x) { x/sum(x) }) %>%
+        speedyseq::psmelt()
 
     # Removes 0 abundance
     mdf_prep <- mdf[mdf$Abundance > 0, ]

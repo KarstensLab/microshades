@@ -142,7 +142,7 @@ plot_grid(HMP_legend, britol_legend)
 ```
 
 Each legend is configured to reflect the dataset of the plot. 
-Notice that the HMP and Britol Legends are similar, but not the exact same, due to different top abundances for genera in each phylum.
+Notice that the HMP and Britol legends are similar, but not the exact same, due to different top abundances for genera in each phylum.
 
 ## Use Britol legend for HMP Plot
 

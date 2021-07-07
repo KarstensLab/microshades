@@ -32,7 +32,7 @@ library(cowplot)
 # The dataset Global Patterns is a phyloseq object avalible from the Phyloseq package
 data(GlobalPatterns)
 
-# Agglomerate and normalize the phyloseq object, and melted to a data frame
+# Agglomerate and normalize the phyloseq object, and melt to a data frame
 mdf_prep <- prep_mdf(GlobalPatterns)
 
 # Generate a color object for the specified data

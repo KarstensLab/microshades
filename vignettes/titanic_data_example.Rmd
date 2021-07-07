@@ -21,7 +21,7 @@ This first example examines the number of male and female passengers, and the cl
 ```{r plot example, message = FALSE, warning = FALSE}
 library(microshades)
 library(dplyr)
-library("ggplot2")
+library(ggplot2)
  
 titanic_data <- as.data.frame(Titanic)
 
@@ -56,7 +56,7 @@ ggplot(titanic_data, aes(x=Age, y= Freq, fill = Class)) +
        
 ```
 
-For the plot below, a combination variable that combines Survival and Age categories is created and called the survival cohort. This variable allows for more a more detailed coloring of the plot.
+For the plot below, a combination variable that combines Survival and Age categories is created and called the survival cohort. This variable allows for a more detailed coloring of the plot.
 ```{r}
 titanic_mod <- titanic_data %>% mutate(survival_cohort = paste(Survived, Age, sep = "-"))
 colors <-c(microshades_palette("micro_blue", 2, lightest = FALSE), 

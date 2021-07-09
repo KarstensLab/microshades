@@ -11,7 +11,7 @@ Description: This package contains custom built color palettes that are availibl
             plotting. This package can also be used to improve phyloseq abundance 
             plots with color abundance organization.
 License: MIT + file LICENSE
-URL: https://karstenslab.github.io/microshades
+URL: https://karstenslab.github.io/microshades, https://github.com/KarstensLab/microshades
 Encoding: UTF-8
 LazyData: true
 Imports:

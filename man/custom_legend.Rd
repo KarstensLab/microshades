@@ -9,6 +9,8 @@ custom_legend(
   cdf,
   group_level = "Phylum",
   subgroup_level = "Genus",
+  x = "Sample",
+  y = "Abundance",
   legend_key_size = 0.4,
   legend_text_size = 10
 )
@@ -21,6 +23,10 @@ custom_legend(
 \item{group_level}{string of larger taxonomic group}
 
 \item{subgroup_level}{string of smaller taxonomic group}
+
+\item{x}{x-value plotted}
+
+\item{y}{y-value plotted}
 
 \item{legend_key_size}{numeric determines overall size of the legend keys}
 

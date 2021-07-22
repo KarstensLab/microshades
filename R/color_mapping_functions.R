@@ -603,7 +603,6 @@ plot_microshades <- function (mdf_group,
 
   plot <- mdf_group %>%
     ggplot(aes_string(x = x, y = y), fill = group_label) +
-    geom_col(position = "fill") +
     scale_fill_manual(name = group_label,
                       values = cdf$hex,
                       breaks = cdf$group) +

@@ -7,6 +7,8 @@
 #' @param cdf data.frame color dataframe
 #' @param group_level string of larger taxonomic group
 #' @param subgroup_level string of smaller taxonomic group
+#' @param x x-value plotted
+#' @param y y-value plotted
 #' @param legend_key_size numeric determines overall size of the legend keys
 #' @param legend_text_size integer determines size of legend text
 #'
@@ -21,7 +23,8 @@
 #' legend_new <- custom_legend(mdf_GP, cdf_GP)
 #'
 #'
-custom_legend <- function (mdf, cdf, group_level = "Phylum", subgroup_level = "Genus", legend_key_size = 0.4, legend_text_size = 10)
+custom_legend <- function (mdf, cdf, group_level = "Phylum", subgroup_level = "Genus", x = "Sample",
+                           y = "Abundance", legend_key_size = 0.4, legend_text_size = 10)
 {
   if (is.null(mdf[[group_level]])) {
     stop("mdf 'group_level' does not exist")
@@ -69,6 +72,8 @@ custom_legend <- function (mdf, cdf, group_level = "Phylum", subgroup_level = "G
 #' @param group_name name of the larger taxonomic group to extract small legend from
 #' @param col_name_group string column name of larger taxonomic group
 #' @param col_name_subgroup string column nameof smaller taxonomic group
+#' @param x x-value plotted
+#' @param y y-value plotted
 #' @param legend_key_size numeric determines overall size of the legend keys
 #' @param legend_text_size integer determines size of legend text
 #'

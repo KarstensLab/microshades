@@ -27,6 +27,10 @@ individual_legend(
 
 \item{col_name_subgroup}{string column nameof smaller taxonomic group}
 
+\item{x}{x-value plotted}
+
+\item{y}{y-value plotted}
+
 \item{legend_key_size}{numeric determines overall size of the legend keys}
 
 \item{legend_text_size}{integer determines size of legend text}

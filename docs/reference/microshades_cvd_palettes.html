@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="List of CVD palettes — microshades_cvd_palettes" />
-<meta property="og:description" content="Use microshades_cvd_palette to construct palettes of desired length." />
+<meta property="og:description" content="Use microshades_palette to construct palettes of desired length." />
 
 
 
@@ -124,6 +124,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -151,7 +154,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Use <code>microshades_cvd_palette</code> to construct palettes of desired length.</p>
+    <p>Use <code><a href='microshades_palette.html'>microshades_palette</a></code> to construct palettes of desired length.</p>
     </div>
 
     <pre class="usage"><span class='va'>microshades_cvd_palettes</span></pre>
@@ -162,7 +165,25 @@
     <p>An object of class <code>list</code> of length 6.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='microshades_palette.html'>microshades_palette</a></span><span class='op'>(</span><span class='st'>"micro_cvd_gray"</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='va'>microshades_cvd_palettes</span>
+</div><div class='output co'>#&gt; $micro_cvd_gray
+#&gt; [1] "#F5F5F5" "#D6D6D6" "#B7B7B7" "#8B8B8B" "#616161"
+#&gt; 
+#&gt; $micro_cvd_green
+#&gt; [1] "#DDFFA0" "#BDEC6F" "#97CE2F" "#6D9F06" "#4E7705"
+#&gt; 
+#&gt; $micro_cvd_orange
+#&gt; [1] "#FFD5AF" "#FCB076" "#F09163" "#C17754" "#9D654C"
+#&gt; 
+#&gt; $micro_cvd_blue
+#&gt; [1] "#E7F4FF" "#BCE1FF" "#7DCCFF" "#56B4E9" "#098BD9"
+#&gt; 
+#&gt; $micro_cvd_turquoise
+#&gt; [1] "#A3E4D7" "#48C9B0" "#43BA8F" "#009E73" "#148F77"
+#&gt; 
+#&gt; $micro_cvd_purple
+#&gt; [1] "#EFB6D6" "#E794C1" "#CC79A7" "#A1527F" "#7D3560"
+#&gt; </div><div class='input'><span class='fu'><a href='microshades_palette.html'>microshades_palette</a></span><span class='op'>(</span><span class='st'>"micro_cvd_gray"</span><span class='op'>)</span>
 </div><div class='img'><img src='microshades_cvd_palettes-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='microshades_palette.html'>microshades_palette</a></span><span class='op'>(</span><span class='st'>"micro_cvd_green"</span><span class='op'>)</span>
 </div><div class='img'><img src='microshades_cvd_palettes-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='microshades_palette.html'>microshades_palette</a></span><span class='op'>(</span><span class='st'>"micro_cvd_orange"</span><span class='op'>)</span>
 </div><div class='img'><img src='microshades_cvd_palettes-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='microshades_palette.html'>microshades_palette</a></span><span class='op'>(</span><span class='st'>"micro_cvd_blue"</span><span class='op'>)</span>
@@ -181,7 +202,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Erin Dahl, Lisa Karstens, Emory Neer.</p>
+  <p>Developed by Erin Dahl, Emory Neer, Lisa Karstens.</p>
 </div>
 
 <div class="pkgdown">

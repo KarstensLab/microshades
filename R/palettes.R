@@ -5,6 +5,7 @@
 #' @export
 #'
 #' @examples
+#' microshades_palettes
 #' microshades_palette("micro_gray")
 #' microshades_palette("micro_brown")
 #' microshades_palette("micro_green")
@@ -23,11 +24,12 @@ microshades_palettes <- list(
 
 #'  List of CVD palettes
 #'
-#' Use \code{\link{microshades_cvd_palette}} to construct palettes of desired length.
+#' Use \code{\link{microshades_palette}} to construct palettes of desired length.
 #'
 #' @export
 #'
 #' @examples
+#' microshades_cvd_palettes
 #' microshades_palette("micro_cvd_gray")
 #' microshades_palette("micro_cvd_green")
 #' microshades_palette("micro_cvd_orange")

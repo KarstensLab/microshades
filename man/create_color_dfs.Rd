@@ -61,6 +61,11 @@ passing in the vector
 }
 }
 \examples{
+library(phyloseq)
+data(GlobalPatterns)
+
+mdf <- prep_mdf(GlobalPatterns)
+
 colorframe <- create_color_dfs(mdf)
 colorframe <- create_color_dfs(mdf, selected_groups = c("Proteobacteria", "Actinobacteriota", "Bacteroidota", "Firmicutes"))
 colorframe <- create_color_dfs(mdf, cvd = TRUE)

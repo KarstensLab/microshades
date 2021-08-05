@@ -30,5 +30,15 @@ A \code{\link{ggplot}}2 plot.
 Creates a stacked abundance ggplot with color abundance organization
 }
 \examples{
+library(phyloseq)
+data(GlobalPatterns)
+
+mdf <- prep_mdf(GlobalPatterns)
+
+color_obj <- create_color_dfs(mdf)
+
+mdf_group <- color_obj$mdf
+cdf <- color_obj$cdf
+
 plot <- plot_microshades(mdf_group, cdf)
 }

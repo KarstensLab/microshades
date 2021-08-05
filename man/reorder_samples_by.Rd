@@ -38,5 +38,16 @@ This function will reorder the user selected subgroup taxa based on abundance, a
 reorder the stacked groups levels based on abundance, using \code{sink_abundant_groups}
 }
 \examples{
-mdf_to_plot <- reorder_samples_by(mdf_group)
+library(phyloseq)
+data(GlobalPatterns)
+
+mdf <- prep_mdf(GlobalPatterns)
+
+color_obj <- create_color_dfs(mdf)
+
+mdf_group <- color_obj$mdf
+cdf <- color_obj$cdf
+
+mdf_new <- reorder_samples_by(mdf_group, cdf)
+mdf_new <- reorder_samples_by(mdf_group, cdf, order = "Bacteroides")
 }

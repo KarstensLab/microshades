@@ -24,4 +24,3 @@ hex_df <- default_hex()
 # Get hex codes for 3 groups with CVD palette
 hex_df <- default_hex(3, TRUE)
 }
-\keyword{internal}

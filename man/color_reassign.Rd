@@ -23,6 +23,16 @@ To customize the color order in the plot, use this function to directly assign
 groups a specific color
 }
 \examples{
+library(phyloseq)
+data(GlobalPatterns)
+
+mdf <- prep_mdf(GlobalPatterns)
+
+color_obj <- create_color_dfs(mdf)
+
+mdf_group <- color_obj$mdf
+cdf <- color_obj$cdf
+
 new_cdf <- color_reassign(cdf,
                           group_assignment = c("Firmicutes", "Actinobacteria"),
                           color_assignment = c("micro_cvd_blue", "micro_cvd_purple"))

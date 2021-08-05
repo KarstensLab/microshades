@@ -18,7 +18,9 @@
 #' @export
 #'
 #' @examples
-#' phyloseq::data(GlobalPatterns)
+#' library(phyloseq)
+#' library(speedyseq)
+#' data(GlobalPatterns)
 #'
 #' # Use defaults
 #' mdf <- prep_mdf(GlobalPatterns)
@@ -68,7 +70,7 @@ prep_mdf <- function(ps,
 #'
 #' @import dplyr
 #' @return data.frame
-#' @keywords internal
+#' @export
 #'
 #' @examples
 #' # Get hex codes for 5 groups
@@ -151,6 +153,11 @@ default_hex <- function(n_groups = 5, cvd = FALSE) {
 #' @export
 #'
 #' @examples
+#' library(phyloseq)
+#' data(GlobalPatterns)
+#'
+#' mdf <- prep_mdf(GlobalPatterns)
+#'
 #' colorframe <- create_color_dfs(mdf)
 #' colorframe <- create_color_dfs(mdf, selected_groups = c("Proteobacteria", "Actinobacteriota", "Bacteroidota", "Firmicutes"))
 #' colorframe <- create_color_dfs(mdf, cvd = TRUE)
@@ -460,7 +467,18 @@ match_cdf <- function(mdf,
 #' @export
 #'
 #' @examples
-#' mdf_to_plot <- reorder_samples_by(mdf_group)
+#' library(phyloseq)
+#' data(GlobalPatterns)
+#'
+#' mdf <- prep_mdf(GlobalPatterns)
+#'
+#' color_obj <- create_color_dfs(mdf)
+#'
+#' mdf_group <- color_obj$mdf
+#' cdf <- color_obj$cdf
+#'
+#' mdf_new <- reorder_samples_by(mdf_group, cdf)
+#' mdf_new <- reorder_samples_by(mdf_group, cdf, order = "Bacteroides")
 reorder_samples_by <- function (mdf_group,
                                 cdf,
                                 order = "NA",
@@ -582,6 +600,16 @@ reorder_samples_by <- function (mdf_group,
 #' @export
 #'
 #' @examples
+#' library(phyloseq)
+#' data(GlobalPatterns)
+#'
+#' mdf <- prep_mdf(GlobalPatterns)
+#'
+#' color_obj <- create_color_dfs(mdf)
+#'
+#' mdf_group <- color_obj$mdf
+#' cdf <- color_obj$cdf
+#'
 #' plot <- plot_microshades(mdf_group, cdf)
 
 plot_microshades <- function (mdf_group,
@@ -632,6 +660,16 @@ plot_microshades <- function (mdf_group,
 #' @export
 #'
 #' @examples
+#' library(phyloseq)
+#' data(GlobalPatterns)
+#'
+#' mdf <- prep_mdf(GlobalPatterns)
+#'
+#' color_obj <- create_color_dfs(mdf)
+#'
+#' mdf_group <- color_obj$mdf
+#' cdf <- color_obj$cdf
+#'
 #' new_cdf <- color_reassign(cdf,
 #'                           group_assignment = c("Firmicutes", "Actinobacteria"),
 #'                           color_assignment = c("micro_cvd_blue", "micro_cvd_purple"))

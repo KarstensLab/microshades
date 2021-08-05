@@ -14,6 +14,7 @@ microshades_palettes
 Use \code{\link{microshades_palette}} to construct palettes of desired length.
 }
 \examples{
+microshades_palettes
 microshades_palette("micro_gray")
 microshades_palette("micro_brown")
 microshades_palette("micro_green")

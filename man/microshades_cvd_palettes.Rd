@@ -11,9 +11,10 @@ An object of class \code{list} of length 6.
 microshades_cvd_palettes
 }
 \description{
-Use \code{\link{microshades_cvd_palette}} to construct palettes of desired length.
+Use \code{\link{microshades_palette}} to construct palettes of desired length.
 }
 \examples{
+microshades_cvd_palettes
 microshades_palette("micro_cvd_gray")
 microshades_palette("micro_cvd_green")
 microshades_palette("micro_cvd_orange")

@@ -689,7 +689,7 @@ color_reassign <- function (cdf, group_assignment, color_assignment, group_level
   for ( i in 1:length(group_assignment))
   {
     temp <- cdf %>% filter(!!sym(col_name_group) == group_assignment[i])
-    temp$hex <- rev(microshades_palette(color_assignment[i], nrow(temp)))
+    temp$hex <- rev(microshades_palette(color_assignment[i], nrow(temp), lightest = FALSE))
 
     # replace the old hex with new hex
     cdf$hex[cdf[[col_name_group]] == group_assignment[i]] <- temp$hex

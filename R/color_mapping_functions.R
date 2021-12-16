@@ -482,7 +482,7 @@ match_cdf <- function(mdf,
 #' mdf_new <- reorder_samples_by(mdf_group, cdf, order = "Bacteroides")
 reorder_samples_by <- function (mdf_group,
                                 cdf,
-                                order = "NA",
+                                order_tax = "NA",
                                 group_level = "Phylum",
                                 subgroup_level = "Genus",
                                 sample_variable = "Sample",
@@ -508,21 +508,21 @@ reorder_samples_by <- function (mdf_group,
   col_name_group <- paste0("Top_", group_level)
   col_name_subgroup <- paste0("Top_", subgroup_level)
 
-  if (order %in% as.character(unique(mdf_group[[col_name_subgroup]])))
+  if (order_tax %in% as.character(unique(mdf_group[[col_name_subgroup]])))
   {
     col_name_order <- col_name_subgroup
   }
-  else if (order %in% as.character(unique(mdf_group[[col_name_group]])))
+  else if (order_tax %in% as.character(unique(mdf_group[[col_name_group]])))
   {
     col_name_order <- col_name_group
   }
-  else if (order == "NA")
+  else if (order_tax == "NA")
   {
     col_name_order <- NULL
   }
   else
   {
-    stop("variable 'order' does not exist in the dataset")
+    stop("variable 'order_tax' does not exist in the dataset")
   }
 
   if( sink_abundant_groups)
@@ -557,12 +557,12 @@ reorder_samples_by <- function (mdf_group,
     cdf$group <- as.character(cdf$group)
   }
 
-  if (order != "NA")
+  if (order_tax != "NA")
   {
     # Reorder samples
     reorder_samples <- mdf_group %>%
       group_by(!!sym(sample_variable)) %>%
-      filter(!!sym(col_name_order) == order) %>%
+      filter(!!sym(col_name_order) == order_tax) %>%
       dplyr::summarise(rank_abundance = sum(Abundance))
 
 

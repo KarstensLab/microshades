@@ -7,7 +7,7 @@
 reorder_samples_by(
   mdf_group,
   cdf,
-  order = "NA",
+  order_tax = "NA",
   group_level = "Phylum",
   subgroup_level = "Genus",
   sample_variable = "Sample",
@@ -19,8 +19,6 @@ reorder_samples_by(
 
 \item{cdf}{data.frame containing the color key}
 
-\item{order}{string of subgroup to reorder by}
-
 \item{group_level}{string of larger taxonomic group}
 
 \item{subgroup_level}{string of smaller taxonomic group}
@@ -28,6 +26,8 @@ reorder_samples_by(
 \item{sample_variable}{sample variable to reorder (x- axis component for plot)}
 
 \item{sink_abundant_groups}{logical reorder the phylum groups so the most abundant is the bottom group}
+
+\item{order}{string of subgroup to reorder by}
 }
 \value{
 list

@@ -162,7 +162,7 @@ reorder the stacked groups levels based on abundance, using <code>sink_abundant_
     <pre class="usage"><span class='fu'>reorder_samples_by</span><span class='op'>(</span>
   <span class='va'>mdf_group</span>,
   <span class='va'>cdf</span>,
-  order <span class='op'>=</span> <span class='st'>"NA"</span>,
+  order_tax <span class='op'>=</span> <span class='st'>"NA"</span>,
   group_level <span class='op'>=</span> <span class='st'>"Phylum"</span>,
   subgroup_level <span class='op'>=</span> <span class='st'>"Genus"</span>,
   sample_variable <span class='op'>=</span> <span class='st'>"Sample"</span>,
@@ -181,10 +181,6 @@ reorder the stacked groups levels based on abundance, using <code>sink_abundant_
       <td><p>data.frame containing the color key</p></td>
     </tr>
     <tr>
-      <th>order</th>
-      <td><p>string of subgroup to reorder by</p></td>
-    </tr>
-    <tr>
       <th>group_level</th>
       <td><p>string of larger taxonomic group</p></td>
     </tr>
@@ -199,6 +195,10 @@ reorder the stacked groups levels based on abundance, using <code>sink_abundant_
     <tr>
       <th>sink_abundant_groups</th>
       <td><p>logical reorder the phylum groups so the most abundant is the bottom group</p></td>
+    </tr>
+    <tr>
+      <th>order</th>
+      <td><p>string of subgroup to reorder by</p></td>
     </tr>
     </table>
 

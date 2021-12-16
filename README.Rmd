@@ -16,8 +16,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r, echo = FALSE, fig.align='center'}
-knitr::include_graphics("man/figures/microshades_logo.png")
+```{r, echo = FALSE, fig.align='right'}
+knitr::include_graphics("man/figures/microshades_hex_logo.png")
 ```
 
 

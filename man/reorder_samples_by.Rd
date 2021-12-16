@@ -10,6 +10,7 @@ reorder_samples_by(
   order = "NA",
   group_level = "Phylum",
   subgroup_level = "Genus",
+  sample_variable = "Sample",
   sink_abundant_groups = TRUE
 )
 }
@@ -23,6 +24,8 @@ reorder_samples_by(
 \item{group_level}{string of larger taxonomic group}
 
 \item{subgroup_level}{string of smaller taxonomic group}
+
+\item{sample_variable}{sample variable to reorder (x- axis component for plot)}
 
 \item{sink_abundant_groups}{logical reorder the phylum groups so the most abundant is the bottom group}
 }

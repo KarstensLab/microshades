@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<img src="man/figures/microshades_logo.png" width="100%" style="display: block; margin: auto;" />
+<img src="man/figures/microshades_hex_logo.png" width="100%" style="display: block; margin: auto 0 auto auto;" />
 
 <!-- badges: start -->
 <!-- badges: end -->

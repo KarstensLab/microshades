@@ -452,6 +452,7 @@ match_cdf <- function(mdf,
 #' @param order string of subgroup to reorder by
 #' @param group_level string of larger taxonomic group
 #' @param subgroup_level string of smaller taxonomic group
+#' @param sample_variable sample variable to reorder (x- axis component for plot)
 #' @param sink_abundant_groups logical reorder the phylum groups so the most abundant is the bottom group
 #'
 #' @import dplyr
@@ -484,6 +485,7 @@ reorder_samples_by <- function (mdf_group,
                                 order = "NA",
                                 group_level = "Phylum",
                                 subgroup_level = "Genus",
+                                sample_variable = "Sample",
                                 sink_abundant_groups = TRUE)
 {
   if (class(mdf_group) != "data.frame")
@@ -491,8 +493,8 @@ reorder_samples_by <- function (mdf_group,
     stop("mdf_group argument must be a data frame")
   }
 
-  if (is.null(mdf_group$Sample)) {
-    stop("mdf_group 'Sample' column does not exist in the data")
+  if (is.null(mdf_group[[sample_variable]])) {
+    stop("mdf_group 'sample_variable' column does not exist in the data")
   }
 
   if (is.null(mdf_group[[subgroup_level]])) {
@@ -559,19 +561,19 @@ reorder_samples_by <- function (mdf_group,
   {
     # Reorder samples
     reorder_samples <- mdf_group %>%
-      group_by(Sample) %>%
+      group_by(!!sym(sample_variable)) %>%
       filter(!!sym(col_name_order) == order) %>%
       dplyr::summarise(rank_abundance = sum(Abundance))
 
 
-    new_order <- reorder_samples[order(-reorder_samples$rank_abundance),"Sample"]
+    new_order <- reorder_samples[order(-reorder_samples$rank_abundance),sample_variable]
 
-    all_samples <- unique(mdf_group$Sample)
-    samples_no_subgroup <- setdiff(all_samples, reorder_samples$Sample)
+    all_samples <- unique(mdf_group[[sample_variable]])
+    samples_no_subgroup <- setdiff(all_samples, reorder_samples[[sample_variable]])
 
-    sample_order <- c(new_order$Sample, samples_no_subgroup)
+    sample_order <- c(new_order[[sample_variable]], samples_no_subgroup)
 
-    mdf_group$Sample <- factor(mdf_group$Sample, sample_order)
+    mdf_group[[sample_variable]] <- factor(mdf_group[[sample_variable]], sample_order)
   }
 
 

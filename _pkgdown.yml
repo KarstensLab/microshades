@@ -16,9 +16,13 @@ reference:
 - contents:
   - prep_mdf
   - create_color_dfs
-  - plot_microshades
   - reorder_samples_by
   - match_cdf
   - color_reassign
+  - extend_group
+- title: "Plot microshades objects"
+  desc: "Functions plotting microshades organized objects."
+- contents:
+  - plot_microshades
+  - plot_contributions
   - custom_legend
-  - individual_legend

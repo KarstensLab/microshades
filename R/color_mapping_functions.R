@@ -646,8 +646,7 @@ color_reassign <- function (cdf, group_assignment, color_assignment, group_level
 }
 
 
-#' This function extends the number of subgroups shown for one particular group by adding additional colors
-#' The mdf and cdf are modified to add the additional colors
+#' Extends the number of subgroups shown for one particular group by adding additional colors.
 #'
 #' @param mdf melted data frame with microshades group processing
 #' @param cdf color data frame

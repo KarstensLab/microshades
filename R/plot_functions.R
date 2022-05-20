@@ -59,9 +59,8 @@ plot_microshades <- function (mdf_group,
   plot
 }
 
-#' This function reads in microshades processed data (mdf and cdf) and returns median abundance,
-#' mean abundance, and boxplots for microshades taxa contribution plots keeping colors consistent
-#' in the microshades stacked barplots
+#' Creates median and mean abundance barplots, and boxplots for microshades taxa contribution plots keeping
+#' colors consistent in the microshades stacked barplots
 #'
 #' @param mdf melted data frame with microshades group processing
 #' @param cdf color data frame

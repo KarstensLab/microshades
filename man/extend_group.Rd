@@ -2,8 +2,7 @@
 % Please edit documentation in R/color_mapping_functions.R
 \name{extend_group}
 \alias{extend_group}
-\title{This function extends the number of subgroups shown for one particular group by adding additional colors
-The mdf and cdf are modified to add the additional colors}
+\title{Extends the number of subgroups shown for one particular group by adding additional colors.}
 \usage{
 extend_group(
   mdf,
@@ -45,8 +44,7 @@ list
 }
 }
 \description{
-This function extends the number of subgroups shown for one particular group by adding additional colors
-The mdf and cdf are modified to add the additional colors
+Extends the number of subgroups shown for one particular group by adding additional colors.
 }
 \examples{
 

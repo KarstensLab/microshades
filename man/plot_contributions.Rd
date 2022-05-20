@@ -2,9 +2,8 @@
 % Please edit documentation in R/plot_functions.R
 \name{plot_contributions}
 \alias{plot_contributions}
-\title{This function reads in microshades processed data (mdf and cdf) and returns median abundance,
-mean abundance, and boxplots for microshades taxa contribution plots keeping colors consistent
-in the microshades stacked barplots}
+\title{Creates median and mean abundance barplots, and boxplots for microshades taxa contribution plots keeping
+colors consistent in the microshades stacked barplots}
 \usage{
 plot_contributions(mdf, cdf, col_name, data_match, short_name = NULL)
 }
@@ -28,9 +27,8 @@ list
 }
 }
 \description{
-This function reads in microshades processed data (mdf and cdf) and returns median abundance,
-mean abundance, and boxplots for microshades taxa contribution plots keeping colors consistent
-in the microshades stacked barplots
+Creates median and mean abundance barplots, and boxplots for microshades taxa contribution plots keeping
+colors consistent in the microshades stacked barplots
 }
 \examples{
 

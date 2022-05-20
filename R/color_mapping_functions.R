@@ -584,66 +584,6 @@ reorder_samples_by <- function (mdf_group,
 }
 
 
-#' Plot the mdf created with the microshades package
-#'
-#' Creates a stacked abundance ggplot with color abundance organization
-#'
-#' @param mdf_group data.frame, melted data frame processed by microshades functions
-#' @param cdf data.frame containing the color key
-#' @param group_label string of smaller taxonomic group
-#' @param x string x-axis element
-#' @param y string y-axis element
-#'
-#' @import dplyr
-#' @import ggplot2
-#'
-#' @return A \code{\link{ggplot}}2 plot.
-#'
-#' @export
-#'
-#' @examples
-#' library(phyloseq)
-#' data(GlobalPatterns)
-#'
-#' mdf <- prep_mdf(GlobalPatterns)
-#'
-#' color_obj <- create_color_dfs(mdf)
-#'
-#' mdf_group <- color_obj$mdf
-#' cdf <- color_obj$cdf
-#'
-#' plot <- plot_microshades(mdf_group, cdf)
-
-plot_microshades <- function (mdf_group,
-                                cdf,
-                                group_label = "Phylum Genus",
-                                x = "Sample",
-                                y = "Abundance")
-{
-  if (class(mdf_group) != "data.frame")
-  {
-    stop("mdf_group argument must be a data frame")
-  }
-
-  if(is.na(cdf$hex) || is.na(cdf$group))
-  {
-    stop("cdf does not contain complete color information - missing hex or group info")
-  }
-
-
-  plot <- mdf_group %>%
-    ggplot(aes_string(x = x, y = y), fill = group_label) +
-    scale_fill_manual(name = group_label,
-                      values = cdf$hex,
-                      breaks = cdf$group) +
-    scale_colour_manual(name = group_label,
-                        values = cdf$hex,
-                        breaks = cdf$group) +
-    geom_bar(aes(color=group, fill=group), stat="identity", position="stack") +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-  plot
-}
 
 #' Reassign the microshades colors to different groups
 #'
@@ -703,4 +643,91 @@ color_reassign <- function (cdf, group_assignment, color_assignment, group_level
   }
 
   cdf
+}
+
+
+#' This function extends the number of subgroups shown for one particular group by adding additional colors
+#' The mdf and cdf are modified to add the additional colors
+#'
+#' @param mdf melted data frame with microshades group processing
+#' @param cdf color data frame
+#' @param group_level string of larger taxonomic group
+#' @param subgroup_level string of smaller taxonomic group
+#' @param group_name name of the group to extend the palette for
+#' @param existing_palette name of current palette of group to extend
+#' @param new_palette name of new palette to add for extending the particular group's colors
+#' @param n_add number of colors to add
+#' @param light orientation of colors added; will make a difference if n_add is less than
+#' the number of colors in the new palette
+#'
+#' @import dplyr
+#'
+#' @return list
+#'   \itemize{
+#'     \item{"mdf"}{new mdf with reclassified groups that include the group exention}
+#'     \item{"cdf"}{new cdf with reclassified groups that include the group exention}
+#'   }
+#'
+#' @export
+#'
+#' @examples
+#'
+#' updated_objs <- extend_group(mdf, cdf, "Phylum", "Genus", "Firmicutes", "micro_purple", "micro_cvd_purple")
+#'
+#' updated_objs$mdf
+#' updated_objs$cdf
+#'
+extend_group <- function(mdf, cdf, group_level, subgroup_level, group_name, existing_palette, new_palette, n_add = 5, light = TRUE)
+{
+  # Subset to group to be expanded
+  group_subset <- mdf %>% filter(group == paste(group_name,"Other", sep= "-"))
+
+  # Rank Group subgroup categories ranked by abundance and order
+  subgroup_ranks <- group_subset %>%
+    group_by(!!sym(subgroup_level)) %>%
+    summarise(rank_abundance = sum(Abundance)) %>%
+    arrange(desc(rank_abundance)) %>%
+    mutate(order = row_number()) %>%
+    ungroup()
+
+  # Set column default to Other
+  col_name_group <- paste0("Top_", group_level)
+  col_name_subgroup <- paste0("Top_", subgroup_level)
+  subgroup_ranks[[col_name_subgroup]] <- "Other"
+  subgroup_ranks[[col_name_group]] <- group_name
+
+  # select rows that are less than or equal to n_add
+  rows_to_change <- subgroup_ranks$order <= n_add
+  subgroup_ranks[rows_to_change, col_name_subgroup] <-
+    as.vector(subgroup_ranks[rows_to_change, subgroup_level])
+
+  # create new group names
+  group_info <- subgroup_ranks %>%
+    mutate(group = paste(group_name,
+                         !!sym(col_name_subgroup),
+                         sep = "-"))
+
+  # select the cols
+  group_info <- group_info %>% select(!!sym(col_name_group),!!sym(col_name_subgroup), group)
+
+  new_tax <-distinct(group_info)
+
+  new_tax$hex <- c(microshades_palette(existing_palette,n = 1, lightest = light ), rev(microshades_palette(new_palette, n= n_add, lightest = light)))
+
+  row_num_extend <- which(cdf$group == paste(group_name,"Other", sep= "-"))
+  total_rows <- nrow(cdf)
+
+  # cdf_full contains all the correct new hexcodes and information
+  cdf_full <- full_join(cdf[1:row_num_extend-1,], new_tax)
+  cdf_full <- full_join(cdf_full, cdf[row_num_extend+1:total_rows,])
+
+
+  # Now add new groups to mdf
+  mdf$group<-NULL
+  mdf_new <- match_cdf(mdf, cdf_full, df_is_mdf = FALSE, group_level, subgroup_level)
+
+  list(
+    mdf = mdf_new,
+    cdf = cdf_full
+  )
 }

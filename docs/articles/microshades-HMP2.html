@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,23 +39,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">microshades</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -85,8 +81,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/KarstensLab/microshades/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/KarstensLab/microshades/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -100,67 +96,66 @@
 
       
 
-      </header><script src="microshades-HMP2_files/header-attrs-2.5/header-attrs.js"></script><link href="microshades-HMP2_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="microshades-HMP2_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Human Microbiome Project 2</h1>
-                        <h4 class="author">Erin Dahl</h4>
+                        <h4 data-toc-skip class="author">Erin Dahl</h4>
             
-            <h4 class="date">December 16, 2021</h4>
+            <h4 data-toc-skip class="date">May 20, 2022</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/KarstensLab/microshades/blob/master/vignettes/microshades-HMP2.Rmd"><code>vignettes/microshades-HMP2.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/KarstensLab/microshades/blob/HEAD/vignettes/microshades-HMP2.Rmd" class="external-link"><code>vignettes/microshades-HMP2.Rmd</code></a></small>
       <div class="hidden name"><code>microshades-HMP2.Rmd</code></div>
 
     </div>
 
     
     
-<div id="human-microbiome-project-2-data-vignette" class="section level1">
-<h1 class="hasAnchor">
-<a href="#human-microbiome-project-2-data-vignette" class="anchor"></a>Human Microbiome Project 2 Data Vignette</h1>
+<div class="section level2">
+<h2 id="human-microbiome-project-2-data-vignette">Human Microbiome Project 2 Data Vignette<a class="anchor" aria-label="anchor" href="#human-microbiome-project-2-data-vignette"></a>
+</h2>
 <p>This vignette uses 16s rRNA sequencing data from the Human Microbiome Project 2. Vaginal microbiome samples from moms will be examined in this tutorial at the Phylum &amp; Genus taxonomic levels.</p>
-<p>This data is available in the HMP2Data library. To download use <code><a href="https://rdrr.io/pkg/BiocManager/man/install.html">BiocManager::install("HMP2Data")</a></code>.</p>
-<p>Learn more about the HMP2 Data <a href="https://bioconductor.org/packages/release/data/experiment/html/HMP2Data.html">here</a></p>
-<div id="load-the-necessary-packages-for-this-toutorial" class="section level2">
-<h2 class="hasAnchor">
-<a href="#load-the-necessary-packages-for-this-toutorial" class="anchor"></a>Load the necessary packages for this toutorial</h2>
+<p>This data is available in the HMP2Data library. To download use <code>BiocManager::install("HMP2Data")</code>.</p>
+<p>Learn more about the HMP2 Data <a href="https://bioconductor.org/packages/release/data/experiment/html/HMP2Data.html" class="external-link">here</a></p>
+<div class="section level3">
+<h3 id="load-the-necessary-packages-for-this-toutorial">Load the necessary packages for this toutorial<a class="anchor" aria-label="anchor" href="#load-the-necessary-packages-for-this-toutorial"></a>
+</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jstansfield0/HMP2Data">HMP2Data</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.plos.org/10.1371/journal.pone.0061217">phyloseq</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/SummarizedExperiment">SummarizedExperiment</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://waldronlab.io/MultiAssayExperiment/">MultiAssayExperiment</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://karstenslab.github.io/microshades">microshades</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jstansfield0/HMP2Data" class="external-link">HMP2Data</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.plos.org/10.1371/journal.pone.0061217" class="external-link">phyloseq</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/SummarizedExperiment" class="external-link">SummarizedExperiment</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://waldronlab.io/MultiAssayExperiment/" class="external-link">MultiAssayExperiment</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://karstenslab.github.io/microshades" class="external-link">microshades</a></span><span class="op">)</span></code></pre></div>
 </div>
-<div id="load-the-hmp2-data-as-a-phyloseq-object" class="section level2">
-<h2 class="hasAnchor">
-<a href="#load-the-hmp2-data-as-a-phyloseq-object" class="anchor"></a>Load the HMP2 data as a phyloseq object</h2>
+<div class="section level3">
+<h3 id="load-the-hmp2-data-as-a-phyloseq-object">Load the HMP2 data as a phyloseq object<a class="anchor" aria-label="anchor" href="#load-the-hmp2-data-as-a-phyloseq-object"></a>
+</h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load the momspi16S data </span>
-<span class="va">ps_momspi16S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/HMP2Data/man/momspi16S.html">momspi16S</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">ps_momspi16S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/HMP2Data/man/momspi16S.html" class="external-link">momspi16S</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="va">ps_momspi16S</span></code></pre></div>
-<pre><code>## phyloseq-class experiment-level object
-## otu_table()   OTU Table:         [ 7665 taxa and 9107 samples ]
-## sample_data() Sample Data:       [ 9107 samples by 13 sample variables ]
-## tax_table()   Taxonomy Table:    [ 7665 taxa by 7 taxonomic ranks ]</code></pre>
-<p>The <code>ps_momspi16S</code> object contains 9,107 samples. To focus on a smaller sample size, use phyloseq function <code><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html">subset_samples()</a></code></p>
+<pre><code><span class="co">## phyloseq-class experiment-level object</span>
+<span class="co">## otu_table()   OTU Table:         [ 7665 taxa and 9107 samples ]</span>
+<span class="co">## sample_data() Sample Data:       [ 9107 samples by 13 sample variables ]</span>
+<span class="co">## tax_table()   Taxonomy Table:    [ 7665 taxa by 7 taxonomic ranks ]</span></code></pre>
+<p>The <code>ps_momspi16S</code> object contains 9,107 samples. To focus on a smaller sample size, use phyloseq function <code><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html" class="external-link">subset_samples()</a></code></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Subset the samples</span>
-<span class="va">ps_momspi16S_sub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html">subset_samples</a></span><span class="op">(</span><span class="va">ps_momspi16S</span>,<span class="va">sample_body_site</span> <span class="op">==</span> <span class="st">"vagina"</span><span class="op">)</span>
-<span class="va">ps_momspi16S_sub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html">subset_samples</a></span><span class="op">(</span><span class="va">ps_momspi16S_sub</span>, <span class="va">visit_number</span> <span class="op">==</span> <span class="fl">9</span><span class="op">)</span>
+<span class="va">ps_momspi16S_sub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html" class="external-link">subset_samples</a></span><span class="op">(</span><span class="va">ps_momspi16S</span>,<span class="va">sample_body_site</span> <span class="op">==</span> <span class="st">"vagina"</span><span class="op">)</span>
+<span class="va">ps_momspi16S_sub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html" class="external-link">subset_samples</a></span><span class="op">(</span><span class="va">ps_momspi16S_sub</span>, <span class="va">visit_number</span> <span class="op">==</span> <span class="fl">9</span><span class="op">)</span>
 
 <span class="va">ps_momspi16S_sub</span></code></pre></div>
-<pre><code>## phyloseq-class experiment-level object
-## otu_table()   OTU Table:         [ 7665 taxa and 22 samples ]
-## sample_data() Sample Data:       [ 22 samples by 13 sample variables ]
-## tax_table()   Taxonomy Table:    [ 7665 taxa by 7 taxonomic ranks ]</code></pre>
+<pre><code><span class="co">## phyloseq-class experiment-level object</span>
+<span class="co">## otu_table()   OTU Table:         [ 7665 taxa and 22 samples ]</span>
+<span class="co">## sample_data() Sample Data:       [ 22 samples by 13 sample variables ]</span>
+<span class="co">## tax_table()   Taxonomy Table:    [ 7665 taxa by 7 taxonomic ranks ]</span></code></pre>
 </div>
-<div id="apply-microshades-functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#apply-microshades-functions" class="anchor"></a>Apply microshades functions</h2>
+<div class="section level3">
+<h3 id="apply-microshades-functions">Apply microshades functions<a class="anchor" aria-label="anchor" href="#apply-microshades-functions"></a>
+</h3>
 <p>Now that the sample size is reduced (22 samples), begin using microshades functions to evaluate abundance and apply advanced color organization.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Use microshades function prep_mdf to agglomerate, normalize, and melt the phyloseq object</span>
@@ -172,23 +167,23 @@
 <span class="co"># Extract</span>
 <span class="va">mdf_momspi16S_unordered</span> <span class="op">&lt;-</span> <span class="va">color_objs_momspi16S</span><span class="op">$</span><span class="va">mdf</span>
 <span class="va">cdf_momspi16S</span> <span class="op">&lt;-</span> <span class="va">color_objs_momspi16S</span><span class="op">$</span><span class="va">cdf</span></code></pre></div>
-<div id="plot" class="section level3">
-<h3 class="hasAnchor">
-<a href="#plot" class="anchor"></a>Plot</h3>
+<div class="section level4">
+<h4 id="plot">Plot<a class="anchor" aria-label="anchor" href="#plot"></a>
+</h4>
 <p>The dataframe <code>mdf_momspi16S_unordered</code> contains sample data and abundance info. The dataframe <code>cdf_momspi16S</code> stores the color mapping information used for plotting.</p>
 <p><code>plot_microshades</code> produces a stacked barplot with ordered subgroup taxonomy. The darkest shade is the most abundant, and the lightest shade is the least abundant. (excluding the “other” subgroup from each of the selected groups)</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_momspi16S_unordered</span>, <span class="va">cdf_momspi16S</span><span class="op">)</span>
 
-<span class="va">plot_1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+<span class="va">plot_1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html" class="external-link">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html" class="external-link">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
 <p><img src="microshades-HMP2_files/figure-html/unnamed-chunk-5-1.png" width="768"></p>
 </div>
 </div>
-<div id="order-the-samples-by-lactobacillus-abundance" class="section level2">
-<h2 class="hasAnchor">
-<a href="#order-the-samples-by-lactobacillus-abundance" class="anchor"></a>Order the samples by Lactobacillus Abundance</h2>
+<div class="section level3">
+<h3 id="order-the-samples-by-lactobacillus-abundance">Order the samples by Lactobacillus Abundance<a class="anchor" aria-label="anchor" href="#order-the-samples-by-lactobacillus-abundance"></a>
+</h3>
 <p>The plot above indicates that Lactobacillus is the most abundant genera in the Firmicutes phyla in this dataset. To see samples arranged in order of Lactobacillus abundance (or any genus listed in the legend above) use the <code><a href="../reference/reorder_samples_by.html">reorder_samples_by()</a></code> function and then plot.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># reorder_samples_by will change the order of samples based on an abundance of a specified subgroup taxonomy</span>
@@ -200,9 +195,9 @@
 
 <span class="va">plot_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_momspi16S_ordered</span>, <span class="va">cdf_momspi16S_ordered</span><span class="op">)</span>
 
-<span class="va">plot_2</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">plot_2</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html" class="external-link">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html" class="external-link">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="microshades-HMP2_files/figure-html/unnamed-chunk-6-1.png" width="768"></p>
 </div>
 </div>
@@ -219,11 +214,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Erin Dahl, Emory Neer, Lisa Karstens.</p>
+  <p></p>
+<p>Developed by Erin Dahl, Emory Neer, Lisa Karstens.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -231,6 +228,8 @@
 
   
 
+
+  
 
   </body>
 </html>

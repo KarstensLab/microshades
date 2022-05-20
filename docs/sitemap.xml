@@ -1,57 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://karstenslab.github.io/microshades/index.html</loc>
+    <loc>/404.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/reference/color_reassign.html</loc>
+    <loc>/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/reference/create_color_dfs.html</loc>
+    <loc>/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/reference/custom_legend.html</loc>
+    <loc>/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/reference/default_hex.html</loc>
+    <loc>/articles/microshades-CMD.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/reference/individual_legend.html</loc>
+    <loc>/articles/microshades-GP.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/reference/match_cdf.html</loc>
+    <loc>/articles/microshades-HMP.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/reference/microshades_cvd_palettes.html</loc>
+    <loc>/articles/microshades-HMP2.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/reference/microshades_palette.html</loc>
+    <loc>/articles/non-microbiome_data.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/reference/microshades_palettes.html</loc>
+    <loc>/articles/titanic_data_example.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/reference/plot_microshades.html</loc>
+    <loc>/authors.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/reference/prep_mdf.html</loc>
+    <loc>/index.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/reference/reorder_samples_by.html</loc>
+    <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/articles/microshades-CMD.html</loc>
+    <loc>/reference/color_reassign.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/articles/microshades-GP.html</loc>
+    <loc>/reference/create_color_dfs.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/articles/microshades-HMP.html</loc>
+    <loc>/reference/custom_legend.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/articles/microshades-HMP2.html</loc>
+    <loc>/reference/default_hex.html</loc>
   </url>
   <url>
-    <loc>https://karstenslab.github.io/microshades/articles/non-microbiome_data.html</loc>
+    <loc>/reference/extend_group.html</loc>
+  </url>
+  <url>
+    <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/individual_legend.html</loc>
+  </url>
+  <url>
+    <loc>/reference/match_cdf.html</loc>
+  </url>
+  <url>
+    <loc>/reference/match_color_df.html</loc>
+  </url>
+  <url>
+    <loc>/reference/microshades_cvd_palettes.html</loc>
+  </url>
+  <url>
+    <loc>/reference/microshades_palette.html</loc>
+  </url>
+  <url>
+    <loc>/reference/microshades_palettes.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plot_contributions.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plot_microshades.html</loc>
+  </url>
+  <url>
+    <loc>/reference/prep_mdf.html</loc>
+  </url>
+  <url>
+    <loc>/reference/reorder_samples_by.html</loc>
   </url>
 </urlset>

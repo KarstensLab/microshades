@@ -1,6 +1,6 @@
 Package: microshades
 Title: A custom color palette for improving data visualization 
-Version: 1.0
+Version: 1.10
 Authors@R: 
     c(person("Erin","Dahl", role = c("aut", "cre"), email = "erind@pacificu.edu"),
       person("Emory", "Neer", role = "aut"),
@@ -28,6 +28,6 @@ Suggests:
   rmarkdown,
   testthat (>= 3.0.0)
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 VignetteBuilder: knitr
 Config/testthat/edition: 3

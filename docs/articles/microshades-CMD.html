@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,23 +39,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">microshades</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -85,8 +81,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/KarstensLab/microshades/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/KarstensLab/microshades/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -100,64 +96,63 @@
 
       
 
-      </header><script src="microshades-CMD_files/header-attrs-2.5/header-attrs.js"></script><link href="microshades-CMD_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="microshades-CMD_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Curated Metagenomic Data</h1>
-                        <h4 class="author">Erin Dahl</h4>
+                        <h4 data-toc-skip class="author">Erin Dahl</h4>
             
-            <h4 class="date">December 16, 2021</h4>
+            <h4 data-toc-skip class="date">May 20, 2022</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/KarstensLab/microshades/blob/master/vignettes/microshades-CMD.Rmd"><code>vignettes/microshades-CMD.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/KarstensLab/microshades/blob/HEAD/vignettes/microshades-CMD.Rmd" class="external-link"><code>vignettes/microshades-CMD.Rmd</code></a></small>
       <div class="hidden name"><code>microshades-CMD.Rmd</code></div>
 
     </div>
 
     
     
-<div id="curated-metagenomic-data-vignette" class="section level1">
-<h1 class="hasAnchor">
-<a href="#curated-metagenomic-data-vignette" class="anchor"></a>Curated Metagenomic Data Vignette</h1>
+<div class="section level2">
+<h2 id="curated-metagenomic-data-vignette">Curated Metagenomic Data Vignette<a class="anchor" aria-label="anchor" href="#curated-metagenomic-data-vignette"></a>
+</h2>
 <p>For this tutorial, we will be exploring human microbiome profiles from the Curated Metagenomic Data library. We will use microshades functions to examine stool samples of school age children and compare samples from different locations.</p>
-<p>This data is available in the curatedMetagenomicData library. To download use <code><a href="https://rdrr.io/pkg/BiocManager/man/install.html">BiocManager::install("curatedMetagenomicData")</a></code>.</p>
-<p>Learn more about the Curated Metagenomic Data <a href="https://bioconductor.org/packages/release/data/experiment/html/curatedMetagenomicData.html">here</a>.</p>
-<div id="load-the-necessary-packages-for-this-tutorial" class="section level2">
-<h2 class="hasAnchor">
-<a href="#load-the-necessary-packages-for-this-tutorial" class="anchor"></a>Load the necessary packages for this tutorial</h2>
+<p>This data is available in the curatedMetagenomicData library. To download use <code>BiocManager::install("curatedMetagenomicData")</code>.</p>
+<p>Learn more about the Curated Metagenomic Data <a href="https://bioconductor.org/packages/release/data/experiment/html/curatedMetagenomicData.html" class="external-link">here</a>.</p>
+<div class="section level3">
+<h3 id="load-the-necessary-packages-for-this-tutorial">Load the necessary packages for this tutorial<a class="anchor" aria-label="anchor" href="#load-the-necessary-packages-for-this-tutorial"></a>
+</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/waldronlab/curatedMetagenomicData">curatedMetagenomicData</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.plos.org/10.1371/journal.pone.0061217">phyloseq</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/cowplot/">cowplot</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://karstenslab.github.io/microshades">microshades</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/waldronlab/curatedMetagenomicData" class="external-link">curatedMetagenomicData</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.plos.org/10.1371/journal.pone.0061217" class="external-link">phyloseq</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/cowplot/" class="external-link">cowplot</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://karstenslab.github.io/microshades" class="external-link">microshades</a></span><span class="op">)</span></code></pre></div>
 </div>
-<div id="load-datasets-and-convert-to-phyloseq-objects" class="section level2">
-<h2 class="hasAnchor">
-<a href="#load-datasets-and-convert-to-phyloseq-objects" class="anchor"></a>Load datasets and convert to phyloseq objects</h2>
+<div class="section level3">
+<h3 id="load-datasets-and-convert-to-phyloseq-objects">Load datasets and convert to phyloseq objects<a class="anchor" aria-label="anchor" href="#load-datasets-and-convert-to-phyloseq-objects"></a>
+</h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load the CMD data </span>
-<span class="va">britol</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/curatedMetagenomicData/man/BritoIL_2016.html">BritoIL_2016.metaphlan_bugs_list.stool</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">ps_britol</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/curatedMetagenomicData/man/ExpressionSet2phyloseq.html">ExpressionSet2phyloseq</a></span> <span class="op">(</span><span class="va">britol</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning: `data_frame()` is deprecated as of tibble 1.1.0.
-## Please use `tibble()` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+<span class="va">britol</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/curatedMetagenomicData/man/BritoIL_2016.html" class="external-link">BritoIL_2016.metaphlan_bugs_list.stool</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">ps_britol</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/curatedMetagenomicData/man/ExpressionSet2phyloseq.html" class="external-link">ExpressionSet2phyloseq</a></span> <span class="op">(</span><span class="va">britol</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## Warning: `data_frame()` was deprecated in tibble 1.1.0.</span>
+<span class="co">## Please use `tibble()` instead.</span>
+<span class="co">## <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span>
+<span class="co">## <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span></code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">HMP</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/curatedMetagenomicData/man/HMP_2012.html">HMP_2012.metaphlan_bugs_list.stool</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">ps_HMP</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/curatedMetagenomicData/man/ExpressionSet2phyloseq.html">ExpressionSet2phyloseq</a></span> <span class="op">(</span><span class="va">HMP</span><span class="op">)</span></code></pre></div>
-<p>The <code>ps_britol</code> object contains 112 samples, and <code>ps_HMP</code> contains 141 samples. To focus on a smaller sample size, use phyloseq function <code><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html">subset_samples()</a></code>. In this scenario, only schoolage subjects samples will be included.</p>
+<code class="sourceCode R"><span class="va">HMP</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/curatedMetagenomicData/man/HMP_2012.html" class="external-link">HMP_2012.metaphlan_bugs_list.stool</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">ps_HMP</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/curatedMetagenomicData/man/ExpressionSet2phyloseq.html" class="external-link">ExpressionSet2phyloseq</a></span> <span class="op">(</span><span class="va">HMP</span><span class="op">)</span></code></pre></div>
+<p>The <code>ps_britol</code> object contains 112 samples, and <code>ps_HMP</code> contains 141 samples. To focus on a smaller sample size, use phyloseq function <code><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html" class="external-link">subset_samples()</a></code>. In this scenario, only schoolage subjects samples will be included.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Subset the samples</span>
-<span class="va">ps_britol_sub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html">subset_samples</a></span><span class="op">(</span><span class="va">ps_britol</span>,<span class="va">age_category</span> <span class="op">==</span> <span class="st">"schoolage"</span><span class="op">)</span>
+<span class="va">ps_britol_sub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html" class="external-link">subset_samples</a></span><span class="op">(</span><span class="va">ps_britol</span>,<span class="va">age_category</span> <span class="op">==</span> <span class="st">"schoolage"</span><span class="op">)</span>
 
-<span class="va">ps_HMP_sub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html">subset_samples</a></span><span class="op">(</span><span class="va">ps_HMP</span>,<span class="va">age_category</span> <span class="op">==</span> <span class="st">"schoolage"</span><span class="op">)</span></code></pre></div>
+<span class="va">ps_HMP_sub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html" class="external-link">subset_samples</a></span><span class="op">(</span><span class="va">ps_HMP</span>,<span class="va">age_category</span> <span class="op">==</span> <span class="st">"schoolage"</span><span class="op">)</span></code></pre></div>
 <p>Now <code>ps_britol_sub</code> object contains 18 samples, and <code>ps_HMP_sub</code> contains 6 samples. Begin using microshades functions to evaluate abundance and apply advanced color organization.</p>
 </div>
-<div id="apply-the-microshades-functions-to-the-britol-dataset-" class="section level2">
-<h2 class="hasAnchor">
-<a href="#apply-the-microshades-functions-to-the-britol-dataset-" class="anchor"></a>Apply the microshades functions to the Britol dataset.</h2>
+<div class="section level3">
+<h3 id="apply-the-microshades-functions-to-the-britol-dataset-">Apply the microshades functions to the Britol dataset.<a class="anchor" aria-label="anchor" href="#apply-the-microshades-functions-to-the-britol-dataset-"></a>
+</h3>
 <p>To orient the shades from the top darkest to lightest instead of from the bottom darkest to lightest, use the <code>top_orientation = TRUE</code> parameter in the <code><a href="../reference/create_color_dfs.html">create_color_dfs()</a></code></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Use microshades function prep_mdf to agglomerate, normalize, and melt the phyloseq object</span>
@@ -169,39 +164,39 @@
 <span class="co"># Extract</span>
 <span class="va">mdf_britol</span><span class="op">&lt;-</span> <span class="va">color_objs_britol</span><span class="op">$</span><span class="va">mdf</span>
 <span class="va">cdf_britol</span> <span class="op">&lt;-</span> <span class="va">color_objs_britol</span><span class="op">$</span><span class="va">cdf</span></code></pre></div>
-<div id="plot-britol" class="section level3">
-<h3 class="hasAnchor">
-<a href="#plot-britol" class="anchor"></a>Plot Britol</h3>
+<div class="section level4">
+<h4 id="plot-britol">Plot Britol<a class="anchor" aria-label="anchor" href="#plot-britol"></a>
+</h4>
 <p>The dataframe <code>mdf_britol</code> contains sample data and abundance info. The dataframe <code>cdf_britol</code> stores the color mapping information used for plotting.</p>
 <p><code>plot_microshades</code> produces a stacked barplot with ordered subgroup taxonomy. The darkest shade is the most abundant, and the lightest shade is the least abundant. (excluding the “other” subgroup from each of the selected groups)</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_britol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_britol</span>, <span class="va">cdf_britol</span><span class="op">)</span>
 
-<span class="va">plot_britol</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+<span class="va">plot_britol</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html" class="external-link">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html" class="external-link">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
 <p><img src="microshades-CMD_files/figure-html/unnamed-chunk-5-1.png" width="768"></p>
 </div>
 </div>
-<div id="reassign-colors-as-desired" class="section level2">
-<h2 class="hasAnchor">
-<a href="#reassign-colors-as-desired" class="anchor"></a>Reassign colors as desired</h2>
+<div class="section level3">
+<h3 id="reassign-colors-as-desired">Reassign colors as desired<a class="anchor" aria-label="anchor" href="#reassign-colors-as-desired"></a>
+</h3>
 <p>To change the colors assignment, use the function <code>color_reassign</code> to specify the groups and colors in order of reassignment. For example, we can change the color assignment of Bacteroidetes to <code>micro_green</code> and the color assignment of Proteobacteria to <code>micro_blue</code></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_cdf_britol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/color_reassign.html">color_reassign</a></span><span class="op">(</span><span class="va">cdf_britol</span>, 
-                                 group_assignment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Bacteroidetes"</span>, <span class="st">"Proteobacteria"</span><span class="op">)</span>,
-                                 color_assignment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"micro_green"</span>, <span class="st">"micro_blue"</span><span class="op">)</span><span class="op">)</span>
+                                 group_assignment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bacteroidetes"</span>, <span class="st">"Proteobacteria"</span><span class="op">)</span>,
+                                 color_assignment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"micro_green"</span>, <span class="st">"micro_blue"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">new_plot_britol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_britol</span>, <span class="va">new_cdf_britol</span><span class="op">)</span>
 
-<span class="va">new_plot_britol</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+<span class="va">new_plot_britol</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html" class="external-link">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html" class="external-link">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
 <p><img src="microshades-CMD_files/figure-html/unnamed-chunk-6-1.png" width="768"></p>
 </div>
-<div id="apply-the-microshades-functions-to-the-hmp-dataset-" class="section level2">
-<h2 class="hasAnchor">
-<a href="#apply-the-microshades-functions-to-the-hmp-dataset-" class="anchor"></a>Apply the microshades functions to the HMP dataset.</h2>
+<div class="section level3">
+<h3 id="apply-the-microshades-functions-to-the-hmp-dataset-">Apply the microshades functions to the HMP dataset.<a class="anchor" aria-label="anchor" href="#apply-the-microshades-functions-to-the-hmp-dataset-"></a>
+</h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Use microshades function prep_mdf to agglomerate, normalize, and melt the phyloseq object</span>
 <span class="va">mdf_HMP_pre</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">ps_HMP_sub</span><span class="op">)</span>
@@ -212,30 +207,30 @@
 <span class="co"># Extract</span>
 <span class="va">mdf_HMP</span> <span class="op">&lt;-</span> <span class="va">color_objs_HMP</span><span class="op">$</span><span class="va">mdf</span>
 <span class="va">cdf_HMP</span> <span class="op">&lt;-</span> <span class="va">color_objs_HMP</span><span class="op">$</span><span class="va">cdf</span></code></pre></div>
-<div id="plot-hmp" class="section level3">
-<h3 class="hasAnchor">
-<a href="#plot-hmp" class="anchor"></a>Plot HMP</h3>
+<div class="section level4">
+<h4 id="plot-hmp">Plot HMP<a class="anchor" aria-label="anchor" href="#plot-hmp"></a>
+</h4>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_HMP</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_HMP</span>, <span class="va">cdf_HMP</span><span class="op">)</span>
 
-<span class="va">plot_HMP</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">plot_HMP</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html" class="external-link">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html" class="external-link">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="microshades-CMD_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
 <p>Examine/Compare Legends</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">HMP_legend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wilkelab.org/cowplot/reference/get_legend.html">get_legend</a></span><span class="op">(</span><span class="va">plot_HMP</span><span class="op">)</span>
-<span class="va">britol_legend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wilkelab.org/cowplot/reference/get_legend.html">get_legend</a></span><span class="op">(</span><span class="va">new_plot_britol</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">HMP_legend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wilkelab.org/cowplot/reference/get_legend.html" class="external-link">get_legend</a></span><span class="op">(</span><span class="va">plot_HMP</span><span class="op">)</span>
+<span class="va">britol_legend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wilkelab.org/cowplot/reference/get_legend.html" class="external-link">get_legend</a></span><span class="op">(</span><span class="va">new_plot_britol</span><span class="op">)</span>
 
 <span class="co"># Plot The HMP legend on the left, and the britol legend on the right</span>
-<span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">HMP_legend</span>, <span class="va">britol_legend</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html" class="external-link">plot_grid</a></span><span class="op">(</span><span class="va">HMP_legend</span>, <span class="va">britol_legend</span><span class="op">)</span></code></pre></div>
 <p><img src="microshades-CMD_files/figure-html/unnamed-chunk-9-1.png" width="960"></p>
 <p>Each legend is configured to reflect the dataset of the plot. Notice that the HMP and Britol legends are similar, but not the exact same, due to different top abundances for genera in each phylum.</p>
 </div>
 </div>
-<div id="use-britol-legend-for-hmp-plot" class="section level2">
-<h2 class="hasAnchor">
-<a href="#use-britol-legend-for-hmp-plot" class="anchor"></a>Use Britol legend for HMP Plot</h2>
+<div class="section level3">
+<h3 id="use-britol-legend-for-hmp-plot">Use Britol legend for HMP Plot<a class="anchor" aria-label="anchor" href="#use-britol-legend-for-hmp-plot"></a>
+</h3>
 <p>If the plots are being compared, it may be confusing visually if the genus shading colors account for different genera between the two plots. In this case, the function <code><a href="../reference/match_cdf.html">match_cdf()</a></code> can apply the color factoring information from one processed mdf to a different, unprocessed mdf.</p>
 <p>To use the Britol color legend with the HMP data, apply the Britol color factoring to the HMP data.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
@@ -244,9 +239,9 @@
 <span class="co"># Use the Britol cdf for color reference</span>
 <span class="va">plot_HMP_matched</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_HMP_matched</span>, <span class="va">new_cdf_britol</span><span class="op">)</span>
 
-<span class="va">plot_HMP_matched</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_percent.html">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">plot_HMP_matched</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html" class="external-link">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html" class="external-link">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.key.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span>, text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="microshades-CMD_files/figure-html/unnamed-chunk-10-1.png" width="480"></p>
 </div>
 </div>
@@ -263,11 +258,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Erin Dahl, Emory Neer, Lisa Karstens.</p>
+  <p></p>
+<p>Developed by Erin Dahl, Emory Neer, Lisa Karstens.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -275,6 +272,8 @@
 
   
 
+
+  
 
   </body>
 </html>

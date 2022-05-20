@@ -1,5 +1,5 @@
 pandoc: 2.11.4
-pkgdown: 1.6.1
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   microshades-CMD: microshades-CMD.html
@@ -8,5 +8,5 @@ articles:
   microshades-HMP2: microshades-HMP2.html
   non-microbiome_data: non-microbiome_data.html
   titanic_data_example: titanic_data_example.html
-last_built: 2021-12-16T18:38Z
+last_built: 2022-05-20T16:50Z
 

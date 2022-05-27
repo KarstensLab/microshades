@@ -24,6 +24,7 @@ library(phyloseq)
 library(ggplot2)
 library(dplyr)
 library(cowplot)
+library(patchwork)
 ```
 
 ## Use the microshades functions
@@ -93,6 +94,27 @@ plot_diff <- plot + scale_y_continuous(labels = scales::percent, expand = expans
 plot_grid(plot_diff, GP_legend,  rel_widths = c(1, .25))
 ```
 
+## Plot with extended Proteobacteria colors
+
+```{r fig.width= 9, fig.height= 7}
+
+new_groups <- extend_group(mdf_GP, cdf_GP, "Phylum", "Genus", "Proteobacteria", existing_palette = "micro_cvd_orange", new_palette = "micro_orange", n_add = 5)
+
+GP_legend_new <-custom_legend(new_groups$mdf, new_groups$cdf)
+
+plot_diff <- plot_microshades(new_groups$mdf, new_groups$cdf) + 
+  scale_y_continuous(labels = scales::percent, expand = expansion(0)) +
+  theme(legend.position = "none")  +
+  theme(axis.text.x = element_text(size= 6)) +
+  facet_wrap(~SampleType, scales = "free_x", nrow = 2) +
+  theme(axis.text.x = element_text(size= 6)) + 
+  theme(plot.margin = margin(6,20,6,6))
+
+plot_grid(plot_diff, GP_legend_new,  rel_widths = c(1, .25))
+
+```
+
+
 Re-examine data with smaller groups
 ```{r}
 # Subset Global Patterns to smaller groups in the dataset
@@ -150,6 +172,28 @@ plot_grid(water_plot, water_legend,  rel_widths = c(1, .25))
 
 ```
 
+##### Plot contributions
+
+```{r fig.width = 14, fig.height=6}
+
+freshwater_contribution <- plot_contributions(mdf_water, cdf_water, "SampleType", "Freshwater")
+creek_contribution <- plot_contributions(mdf_water, cdf_water, "SampleType", "Freshwater (creek)")
+ocean_contribution <- plot_contributions(mdf_water, cdf_water, "SampleType", "Ocean")
+
+freshwater_contribution$box + 
+  creek_contribution$box + theme(axis.title.y=element_blank(), axis.text.y= element_blank(), axis.ticks.y=element_blank()) + 
+  ocean_contribution$box + theme(axis.title.y=element_blank(), axis.text.y= element_blank(), axis.ticks.y=element_blank())
+
+freshwater_contribution$mean + 
+  creek_contribution$mean + theme(axis.title.y=element_blank(), axis.text.y= element_blank(), axis.ticks.y=element_blank()) + 
+  ocean_contribution$mean + theme(axis.title.y=element_blank(), axis.text.y= element_blank(), axis.ticks.y=element_blank())
+
+freshwater_contribution$median + 
+  creek_contribution$median + theme(axis.title.y=element_blank(), axis.text.y= element_blank(), axis.ticks.y=element_blank()) +
+  ocean_contribution$median + theme(axis.title.y=element_blank(), axis.text.y= element_blank(), axis.ticks.y=element_blank())
+```
+
+
 #### Land samples
 
 ```{r fig.width= 9, fig.height= 5}
@@ -168,6 +212,24 @@ plot_grid(land_plot, land_legend,  rel_widths = c(1, .25))
 
 ```
 
+##### Plot contributions
+
+```{r fig.width = 14, fig.height=6}
+
+sediment_contribution <- plot_contributions(mdf_land, cdf_land, "SampleType", "Sediment (estuary)")
+soil_contribution <- plot_contributions(mdf_land, cdf_land, "SampleType", "Soil")
+
+
+sediment_contribution$box + 
+  soil_contribution$box + theme(axis.title.y=element_blank(), axis.text.y= element_blank(), axis.ticks.y=element_blank()) 
+
+sediment_contribution$mean + 
+  soil_contribution$mean + theme(axis.title.y=element_blank(), axis.text.y= element_blank(), axis.ticks.y=element_blank()) 
+
+sediment_contribution$median + 
+  soil_contribution$median + theme(axis.title.y=element_blank(), axis.text.y= element_blank(), axis.ticks.y=element_blank()) 
+  
+```
 
 #### Human Samples
 ```{r fig.width= 9, fig.height= 5}
@@ -184,4 +246,25 @@ human_plot <- plot_microshades(mdf_human, cdf_human) +
 
 plot_grid(human_plot, human_legend,  rel_widths = c(1, .25))
 
+```
+
+#### Plot contributions
+
+```{r fig.width = 14, fig.height=6}
+
+feces_contribution <- plot_contributions(mdf_human, cdf_human, "SampleType", "Feces")
+skin_contribution <- plot_contributions(mdf_human, cdf_human, "SampleType", "Skin")
+tongue_contribution <- plot_contributions(mdf_human, cdf_human, "SampleType", "Tongue")
+
+feces_contribution$box + 
+  skin_contribution$box + theme(axis.title.y=element_blank(), axis.text.y= element_blank(), axis.ticks.y=element_blank()) + 
+  tongue_contribution$box + theme(axis.title.y=element_blank(), axis.text.y= element_blank(), axis.ticks.y=element_blank())
+
+feces_contribution$mean + 
+  skin_contribution$mean + theme(axis.title.y=element_blank(), axis.text.y= element_blank(), axis.ticks.y=element_blank()) + 
+  tongue_contribution$mean + theme(axis.title.y=element_blank(), axis.text.y= element_blank(), axis.ticks.y=element_blank())
+
+feces_contribution$median + 
+  skin_contribution$median + theme(axis.title.y=element_blank(), axis.text.y= element_blank(), axis.ticks.y=element_blank()) +
+  tongue_contribution$median + theme(axis.title.y=element_blank(), axis.text.y= element_blank(), axis.ticks.y=element_blank())
 ```

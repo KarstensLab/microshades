@@ -141,7 +141,7 @@ plot_contributions <- function(mdf, cdf,  col_name, data_match, short_name = NUL
 
   # Mean Barplot
   top_drivers_mean_barplot <- ggplot(cluster_subset_barplot, aes_string(x = short_name, y = "mean_abundance", fill = "group")) +
-    geom_bar(stat = "identity", color="black") +
+    geom_bar(stat = "identity") +
     coord_flip() +
     ggtitle(paste(col_name, data_match, "(n =",n_samples,")")) +
     theme(plot.title = element_text(hjust = 0.5))  +

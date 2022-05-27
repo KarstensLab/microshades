@@ -719,11 +719,20 @@ extend_group <- function(mdf, cdf, group_level, subgroup_level, group_name, exis
   # cdf_full contains all the correct new hexcodes and information
   cdf_full <- full_join(cdf[1:row_num_extend-1,], new_tax)
   cdf_full <- full_join(cdf_full, cdf[row_num_extend+1:total_rows,])
+  cdf_full <- cdf_full %>% drop_na()
 
 
   # Now add new groups to mdf
   mdf$group<-NULL
   mdf_new <- match_cdf(mdf, cdf_full, df_is_mdf = FALSE, group_level, subgroup_level)
+
+  # Fix subgroup overlapping names
+  mdf_new[is.na(mdf_new$group), col_name_subgroup] <- "Other"
+  mdf_new <- mdf_new %>% mutate(group = paste(!!sym(col_name_group),
+                         !!sym(col_name_subgroup),
+                         sep = "-"))
+
+  mdf_new$group <- factor(mdf_new$group, levels = cdf_full$group)
 
   list(
     mdf = mdf_new,

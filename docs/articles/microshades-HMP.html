@@ -102,7 +102,7 @@
       <h1 data-toc-skip>Human Microbiome Project</h1>
                         <h4 data-toc-skip class="author">Erin Dahl</h4>
             
-            <h4 data-toc-skip class="date">May 27, 2022</h4>
+            <h4 data-toc-skip class="date">July 21, 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KarstensLab/microshades/blob/HEAD/vignettes/microshades-HMP.Rmd" class="external-link"><code>vignettes/microshades-HMP.Rmd</code></a></small>
       <div class="hidden name"><code>microshades-HMP.Rmd</code></div>
@@ -114,8 +114,11 @@
 <div class="section level2">
 <h2 id="human-microbiome-project-16s-data-vignette">Human Microbiome Project 16S Data Vignette<a class="anchor" aria-label="anchor" href="#human-microbiome-project-16s-data-vignette"></a>
 </h2>
-<p>This vignette uses 16S rRNA sequencing data from variable region v1-v3 in the Human Microbiome Project. Stool samples from male subjects will be explored at the Phylum &amp; Family taxonomic levels.</p>
-<p>This data is available in the HMP16SData library. To download use <code>BiocManager::install("HMP16SData")</code>.</p>
+<p>This vignette uses 16S rRNA sequencing data from variable region
+v1-v3 in the Human Microbiome Project. Stool samples from male subjects
+will be explored at the Phylum &amp; Family taxonomic levels.</p>
+<p>This data is available in the HMP16SData library. To download use
+<code>BiocManager::install("HMP16SData")</code>.</p>
 <p>Learn more about the HMP16S Data <a href="https://bioconductor.org/packages/release/data/experiment/html/HMP16SData.html" class="external-link">here</a></p>
 <div class="section level3">
 <h3 id="load-the-necessary-packages-for-this-tutorial">Load the necessary packages for this tutorial<a class="anchor" aria-label="anchor" href="#load-the-necessary-packages-for-this-tutorial"></a>
@@ -145,7 +148,8 @@
 <div class="section level3">
 <h3 id="apply-microshades-functions">Apply microshades functions<a class="anchor" aria-label="anchor" href="#apply-microshades-functions"></a>
 </h3>
-<p>Begin using microshades functions to evaluate abundance and apply advanced color organization at the Phylum Family level.</p>
+<p>Begin using microshades functions to evaluate abundance and apply
+advanced color organization at the Phylum Family level.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Use microshades function prep_mdf to agglomerate, normalize, and melt the phyloseq object</span>
 <span class="va">mdf_prep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">ps_v1v3_stool</span>, subgroup_level <span class="op">=</span> <span class="st">"FAMILY"</span><span class="op">)</span>
@@ -161,8 +165,13 @@
 <div class="section level3">
 <h3 id="plot">Plot<a class="anchor" aria-label="anchor" href="#plot"></a>
 </h3>
-<p>The dataframe <code>mdf_v1v3_stool</code> contains sample data and abundance info. The dataframe <code>cdf_v1v3_stool</code> stores the color mapping information used for plotting.</p>
-<p><code>plot_microshades</code> produces a stacked barplot with ordered subgroup taxonomy. The darkest shade is the most abundant, and the lightest shade is the least abundant. (excluding the “other” subgroup from each of the selected groups)</p>
+<p>The dataframe <code>mdf_v1v3_stool</code> contains sample data and
+abundance info. The dataframe <code>cdf_v1v3_stool</code> stores the
+color mapping information used for plotting.</p>
+<p><code>plot_microshades</code> produces a stacked barplot with ordered
+subgroup taxonomy. The darkest shade is the most abundant, and the
+lightest shade is the least abundant. (excluding the “other” subgroup
+from each of the selected groups)</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_v1v3_stool</span>, <span class="va">cdf_v1v3_stool</span>, group_label <span class="op">=</span> <span class="st">"Phylum Family"</span><span class="op">)</span>
 
@@ -174,8 +183,15 @@
 <div class="section level3">
 <h3 id="reorder-samplesgroup-levels">Reorder Samples/Group levels<a class="anchor" aria-label="anchor" href="#reorder-samplesgroup-levels"></a>
 </h3>
-<p>The plot above indicates that Bacteroidaceae is the most abundant family in the Bacteriodetes phylum in this dataset. To see samples arranged in order of Bacteroidaceae abundance (or any genus listed in the legend above) use the <code><a href="../reference/reorder_samples_by.html">reorder_samples_by()</a></code> function and then plot. This function can also reorder the Group levels based on overall group level abundance, if desired steeing the sink_abundant_groups to true.</p>
-<p>Reodering the samples can help users notice additional visual trends.</p>
+<p>The plot above indicates that Bacteroidaceae is the most abundant
+family in the Bacteriodetes phylum in this dataset. To see samples
+arranged in order of Bacteroidaceae abundance (or any genus listed in
+the legend above) use the <code><a href="../reference/reorder_samples_by.html">reorder_samples_by()</a></code> function and
+then plot. This function can also reorder the Group levels based on
+overall group level abundance, if desired steeing the
+sink_abundant_groups to true.</p>
+<p>Reodering the samples can help users notice additional visual
+trends.</p>
 <div class="section level4">
 <h4 id="reorder-the-samples-by-bacteroidaceae-abundance">Reorder the samples by Bacteroidaceae Abundance<a class="anchor" aria-label="anchor" href="#reorder-the-samples-by-bacteroidaceae-abundance"></a>
 </h4>
@@ -249,7 +265,8 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>

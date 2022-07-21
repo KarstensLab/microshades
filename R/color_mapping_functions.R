@@ -732,7 +732,7 @@ extend_group <- function(mdf, cdf, group_level, subgroup_level, group_name, exis
                          !!sym(col_name_subgroup),
                          sep = "-"))
 
-  mdf_new$group <- factor(mdf_new$group, levels = cdf_full$group)
+  mdf_new$group <- factor(mdf_new$group, levels = rev(cdf_full$group))
 
   list(
     mdf = mdf_new,

@@ -102,7 +102,7 @@
       <h1 data-toc-skip>Palmer Penguins Data Example</h1>
                         <h4 data-toc-skip class="author">Erin Dahl</h4>
             
-            <h4 data-toc-skip class="date">May 27, 2022</h4>
+            <h4 data-toc-skip class="date">July 21, 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KarstensLab/microshades/blob/HEAD/vignettes/non-microbiome_data.Rmd" class="external-link"><code>vignettes/non-microbiome_data.Rmd</code></a></small>
       <div class="hidden name"><code>non-microbiome_data.Rmd</code></div>
@@ -114,9 +114,13 @@
 <div class="section level2">
 <h2 id="apply-the-microshades-palette-to-non-microbiome-data">Apply the microshades palette to non-microbiome data<a class="anchor" aria-label="anchor" href="#apply-the-microshades-palette-to-non-microbiome-data"></a>
 </h2>
-<p>To apply a microshades palette color to a plot, use <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual()</a></code>.</p>
-<p>The following examples use the palmerpenguins dataset to show how to apply the color palettes to non-microbiome data.</p>
-<p>This first example examines the number of each species of penguin. The different color shades represent the island that the penguin was located.</p>
+<p>To apply a microshades palette color to a plot, use
+<code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual()</a></code>.</p>
+<p>The following examples use the palmerpenguins dataset to show how to
+apply the color palettes to non-microbiome data.</p>
+<p>This first example examines the number of each species of penguin.
+The different color shades represent the island that the penguin was
+located.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/" class="external-link">palmerpenguins</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://karstenslab.github.io/microshades" class="external-link">microshades</a></span><span class="op">)</span>
@@ -128,7 +132,12 @@
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">species</span>, fill <span class="op">=</span> <span class="va">island</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="../reference/microshades_palette.html">microshades_palette</a></span><span class="op">(</span><span class="st">"micro_green"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="non-microbiome_data_files/figure-html/plot%20example-1.png" width="700"></p>
-<p>This next example examines the flipper length to body mass measurements between different penguin species. To add an enhanced detail to the visual, a combination variable was created in this example that contains the species and year. The different base colors represent the species and the shades represent the year that the data was collected.</p>
+<p>This next example examines the flipper length to body mass
+measurements between different penguin species. To add an enhanced
+detail to the visual, a combination variable was created in this example
+that contains the species and year. The different base colors represent
+the species and the shades represent the year that the data was
+collected.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">penguins_mod</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>combination_variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">year</span>, sep <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span><span class="op">)</span>
 
@@ -153,7 +162,11 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">species</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Warning: Removed 2 rows containing missing values (geom_point).</span></code></pre>
 <p><img src="non-microbiome_data_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
-<p>This last example examines the bill length to depth measurements between different penguin species. The combination variable generated for the previous example is used for this plot as well. The different base colors represent the species and the shades represent the year that the data was collected.</p>
+<p>This last example examines the bill length to depth measurements
+between different penguin species. The combination variable generated
+for the previous example is used for this plot as well. The different
+base colors represent the species and the shades represent the year that
+the data was collected.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bill_len_dep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins_mod</span>,
                          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,
@@ -201,7 +214,8 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>

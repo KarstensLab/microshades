@@ -101,73 +101,129 @@
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="microshades-">microshades <img src="reference/figures/microshades_hex_logo.png" align="right" alt="" width="120"><a class="anchor" aria-label="anchor" href="#microshades-"></a>
+<div class="page-header"><h1 id="microshades-">microshades
+<img src="reference/figures/microshades_hex_logo.png" align="right" alt="" width="120"><a class="anchor" aria-label="anchor" href="#microshades-"></a>
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The microshades R package is designed to provide custom color shading palettes that improve accessibility and data organization. Approximately 300 million people in the world have Color Vision Deficiency (CVD), which is comparable to the most recent estimate of the US population. When creating figures and graphics that use color, it is important to consider that individuals with CVD will interact with this material, and may not perceive all of the information tied to the colors as intended. This package includes carefully crafted palettes that improve CVD accessibility and may be applied to any plot. Additionally, there are functions to apply microshades palettes to microbiome data in a color-oriented orginazation.</p>
+<p>The microshades R package is designed to provide custom color shading
+palettes that improve accessibility and data organization. Approximately
+300 million people in the world have Color Vision Deficiency (CVD),
+which is comparable to the most recent estimate of the US population.
+When creating figures and graphics that use color, it is important to
+consider that individuals with CVD will interact with this material, and
+may not perceive all of the information tied to the colors as intended.
+This package includes carefully crafted palettes that improve CVD
+accessibility and may be applied to any plot. Additionally, there are
+functions to apply microshades palettes to microbiome data in a
+color-oriented orginazation.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"KarstensLab/microshades"</span><span class="op">)</span></code></pre></div>
-<p>If you plan to use microshades with microbiome data, you may need to install packages such as <a href="https://joey711.github.io/phyloseq/index.html" class="external-link">phyloseq</a> or <a href="https://mikemc.github.io/speedyseq" class="external-link">speedyseq</a>.</p>
+<p>If you plan to use microshades with microbiome data, you may need to
+install packages such as <a href="https://joey711.github.io/phyloseq/index.html" class="external-link">phyloseq</a> or <a href="https://mikemc.github.io/speedyseq" class="external-link">speedyseq</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="the-shades">The shades<a class="anchor" aria-label="anchor" href="#the-shades"></a>
 </h2>
-<p>Here are the two crafted color palettes, microshades_cvd_palettes and microshades_palettes. Each color palette contains six base colors with five incremental light to dark shades, for a total of 30 available colors per palette type that can be directly applied to any plot.</p>
+<p>Here are the two crafted color palettes, microshades_cvd_palettes and
+microshades_palettes. Each color palette contains six base colors with
+five incremental light to dark shades, for a total of 30 available
+colors per palette type that can be directly applied to any plot.</p>
 <p><img src="reference/figures/microshades_all.png" width="823" style="display: block; margin: auto;"></p>
 <div class="section level3">
 <h3 id="cvd-visualization">CVD Visualization<a class="anchor" aria-label="anchor" href="#cvd-visualization"></a>
 </h3>
-<p>The palettes above provide accesibilty to individuals with CVD. Below are visualizations of the palettes under a <a href="http://hclwizard.org:3000/cvdemulator" class="external-link">CVD simulation</a>.</p>
+<p>The palettes above provide accesibilty to individuals with CVD. Below
+are visualizations of the palettes under a <a href="http://hclwizard.org:3000/cvdemulator" class="external-link">CVD simulation</a>.</p>
 <p>The three main types of CVD</p>
 <ul>
-<li>Deuteranope : This is the most common type of CVD, also know as “red-green color blindness”</li>
-<li>Protanope : Less common than Deuteranope, described as mutated red pigment and less ability to discriminate colors</li>
-<li>Tritanope : Relatively Rare, also known as “blue-yellow color blindness”</li>
+<li>Deuteranope : This is the most common type of CVD, also know as
+“red-green color blindness”</li>
+<li>Protanope : Less common than Deuteranope, described as mutated red
+pigment and less ability to discriminate colors</li>
+<li>Tritanope : Relatively Rare, also known as “blue-yellow color
+blindness”</li>
 </ul>
 <div class="section level4">
 <h4 id="microshades_cvd_palettes">microshades_cvd_palettes<a class="anchor" aria-label="anchor" href="#microshades_cvd_palettes"></a>
 </h4>
-<p>The microshades_cvd_palettes contain colors that are universally CVD friendly.</p>
+<p>The microshades_cvd_palettes contain colors that are universally CVD
+friendly.</p>
 <p><img src="reference/figures/microshades_cvd_palettes_cvd.png" width="1048" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level4">
 <h4 id="microshades_palettes">microshades_palettes<a class="anchor" aria-label="anchor" href="#microshades_palettes"></a>
 </h4>
-<p>The individual microshades_palettes are CVD friendly, and some microshades_palette combinations are universially CVD friendly. When using multiple microshades_palettes carefully consider color palette choices, since they may not be universally accessible.</p>
+<p>The individual microshades_palettes are CVD friendly, and some
+microshades_palette combinations are universially CVD friendly. When
+using multiple microshades_palettes carefully consider color palette
+choices, since they may not be universally accessible.</p>
 <p><img src="reference/figures/microshades_palettes_cvd.png" width="1051" style="display: block; margin: auto;"></p>
-<p>To learn more about the different functions and shades in microshades, please visit the <a href="https://KarstensLab.github.io/microshades/reference" class="external-link">reference</a> section of our website.</p>
+<p>To learn more about the different functions and shades in
+microshades, please visit the <a href="https://KarstensLab.github.io/microshades/reference" class="external-link">reference</a>
+section of our website.</p>
 </div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="phyloseq-combatibility">Phyloseq Combatibility<a class="anchor" aria-label="anchor" href="#phyloseq-combatibility"></a>
 </h2>
-<p>In addition to color palettes, this package can also be used in conjunction with the R package phyloseq to enhance microbiome data visualization. The microshades functions create stacked bar plots from phyloseq objects, color organized by a data-driven hierarchy. The accessibility and advanced color organization features described help data reviewers and consumers notice visual patterns and trends easier.</p>
-<p>For detailed tutorials on how to use microshades function with phyloseq objects, please review the vignettes provided:</p>
+<p>In addition to color palettes, this package can also be used in
+conjunction with the R package phyloseq to enhance microbiome data
+visualization. The microshades functions create stacked bar plots from
+phyloseq objects, color organized by a data-driven hierarchy. The
+accessibility and advanced color organization features described help
+data reviewers and consumers notice visual patterns and trends
+easier.</p>
+<p>For detailed tutorials on how to use microshades function with
+phyloseq objects, please review the vignettes provided:</p>
 <ul>
-<li><a href="https://karstenslab.github.io/microshades/articles/microshades-CMD.html" class="external-link">Curated Metagenomic Data</a></li>
-<li><a href="https://karstenslab.github.io/microshades/articles/microshades-GP.html" class="external-link">Global Patterns</a></li>
-<li><a href="https://karstenslab.github.io/microshades/articles/microshades-HMP.html" class="external-link">Human Microbiome Project</a></li>
-<li><a href="https://karstenslab.github.io/microshades/articles/microshades-HMP2.html" class="external-link">Human Microbiome Project 2</a></li>
+<li><a href="https://karstenslab.github.io/microshades/articles/microshades-CMD.html" class="external-link">Curated
+Metagenomic Data</a></li>
+<li><a href="https://karstenslab.github.io/microshades/articles/microshades-GP.html" class="external-link">Global
+Patterns</a></li>
+<li><a href="https://karstenslab.github.io/microshades/articles/microshades-HMP.html" class="external-link">Human
+Microbiome Project</a></li>
+<li><a href="https://karstenslab.github.io/microshades/articles/microshades-HMP2.html" class="external-link">Human
+Microbiome Project 2</a></li>
 </ul>
-<p>Below is an example of a plot generated with microshades on Curated Metagenomic Data of the Human Microbiome. On the left is the original stacked barplot made using phyloseq. On the right are two barplot of the same data, with microshades palettes and functions applied. microshades uses coloring to correspond with taxonomic group and subgroup levels.</p>
+<p>Below is an example of a plot generated with microshades on Curated
+Metagenomic Data of the Human Microbiome. On the left is the original
+stacked barplot made using phyloseq. On the right are two barplot of the
+same data, with microshades palettes and functions applied. microshades
+uses coloring to correspond with taxonomic group and subgroup
+levels.</p>
 <p><img src="reference/figures/plot_CMD.png" width="916" style="display: block; margin: auto;"></p>
-<p>In this example, the phylum and genus information are explored. Darker shades indicate the most abundant genera for each phylum, and lighter shades are less abundant. Users can additionally reorder the samples based on a specified taxonomic rank and name, or reorder the phylum groups.</p>
+<p>In this example, the phylum and genus information are explored.
+Darker shades indicate the most abundant genera for each phylum, and
+lighter shades are less abundant. Users can additionally reorder the
+samples based on a specified taxonomic rank and name, or reorder the
+phylum groups.</p>
 </div>
 <div class="section level2">
 <h2 id="apply-the-microshades-palette-to-non-microbiome-data">Apply the microshades palette to non-microbiome data<a class="anchor" aria-label="anchor" href="#apply-the-microshades-palette-to-non-microbiome-data"></a>
 </h2>
-<p>Users can apply a microshades palette color to a plot using <code>scale_fill_manual()</code> to set the custom colors and <code><a href="reference/microshades_palette.html">microshades_palette()</a></code> to select a desired palette.</p>
-<p>Please refer to the following examples with microshades on non-microbiome:</p>
+<p>Users can apply a microshades palette color to a plot using
+<code>scale_fill_manual()</code> to set the custom colors and
+<code><a href="reference/microshades_palette.html">microshades_palette()</a></code> to select a desired palette.</p>
+<p>Please refer to the following examples with microshades on
+non-microbiome:</p>
 <ul>
-<li><a href="https://karstenslab.github.io/microshades/articles/non-microbiome_data.html" class="external-link">Palmer Penguins Data Vignette</a></li>
-<li><a href="https://karstenslab.github.io/microshades/articles/titanic_data_example.html" class="external-link">Titanic Data</a></li>
+<li><a href="https://karstenslab.github.io/microshades/articles/non-microbiome_data.html" class="external-link">Palmer
+Penguins Data Vignette</a></li>
+<li><a href="https://karstenslab.github.io/microshades/articles/titanic_data_example.html" class="external-link">Titanic
+Data</a></li>
 </ul>
-<p>The example below uses the palmerpenguins dataset to show how to apply the color palettes to non-microbiome data. This first plot contains the default colors from ggplot and is colored by species. The second plot uses microshades colors for a combination variable of penguin species and year of data collection. This organization can help data reviewers notice trends easier with more variables visible in the data.</p>
+<p>The example below uses the palmerpenguins dataset to show how to
+apply the color palettes to non-microbiome data. This first plot
+contains the default colors from ggplot and is colored by species. The
+second plot uses microshades colors for a combination variable of
+penguin species and year of data collection. This organization can help
+data reviewers notice trends easier with more variables visible in the
+data.</p>
 <p><img src="reference/figures/penguin_example.png" width="1958" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -220,7 +276,8 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>

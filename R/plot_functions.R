@@ -106,7 +106,7 @@ plot_contributions <- function(mdf, cdf,  col_name, data_match, short_name = NUL
       summarize(Abundance = sum(Abundance))
 
     cluster_subset_barplot <- agg_subset  %>%
-      select( Abundance, group, ) %>%
+      select( Abundance, group) %>%
       group_by(group) %>%
       summarize(mean_abundance = round(mean(Abundance),2), median_abundance = round(median(Abundance),2),  sd = sd(Abundance))
 

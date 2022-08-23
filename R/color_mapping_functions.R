@@ -689,6 +689,8 @@ extend_group <- function(mdf, cdf, group_level, subgroup_level, group_name, exis
     mutate(order = row_number()) %>%
     ungroup()
 
+  n_other = nrow(subgroup_ranks)
+
   # Set column default to Other
   col_name_group <- paste0("Top_", group_level)
   col_name_subgroup <- paste0("Top_", subgroup_level)
@@ -711,8 +713,11 @@ extend_group <- function(mdf, cdf, group_level, subgroup_level, group_name, exis
 
   new_tax <-distinct(group_info)
 
-  new_tax$hex <- c(microshades_palette(existing_palette,n = 1, lightest = light ), rev(microshades_palette(new_palette, n= n_add, lightest = light)))
-
+  if(n_add == n_other){
+    new_tax$hex <- c(microshades_palette(existing_palette,n = 1, lightest = light ), rev(microshades_palette(new_palette, n= n_add -1, lightest = light)))
+  }else{
+    new_tax$hex <- c(microshades_palette(existing_palette,n = 1, lightest = light ), rev(microshades_palette(new_palette, n= n_add, lightest = light)))
+  }
   row_num_extend <- which(cdf$group == paste(group_name,"Other", sep= "-"))
   total_rows <- nrow(cdf)
 

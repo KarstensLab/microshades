@@ -58,9 +58,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/microshades-CMD.html">Curated Metagenomic Data</a>
-    </li>
-    <li>
       <a href="articles/microshades-GP.html">Global Patterns Data</a>
     </li>
     <li>
@@ -124,6 +121,8 @@ color-oriented orginazation.</p>
 <code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"KarstensLab/microshades"</span><span class="op">)</span></code></pre></div>
 <p>If you plan to use microshades with microbiome data, you may need to
 install packages such as <a href="https://joey711.github.io/phyloseq/index.html" class="external-link">phyloseq</a> or <a href="https://mikemc.github.io/speedyseq" class="external-link">speedyseq</a>.</p>
+<p>If you experience a lazy-load error please try clearing and
+restarting your R session.</p>
 </div>
 <div class="section level2">
 <h2 id="the-shades">The shades<a class="anchor" aria-label="anchor" href="#the-shades"></a>
@@ -132,7 +131,7 @@ install packages such as <a href="https://joey711.github.io/phyloseq/index.html"
 microshades_palettes. Each color palette contains six base colors with
 five incremental light to dark shades, for a total of 30 available
 colors per palette type that can be directly applied to any plot.</p>
-<p><img src="reference/figures/microshades_all.png" width="823" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/microshades_all.png" style="display: block; margin: auto;"></p>
 <div class="section level3">
 <h3 id="cvd-visualization">CVD Visualization<a class="anchor" aria-label="anchor" href="#cvd-visualization"></a>
 </h3>
@@ -152,7 +151,7 @@ blindness”</li>
 </h4>
 <p>The microshades_cvd_palettes contain colors that are universally CVD
 friendly.</p>
-<p><img src="reference/figures/microshades_cvd_palettes_cvd.png" width="1048" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/microshades_cvd_palettes_cvd.png" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level4">
 <h4 id="microshades_palettes">microshades_palettes<a class="anchor" aria-label="anchor" href="#microshades_palettes"></a>
@@ -161,7 +160,7 @@ friendly.</p>
 microshades_palette combinations are universially CVD friendly. When
 using multiple microshades_palettes carefully consider color palette
 choices, since they may not be universally accessible.</p>
-<p><img src="reference/figures/microshades_palettes_cvd.png" width="1051" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/microshades_palettes_cvd.png" style="display: block; margin: auto;"></p>
 <p>To learn more about the different functions and shades in
 microshades, please visit the <a href="https://KarstensLab.github.io/microshades/reference" class="external-link">reference</a>
 section of our website.</p>
@@ -196,7 +195,7 @@ stacked barplot made using phyloseq. On the right are two barplot of the
 same data, with microshades palettes and functions applied. microshades
 uses coloring to correspond with taxonomic group and subgroup
 levels.</p>
-<p><img src="reference/figures/plot_CMD.png" width="916" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/plot_CMD.png" style="display: block; margin: auto;"></p>
 <p>In this example, the phylum and genus information are explored.
 Darker shades indicate the most abundant genera for each phylum, and
 lighter shades are less abundant. Users can additionally reorder the
@@ -224,7 +223,7 @@ second plot uses microshades colors for a combination variable of
 penguin species and year of data collection. This organization can help
 data reviewers notice trends easier with more variables visible in the
 data.</p>
-<p><img src="reference/figures/penguin_example.png" width="1958" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/penguin_example.png" style="display: block; margin: auto;"></p>
 </div>
 </div>
   </div>

@@ -29,14 +29,17 @@ install packages such as
 [phyloseq](https://joey711.github.io/phyloseq/index.html) or
 [speedyseq](https://mikemc.github.io/speedyseq).
 
+If you experience a lazy-load error please try clearing and restarting
+your R session.
+
 ## The shades
 
-Here are the two crafted color palettes, microshades\_cvd\_palettes and
-microshades\_palettes. Each color palette contains six base colors with
+Here are the two crafted color palettes, microshades_cvd_palettes and
+microshades_palettes. Each color palette contains six base colors with
 five incremental light to dark shades, for a total of 30 available
 colors per palette type that can be directly applied to any plot.
 
-<img src="man/figures/microshades_all.png" width="823" style="display: block; margin: auto;" />
+<img src="man/figures/microshades_all.png" style="display: block; margin: auto;" />
 
 ### CVD Visualization
 
@@ -53,21 +56,21 @@ The three main types of CVD
 -   Tritanope : Relatively Rare, also known as “blue-yellow color
     blindness”
 
-#### microshades\_cvd\_palettes
+#### microshades_cvd_palettes
 
-The microshades\_cvd\_palettes contain colors that are universally CVD
+The microshades_cvd_palettes contain colors that are universally CVD
 friendly.
 
-<img src="man/figures/microshades_cvd_palettes_cvd.png" width="1048" style="display: block; margin: auto;" />
+<img src="man/figures/microshades_cvd_palettes_cvd.png" style="display: block; margin: auto;" />
 
-#### microshades\_palettes
+#### microshades_palettes
 
-The individual microshades\_palettes are CVD friendly, and some
-microshades\_palette combinations are universially CVD friendly. When
-using multiple microshades\_palettes carefully consider color palette
+The individual microshades_palettes are CVD friendly, and some
+microshades_palette combinations are universially CVD friendly. When
+using multiple microshades_palettes carefully consider color palette
 choices, since they may not be universally accessible.
 
-<img src="man/figures/microshades_palettes_cvd.png" width="1051" style="display: block; margin: auto;" />
+<img src="man/figures/microshades_palettes_cvd.png" style="display: block; margin: auto;" />
 
 To learn more about the different functions and shades in microshades,
 please visit the
@@ -101,7 +104,7 @@ stacked barplot made using phyloseq. On the right are two barplot of the
 same data, with microshades palettes and functions applied. microshades
 uses coloring to correspond with taxonomic group and subgroup levels.
 
-<img src="man/figures/plot_CMD.png" width="916" style="display: block; margin: auto;" />
+<img src="man/figures/plot_CMD.png" style="display: block; margin: auto;" />
 
 In this example, the phylum and genus information are explored. Darker
 shades indicate the most abundant genera for each phylum, and lighter
@@ -130,4 +133,4 @@ uses microshades colors for a combination variable of penguin species
 and year of data collection. This organization can help data reviewers
 notice trends easier with more variables visible in the data.
 
-<img src="man/figures/penguin_example.png" width="1958" style="display: block; margin: auto;" />
+<img src="man/figures/penguin_example.png" style="display: block; margin: auto;" />

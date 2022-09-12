@@ -32,6 +32,9 @@ remotes::install_github("KarstensLab/microshades")
 
 If you plan to use microshades with microbiome data, you may need to install packages such as  [phyloseq](https://joey711.github.io/phyloseq/index.html) or [speedyseq](https://mikemc.github.io/speedyseq).
 
+
+If you experience a lazy-load error please try clearing and restarting your R session.
+
 ## The shades
 
 Here are the two crafted color palettes,  microshades_cvd_palettes and microshades_palettes. Each color palette contains six base colors with five incremental light to dark shades, for a total of 30 available colors per palette type that can be directly applied to any plot.

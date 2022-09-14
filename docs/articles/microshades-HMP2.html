@@ -99,7 +99,7 @@
       <h1 data-toc-skip>Human Microbiome Project 2</h1>
                         <h4 data-toc-skip class="author">Erin Dahl</h4>
             
-            <h4 data-toc-skip class="date">September 12, 2022</h4>
+            <h4 data-toc-skip class="date">September 13, 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KarstensLab/microshades/blob/HEAD/vignettes/microshades-HMP2.Rmd" class="external-link"><code>vignettes/microshades-HMP2.Rmd</code></a></small>
       <div class="hidden name"><code>microshades-HMP2.Rmd</code></div>
@@ -117,6 +117,13 @@ tutorial at the Phylum &amp; Genus taxonomic levels.</p>
 <p>This data is available in the HMP2Data library. To download use
 <code>BiocManager::install("HMP2Data")</code>.</p>
 <p>Learn more about the HMP2 Data <a href="https://bioconductor.org/packages/release/data/experiment/html/HMP2Data.html" class="external-link">here</a></p>
+<p>Additionally, the package <a href="https://github.com/mikemc/speedyseq" class="external-link">speedyseq</a> is necessary to
+use the function <code><a href="../reference/prep_mdf.html">prep_mdf()</a></code>. The package speedyseq provides
+faster versions of phyloseq’s plotting and taxonomic merging functions.
+Alternatively, the phyloseq object can be melted and transformed by
+using phyloseq functions <code><a href="https://rdrr.io/pkg/phyloseq/man/tax_glom.html" class="external-link">tax_glom()</a></code> and/or
+<code><a href="https://rdrr.io/pkg/phyloseq/man/transformcounts.html" class="external-link">transform_sample_counts()</a></code>, and melted by using
+<code><a href="https://rdrr.io/pkg/phyloseq/man/psmelt.html" class="external-link">psmelt()</a></code>.</p>
 <div class="section level3">
 <h3 id="load-the-necessary-packages-for-this-toutorial">Load the necessary packages for this toutorial<a class="anchor" aria-label="anchor" href="#load-the-necessary-packages-for-this-toutorial"></a>
 </h3>

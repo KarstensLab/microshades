@@ -15,8 +15,8 @@ prep_mdf(ps, subgroup_level = "Genus")
 data.frame, a melted phyloseq object from \code{psmelt()}
 }
 \description{
-This function prepares a melted phyloseq object to map colors to top phyla
-and genera.
+This function agglomerates a phyloseq object at a specified level and transforms counts to relative abundance.
+This function also melts the phyloseq object into a melted data frame which is used to apply microshades colors and organization to.
 }
 \details{
 Notes:

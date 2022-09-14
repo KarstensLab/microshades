@@ -15,6 +15,7 @@ This vignette explores the Global Patterns microbiome data available from phylos
 
 Learn more about the phyloseq package [here](https://bioconductor.org/packages/release/bioc/html/phyloseq.html).
 
+Additionally, the package [speedyseq](https://github.com/mikemc/speedyseq) is necessary to use the function `prep_mdf()`. The package speedyseq provides faster versions of phyloseq’s plotting and taxonomic merging functions. Alternatively, the phyloseq object can be melted and transformed by using phyloseq functions `tax_glom()` and/or `transform_sample_counts()`, and melted by using `psmelt()`.
 
 ## Load the required packages
 

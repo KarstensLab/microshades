@@ -1,7 +1,7 @@
 #' Prepare melted phyloseq object to map colors to
 #'
-#' This function prepares a melted phyloseq object to map colors to top phyla
-#' and genera.
+#' This function agglomerates a phyloseq object at a specified level and transforms counts to relative abundance.
+#' This function also melts the phyloseq object into a melted data frame which is used to apply microshades colors and organization to.
 #'
 #' Notes:
 #'

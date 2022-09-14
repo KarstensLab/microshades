@@ -20,6 +20,9 @@ This data is available in the HMP16SData library. To download use `BiocManager::
 Learn more about the HMP16S Data [here](https://bioconductor.org/packages/release/data/experiment/html/HMP16SData.html)
 
 
+Additionally, the package [speedyseq](https://github.com/mikemc/speedyseq) is necessary to use the function `prep_mdf()`. The package speedyseq provides faster versions of phyloseq’s plotting and taxonomic merging functions. Alternatively, the phyloseq object can be melted and transformed by using phyloseq functions `tax_glom()` and/or `transform_sample_counts()`, and melted by using `psmelt()`.
+
+
 ## Load the necessary packages for this tutorial
 
 ```{r message=FALSE, warning=FALSE}

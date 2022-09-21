@@ -24,6 +24,7 @@ Suggests:
   phyloseq,
   speedyseq,
   ggplot2 (>= 3.3.2),
+  cowplot,
   knitr,
   rmarkdown,
   testthat (>= 3.0.0)

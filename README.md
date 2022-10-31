@@ -89,8 +89,6 @@ data reviewers and consumers notice visual patterns and trends easier.
 For detailed tutorials on how to use microshades function with phyloseq
 objects, please review the vignettes provided:
 
--   [Curated Metagenomic
-    Data](https://karstenslab.github.io/microshades/articles/microshades-CMD.html)
 -   [Global
     Patterns](https://karstenslab.github.io/microshades/articles/microshades-GP.html)
 -   [Human Microbiome

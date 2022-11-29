@@ -99,7 +99,7 @@
       <h1 data-toc-skip>Global Patterns Data</h1>
                         <h4 data-toc-skip class="author">Erin Dahl</h4>
             
-            <h4 data-toc-skip class="date">October 31, 2022</h4>
+            <h4 data-toc-skip class="date">November 28, 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KarstensLab/microshades/blob/HEAD/vignettes/microshades-GP.Rmd" class="external-link"><code>vignettes/microshades-GP.Rmd</code></a></small>
       <div class="hidden name"><code>microshades-GP.Rmd</code></div>
@@ -131,17 +131,31 @@ using phyloseq functions <code><a href="https://rdrr.io/pkg/phyloseq/man/tax_glo
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/cowplot/" class="external-link">cowplot</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span>
+
+<span class="co"># The dataset Global Patterns is a phyloseq object avalible from the Phyloseq package</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="use-the-microshades-functions">Use the microshades functions<a class="anchor" aria-label="anchor" href="#use-the-microshades-functions"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># The dataset Global Patterns is a phyloseq object avalible from the Phyloseq package</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span>
-
-<span class="co"># Agglomerate and normalize the phyloseq object, and melt to a data frame</span>
+<code class="sourceCode R"><span class="co"># Agglomerate and normalize the phyloseq object, and melt to a data frame</span>
 <span class="va">mdf_prep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span>
+
+<span class="co"># There is an alterantive to using this function if you do not have speedyseq:</span>
+<span class="co"># </span>
+<span class="co"># mdf_prep &lt;- GlobalPatterns %&gt;%</span>
+<span class="co">#         tax_glom("Genus") %&gt;%</span>
+<span class="co">#         phyloseq::transform_sample_counts(function(x) { x/sum(x) }) %&gt;%</span>
+<span class="co">#         psmelt() %&gt;%</span>
+<span class="co">#         filter(Abundance &gt; 0)</span>
+<span class="co">#</span>
+<span class="co"># both options will produce the same results, however the microshades prep_mdf() uses the   </span>
+<span class="co"># speedyseq package to increase the speed of tax_glom() and psmelt(), which may be preferable  </span>
+<span class="co"># when working with large datasets</span>
+
+  
 
 <span class="co"># Generate a color object for the specified data</span>
 <span class="va">color_objs_GP</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_color_dfs.html">create_color_dfs</a></span><span class="op">(</span><span class="va">mdf_prep</span>,selected_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Verrucomicrobia"</span>, <span class="st">"Proteobacteria"</span>, <span class="st">"Actinobacteria"</span>, <span class="st">"Bacteroidetes"</span>,

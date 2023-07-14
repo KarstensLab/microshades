@@ -28,7 +28,8 @@
 #' # Subgroup as "Family"
 #' mdf_fam <- prep_mdf(GlobalPatterns, subgroup_level = "Family")
 prep_mdf <- function(ps,
-                     subgroup_level = "Genus")
+                     subgroup_level = "Genus",
+                     as_relative_abundance = TRUE)
     {
 
       if (!requireNamespace("phyloseq", quietly = TRUE)) {
@@ -48,10 +49,17 @@ prep_mdf <- function(ps,
       stop("'subgroup_level' does not exist")
     }
 
-    mdf <- ps %>%
+    if (as_relative_abundance==TRUE){
+      mdf <- ps %>%
         speedyseq::tax_glom(subgroup_level) %>%
         phyloseq::transform_sample_counts(function(x) { x/sum(x) }) %>%
         speedyseq::psmelt()
+    } else {
+      mdf <- ps %>%
+        speedyseq::tax_glom(subgroup_level) %>%
+        speedyseq::psmelt()
+    }
+
 
     # Removes 0 abundance
     mdf_prep <- mdf[mdf$Abundance > 0, ]

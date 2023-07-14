@@ -10,6 +10,7 @@
 #'
 #' @param ps phyloseq-class object
 #' @param subgroup_level string of smaller taxonomic group
+#' @param as_relative_abundance transform counts to relative abundance
 #'
 #' @import dplyr
 #'

@@ -33,7 +33,8 @@ library(MultiAssayExperiment)
 library(dplyr)
 library(ggplot2)
 library(microshades)
-libray(forcats)
+library(forcats)
+library(tidyverse)
 ```
 
 ## Load the HMP2 data as a phyloseq object

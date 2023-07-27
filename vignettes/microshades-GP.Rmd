@@ -27,6 +27,7 @@ library(dplyr)
 library(cowplot)
 library(patchwork)
 library(forcats)
+library(tidyverse)
 
 # The dataset Global Patterns is a phyloseq object avalible from the Phyloseq package
 data(GlobalPatterns)

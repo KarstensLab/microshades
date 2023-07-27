@@ -232,10 +232,10 @@ create_color_dfs <- function(mdf,
     # Ranked abundance aggregated using sum() function
     col_name_subgroup <- paste0("Top_", subgroup_level)
     subgroup_ranks <- mdf_unknown_subgroup %>%
-        group_by_at(all_of(vars(subgroup_level, col_name_group))) %>%
+        group_by_at(c(paste(subgroup_level), paste(col_name_group))) %>%
         summarise(rank_abundance = sum(Abundance)) %>%
         arrange(desc(rank_abundance)) %>%
-        group_by_at(vars(col_name_group)) %>%
+        group_by_at(c(paste(col_name_group))) %>%
         mutate(order = row_number()) %>%
         ungroup()
 
@@ -290,7 +290,7 @@ create_color_dfs <- function(mdf,
     # https://tidyr.tidyverse.org/articles/nest.html
     # https://tidyr.tidyverse.org/reference/nest.html
     cdf <- prep_cdf %>%
-        group_by_at(all_of(vars(col_name_group))) %>%
+        group_by_at(c(paste(col_name_group))) %>%
         tidyr::nest() %>%
         arrange(!!sym(col_name_group))
 

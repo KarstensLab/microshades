@@ -39,7 +39,7 @@ plot_microshades <- function (mdf_group,
     stop("mdf_group argument must be a data frame")
   }
 
-  if(is.na(cdf$hex) || is.na(cdf$group))
+  if(sum(is.na(cdf$hex) || is.na(cdf$group)) > 0)
   {
     stop("cdf does not contain complete color information - missing hex or group info")
   }

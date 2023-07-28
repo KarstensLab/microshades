@@ -226,7 +226,7 @@ create_color_dfs <- function(mdf,
 
     # Rename missing genera
     mdf_unknown_subgroup <- mdf %>%
-        mutate(!!sym (subgroup_level) := fct_explicit_na(!!sym(subgroup_level), "Unknown"))
+        mutate(!!sym (subgroup_level) := fct_na_value_to_level(!!sym(subgroup_level), "Unknown"))
 
     # Rank group-subgroup categories by ranked abundance and add order
     # Ranked abundance aggregated using sum() function

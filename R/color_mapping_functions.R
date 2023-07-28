@@ -272,7 +272,7 @@ create_color_dfs <- function(mdf,
     # Get beginning of color data frame with top groups/subgroups
     # E.g., 4 selected_groups + 1 Other, 4 top_n_groups + 1 Other => 25 groups
     prep_cdf <- group_info %>%
-        select(c("group", "order", col_name_group, col_name_subgroup)) %>%
+        select(all_of(c("group", "order", col_name_group, col_name_subgroup))) %>%
         filter(order <= top_n_subgroups + 1) %>%  # "+ 1" for other subgroup
         arrange(!!sym(col_name_group), order)
 

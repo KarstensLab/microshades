@@ -21,7 +21,7 @@ color-oriented orginazation.
 ## Installation
 
 ``` r
-remotes::install_github("KarstensLab/microshades")
+remotes::install_github("KarstensLab/microshades", dependencies=TRUE)
 ```
 
 If you plan to use microshades with microbiome data, you may need to

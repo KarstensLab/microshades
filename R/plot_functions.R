@@ -46,7 +46,7 @@ plot_microshades <- function (mdf_group,
 
 
   plot <- mdf_group %>%
-    ggplot(aes_string(x = x, y = y), fill = group_label) +
+    ggplot(aes(x = .data[[x]], y = .data[[y]]), fill = group_label) +
     scale_fill_manual(name = group_label,
                       values = cdf$hex,
                       breaks = cdf$group) +
@@ -131,7 +131,7 @@ plot_contributions <- function(mdf, cdf,  col_name, data_match, short_name = NUL
   }
 
   # Boxplot
-  top_drivers_boxplot <- ggplot(cluster_subset, aes_string(x = short_name, y = "Abundance", fill = "group")) +
+   top_drivers_boxplot <- ggplot(cluster_subset, aes(x = .data[[short_name]], y = .data[["Abundance"]], fill = .data[["group"]])) +
     geom_boxplot() +
     coord_flip() +
     ggtitle(paste(col_name, data_match, "(n =",n_samples,")")) +
@@ -140,7 +140,7 @@ plot_contributions <- function(mdf, cdf,  col_name, data_match, short_name = NUL
     theme(legend.position = "none")
 
   # Mean Barplot
-  top_drivers_mean_barplot <- ggplot(cluster_subset_barplot, aes_string(x = short_name, y = "mean_abundance", fill = "group")) +
+  top_drivers_mean_barplot <- ggplot(cluster_subset_barplot, aes(x = .data[[short_name]], y = .data[["mean_abundance"]], fill = .data[["group"]])) +
     geom_bar(stat = "identity") +
     coord_flip() +
     ggtitle(paste(col_name, data_match, "(n =",n_samples,")")) +
@@ -149,7 +149,7 @@ plot_contributions <- function(mdf, cdf,  col_name, data_match, short_name = NUL
     theme(legend.position = "none")
 
   # Median Barplot
-  top_drivers_median_barplot <- ggplot(cluster_subset_barplot, aes_string(x = short_name, y = "median_abundance", fill = "group")) +
+  top_drivers_median_barplot <- ggplot(cluster_subset_barplot, aes(x = .data[[short_name]], y = .data[["mean_abundance"]], fill = .data[["group"]])) +
     geom_bar(stat = "identity") +
     coord_flip() +
     ggtitle(paste(col_name, data_match, "(n =",n_samples,")")) +

@@ -10,6 +10,7 @@
 #'
 #' @param ps phyloseq-class object
 #' @param subgroup_level string of smaller taxonomic group
+#' @param as_relative_abundance transform counts to relative abundance
 #'
 #' @import dplyr
 #'
@@ -225,16 +226,16 @@ create_color_dfs <- function(mdf,
 
     # Rename missing genera
     mdf_unknown_subgroup <- mdf %>%
-        mutate(!!sym (subgroup_level) := fct_explicit_na(!!sym(subgroup_level), "Unknown"))
+        mutate(!!sym (subgroup_level) := fct_na_value_to_level(!!sym(subgroup_level), "Unknown"))
 
     # Rank group-subgroup categories by ranked abundance and add order
     # Ranked abundance aggregated using sum() function
     col_name_subgroup <- paste0("Top_", subgroup_level)
     subgroup_ranks <- mdf_unknown_subgroup %>%
-        group_by_at(all_of(vars(subgroup_level, col_name_group))) %>%
+        group_by_at(c(paste(subgroup_level), paste(col_name_group))) %>%
         summarise(rank_abundance = sum(Abundance)) %>%
         arrange(desc(rank_abundance)) %>%
-        group_by_at(vars(col_name_group)) %>%
+        group_by_at(c(paste(col_name_group))) %>%
         mutate(order = row_number()) %>%
         ungroup()
 
@@ -271,7 +272,7 @@ create_color_dfs <- function(mdf,
     # Get beginning of color data frame with top groups/subgroups
     # E.g., 4 selected_groups + 1 Other, 4 top_n_groups + 1 Other => 25 groups
     prep_cdf <- group_info %>%
-        select(c("group", "order", col_name_group, col_name_subgroup)) %>%
+        select(all_of(c("group", "order", col_name_group, col_name_subgroup))) %>%
         filter(order <= top_n_subgroups + 1) %>%  # "+ 1" for other subgroup
         arrange(!!sym(col_name_group), order)
 
@@ -289,7 +290,7 @@ create_color_dfs <- function(mdf,
     # https://tidyr.tidyverse.org/articles/nest.html
     # https://tidyr.tidyverse.org/reference/nest.html
     cdf <- prep_cdf %>%
-        group_by_at(all_of(vars(col_name_group))) %>%
+        group_by_at(c(paste(col_name_group))) %>%
         tidyr::nest() %>%
         arrange(!!sym(col_name_group))
 

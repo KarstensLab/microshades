@@ -100,7 +100,7 @@ individual_legend <- function (mdf,
   select_cdf <- cdf %>% filter(!!sym(col_name_group) == group_name)
 
   select_plot <- ggplot(select_mdf,
-    aes_string(x = x, y = y, fill = col_name_subgroup, text = col_name_subgroup)) +
+    aes(x = .data[[x]], y = .data[[y]], fill = .data[[col_name_subgroup]], text = .data[[col_name_subgroup]])) +
     geom_col( position="fill") +
     scale_fill_manual(name = group_name,
                       values = select_cdf$hex,

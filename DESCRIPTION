@@ -2,9 +2,9 @@ Package: microshades
 Title: A custom color palette for improving data visualization 
 Version: 1.11
 Authors@R: 
-    c(person("Erin","Dahl", role = c("aut"), email = "erind@pacificu.edu"),
+    c(person("Erin","Dahl", role = "aut"),
       person("Emory", "Neer", role = "aut"),
-      person("Lisa", "Karstens", role = "aut", "cre"),
+      person("Lisa", "Karstens", role = c("aut", "cre", email = "KarstensLab@gmail.com")),
       person("Eric", "Leung", role = "ctb"),
       person("Kate", "Bowie", role = "ctb"))
 Description: This package contains custom built color palettes that are availible for 

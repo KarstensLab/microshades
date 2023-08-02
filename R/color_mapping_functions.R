@@ -11,6 +11,7 @@
 #' @param ps phyloseq-class object
 #' @param subgroup_level string of smaller taxonomic group
 #' @param as_relative_abundance transform counts to relative abundance
+#' @param remove_na remove NA values during taxa agglomeration
 #'
 #' @import dplyr
 #'
@@ -30,7 +31,8 @@
 #' mdf_fam <- prep_mdf(GlobalPatterns, subgroup_level = "Family")
 prep_mdf <- function(ps,
                      subgroup_level = "Genus",
-                     as_relative_abundance = TRUE)
+                     as_relative_abundance = TRUE,
+                     remove_na = FALSE)
     {
 
       if (!requireNamespace("phyloseq", quietly = TRUE)) {
@@ -52,12 +54,12 @@ prep_mdf <- function(ps,
 
     if (as_relative_abundance==TRUE){
       mdf <- ps %>%
-        speedyseq::tax_glom(subgroup_level) %>%
+        speedyseq::tax_glom(subgroup_level, NArm=remove_na) %>%
         phyloseq::transform_sample_counts(function(x) { x/sum(x) }) %>%
         speedyseq::psmelt()
     } else {
       mdf <- ps %>%
-        speedyseq::tax_glom(subgroup_level) %>%
+        speedyseq::tax_glom(subgroup_level, NArm=remove_na) %>%
         speedyseq::psmelt()
     }
 

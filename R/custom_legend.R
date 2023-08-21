@@ -11,6 +11,7 @@
 #' @param y y-value plotted
 #' @param legend_key_size numeric determines overall size of the legend keys
 #' @param legend_text_size integer determines size of legend text
+#' @param legend_orientation string determines vertical or horizontal orientation of legend
 #'
 #' @import dplyr
 #' @import ggplot2
@@ -24,7 +25,7 @@
 #'
 #'
 custom_legend <- function (mdf, cdf, group_level = "Phylum", subgroup_level = "Genus", x = "Sample",
-                           y = "Abundance", legend_key_size = 0.4, legend_text_size = 10)
+                           y = "Abundance", legend_key_size = 0.4, legend_text_size = 10, legend_orientation = "vertical")
 {
   if (is.null(mdf[[group_level]])) {
     stop("mdf 'group_level' does not exist")
@@ -36,6 +37,10 @@ custom_legend <- function (mdf, cdf, group_level = "Phylum", subgroup_level = "G
 
   if (is.null(cdf$hex)) {
     stop("cdf 'hex' does not exist")
+  }
+
+  if (!(legend_orientation %in% c("vertical", "horizontal"))) {
+    stop("legend orientation must be \"vertical\" or \"horizontal\"")
   }
 
   col_name_group <- paste0("Top_", group_level)
@@ -53,10 +58,14 @@ custom_legend <- function (mdf, cdf, group_level = "Phylum", subgroup_level = "G
     {
       new_legend <-individual_legend (mdf, cdf, group_level_names[i], col_name_group, col_name_subgroup, legend_key_size = legend_key_size, legend_text_size =legend_text_size)
 
-      complete_height <- i -1
-      new_height <- 1
-
-      complete_legend <-plot_grid(complete_legend, new_legend, ncol = 1, rel_heights = c(complete_height,new_height))
+      complete_size <- i -1
+      new_size <- 1
+      
+      if (legend_orientation == "vertical") {
+        complete_legend <-plot_grid(complete_legend, new_legend, ncol = 1, rel_heights = c(complete_size,new_size))
+      } else if (legend_orientation == "horizontal") {
+        complete_legend <-plot_grid(complete_legend, new_legend, ncol = 2, rel_widths = c(complete_size,new_size))
+      }
     }
   }
   complete_legend

@@ -29,7 +29,7 @@ library(patchwork)
 library(forcats)
 library(tidyverse)
 
-# The dataset Global Patterns is a phyloseq object avalible from the Phyloseq package
+# The dataset Global Patterns is a phyloseq object available from the Phyloseq package
 data(GlobalPatterns)
 
 ```
@@ -39,9 +39,9 @@ data(GlobalPatterns)
 ```{r}
 
 # Agglomerate and normalize the phyloseq object, and melt to a data frame
-mdf_prep <- prep_mdf(GlobalPatterns)
+mdf_prep <- prep_mdf(GlobalPatterns, remove_na = TRUE)
 
-# There is an alterantive to using this function if you do not have speedyseq:
+# There is an alternative to using this function if you do not have speedyseq:
 # 
 # mdf_prep <- GlobalPatterns %>%
 #         tax_glom("Genus") %>%

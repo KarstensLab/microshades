@@ -24,7 +24,7 @@ and abundance organized microbiome data."><!-- mathjax --><script src="https://c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">microshades</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.11</span>
       </span>
     </div>
 
@@ -49,6 +49,9 @@ and abundance organized microbiome data."><!-- mathjax --><script src="https://c
     </li>
     <li>
       <a href="../articles/non-microbiome_data.html">Palmer Penguins Data Example</a>
+    </li>
+    <li>
+      <a href="../articles/remove_na_option.html">Remove NA Option</a>
     </li>
     <li>
       <a href="../articles/titanic_data_example.html">Titanic Data Example</a>
@@ -83,44 +86,58 @@ and abundance organized microbiome data.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">create_color_dfs</span><span class="op">(</span>
-  <span class="va">mdf</span>,
-  selected_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Proteobacteria"</span>, <span class="st">"Actinobacteria"</span>, <span class="st">"Bacteroidetes"</span>,
-    <span class="st">"Firmicutes"</span><span class="op">)</span>,
-  top_n_subgroups <span class="op">=</span> <span class="fl">4</span>,
-  group_level <span class="op">=</span> <span class="st">"Phylum"</span>,
-  subgroup_level <span class="op">=</span> <span class="st">"Genus"</span>,
-  cvd <span class="op">=</span> <span class="cn">FALSE</span>,
-  top_orientation <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_color_dfs</span><span class="op">(</span></span>
+<span>  <span class="va">mdf</span>,</span>
+<span>  selected_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Proteobacteria"</span>, <span class="st">"Actinobacteria"</span>, <span class="st">"Bacteroidetes"</span>, <span class="st">"Firmicutes"</span><span class="op">)</span>,</span>
+<span>  top_n_subgroups <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  group_level <span class="op">=</span> <span class="st">"Phylum"</span>,</span>
+<span>  subgroup_level <span class="op">=</span> <span class="st">"Genus"</span>,</span>
+<span>  cvd <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  top_orientation <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>mdf</dt>
 <dd><p>data.frame, melted data frame containing microbiome data</p></dd>
+
+
 <dt>selected_groups</dt>
 <dd><p>list of groups in group_level taxomomy to specify and color in plot.
 The vector order is the stacking order. "Other" is always on the top of the stack,
 but then the rest will follow. The default is "Proteobacteria", "Actinobacteria",
 "Bacteroidetes", "Firmicutes". "Firmicutes" is on the bottom of the stack.</p></dd>
+
+
 <dt>top_n_subgroups</dt>
 <dd><p>integer number of top subgroups to show for each selected group
 the max is 4 top subgroups</p></dd>
+
+
 <dt>group_level</dt>
 <dd><p>string of larger taxonomic group</p></dd>
+
+
 <dt>subgroup_level</dt>
 <dd><p>string of smaller taxonomic group</p></dd>
+
+
 <dt>cvd</dt>
 <dd><p>logical, determines which palette to use,
 color vision deficent (microshades_cvd_palettes) or microshades_palettes</p></dd>
+
+
 <dt>top_orientation</dt>
 <dd><p>logical most abundant shades oriented at the top of the stack
 otherwise, most abundant shades are bottom oriented</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>list</p><ul><li><p>"mdf" melted data frame to pass into ggplot2</p></li>
+    
+
+<p>list</p><ul><li><p>"mdf" melted data frame to pass into ggplot2</p></li>
 <li><p>"cdf" mapping to be used in manual color filling</p></li>
 </ul></div>
     <div id="details">
@@ -136,15 +153,15 @@ passing in the vector
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.plos.org/10.1371/journal.pone.0061217" class="external-link">phyloseq</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">mdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">colorframe</span> <span class="op">&lt;-</span> <span class="fu">create_color_dfs</span><span class="op">(</span><span class="va">mdf</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">colorframe</span> <span class="op">&lt;-</span> <span class="fu">create_color_dfs</span><span class="op">(</span><span class="va">mdf</span>, selected_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Proteobacteria"</span>, <span class="st">"Actinobacteriota"</span>, <span class="st">"Bacteroidota"</span>, <span class="st">"Firmicutes"</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.plos.org/10.1371/journal.pone.0061217" class="external-link">phyloseq</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">mdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">colorframe</span> <span class="op">&lt;-</span> <span class="fu">create_color_dfs</span><span class="op">(</span><span class="va">mdf</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">colorframe</span> <span class="op">&lt;-</span> <span class="fu">create_color_dfs</span><span class="op">(</span><span class="va">mdf</span>, selected_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Proteobacteria"</span>, <span class="st">"Actinobacteriota"</span>, <span class="st">"Bacteroidota"</span>, <span class="st">"Firmicutes"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in create_color_dfs(mdf, selected_groups = c("Proteobacteria", "Actinobacteriota",     "Bacteroidota", "Firmicutes")):</span> some 'selected_groups' do not exist in the dataset. Consider SILVA 138 c('Proteobacteria', 'Actinobacteriota', 'Bacteroidota', 'Firmicutes')</span>
-<span class="r-in"><span class="va">colorframe</span> <span class="op">&lt;-</span> <span class="fu">create_color_dfs</span><span class="op">(</span><span class="va">mdf</span>, cvd <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">colorframe</span> <span class="op">&lt;-</span> <span class="fu">create_color_dfs</span><span class="op">(</span><span class="va">mdf</span>, cvd <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -159,8 +176,7 @@ passing in the vector
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

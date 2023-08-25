@@ -21,7 +21,7 @@ color-oriented orginazation.
 ## Installation
 
 ``` r
-remotes::install_github("KarstensLab/microshades", dependencies=TRUE)
+remotes::install_github("KarstensLab/microshades")
 ```
 
 If you plan to use microshades with microbiome data, you may need to
@@ -39,7 +39,7 @@ microshades_palettes. Each color palette contains six base colors with
 five incremental light to dark shades, for a total of 30 available
 colors per palette type that can be directly applied to any plot.
 
-<img src="man/figures/microshades_all.png" style="display: block; margin: auto;" />
+<img src="man/figures/microshades_all.png" width="823" style="display: block; margin: auto;" />
 
 ### CVD Visualization
 
@@ -49,19 +49,19 @@ simulation](http://hclwizard.org:3000/cvdemulator).
 
 The three main types of CVD
 
--   Deuteranope : This is the most common type of CVD, also know as
-    “red-green color blindness”
--   Protanope : Less common than Deuteranope, described as mutated red
-    pigment and less ability to discriminate colors
--   Tritanope : Relatively Rare, also known as “blue-yellow color
-    blindness”
+- Deuteranope : This is the most common type of CVD, also know as
+  “red-green color blindness”
+- Protanope : Less common than Deuteranope, described as mutated red
+  pigment and less ability to discriminate colors
+- Tritanope : Relatively Rare, also known as “blue-yellow color
+  blindness”
 
 #### microshades_cvd_palettes
 
 The microshades_cvd_palettes contain colors that are universally CVD
 friendly.
 
-<img src="man/figures/microshades_cvd_palettes_cvd.png" style="display: block; margin: auto;" />
+<img src="man/figures/microshades_cvd_palettes_cvd.png" width="1048" style="display: block; margin: auto;" />
 
 #### microshades_palettes
 
@@ -70,7 +70,7 @@ microshades_palette combinations are universially CVD friendly. When
 using multiple microshades_palettes carefully consider color palette
 choices, since they may not be universally accessible.
 
-<img src="man/figures/microshades_palettes_cvd.png" style="display: block; margin: auto;" />
+<img src="man/figures/microshades_palettes_cvd.png" width="1051" style="display: block; margin: auto;" />
 
 To learn more about the different functions and shades in microshades,
 please visit the
@@ -89,12 +89,12 @@ data reviewers and consumers notice visual patterns and trends easier.
 For detailed tutorials on how to use microshades function with phyloseq
 objects, please review the vignettes provided:
 
--   [Global
-    Patterns](https://karstenslab.github.io/microshades/articles/microshades-GP.html)
--   [Human Microbiome
-    Project](https://karstenslab.github.io/microshades/articles/microshades-HMP.html)
--   [Human Microbiome Project
-    2](https://karstenslab.github.io/microshades/articles/microshades-HMP2.html)
+- [Global
+  Patterns](https://karstenslab.github.io/microshades/articles/microshades-GP.html)
+- [Human Microbiome
+  Project](https://karstenslab.github.io/microshades/articles/microshades-HMP.html)
+- [Human Microbiome Project
+  2](https://karstenslab.github.io/microshades/articles/microshades-HMP2.html)
 
 Below is an example of a plot generated with microshades on Curated
 Metagenomic Data of the Human Microbiome. On the left is the original
@@ -102,7 +102,7 @@ stacked barplot made using phyloseq. On the right are two barplot of the
 same data, with microshades palettes and functions applied. microshades
 uses coloring to correspond with taxonomic group and subgroup levels.
 
-<img src="man/figures/plot_CMD.png" style="display: block; margin: auto;" />
+<img src="man/figures/plot_CMD.png" width="916" style="display: block; margin: auto;" />
 
 In this example, the phylum and genus information are explored. Darker
 shades indicate the most abundant genera for each phylum, and lighter
@@ -119,10 +119,10 @@ Users can apply a microshades palette color to a plot using
 Please refer to the following examples with microshades on
 non-microbiome:
 
--   [Palmer Penguins Data
-    Vignette](https://karstenslab.github.io/microshades/articles/non-microbiome_data.html)
--   [Titanic
-    Data](https://karstenslab.github.io/microshades/articles/titanic_data_example.html)
+- [Palmer Penguins Data
+  Vignette](https://karstenslab.github.io/microshades/articles/non-microbiome_data.html)
+- [Titanic
+  Data](https://karstenslab.github.io/microshades/articles/titanic_data_example.html)
 
 The example below uses the palmerpenguins dataset to show how to apply
 the color palettes to non-microbiome data. This first plot contains the
@@ -131,4 +131,4 @@ uses microshades colors for a combination variable of penguin species
 and year of data collection. This organization can help data reviewers
 notice trends easier with more variables visible in the data.
 
-<img src="man/figures/penguin_example.png" style="display: block; margin: auto;" />
+<img src="man/figures/penguin_example.png" width="1958" style="display: block; margin: auto;" />

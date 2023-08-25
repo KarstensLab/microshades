@@ -4,12 +4,21 @@
 \alias{prep_mdf}
 \title{Prepare melted phyloseq object to map colors to}
 \usage{
-prep_mdf(ps, subgroup_level = "Genus")
+prep_mdf(
+  ps,
+  subgroup_level = "Genus",
+  as_relative_abundance = TRUE,
+  remove_na = FALSE
+)
 }
 \arguments{
 \item{ps}{phyloseq-class object}
 
 \item{subgroup_level}{string of smaller taxonomic group}
+
+\item{as_relative_abundance}{transform counts to relative abundance}
+
+\item{remove_na}{remove NA values during taxa agglomeration}
 }
 \value{
 data.frame, a melted phyloseq object from \code{psmelt()}

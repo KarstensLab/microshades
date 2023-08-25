@@ -24,7 +24,7 @@ groups a specific color"><!-- mathjax --><script src="https://cdnjs.cloudflare.c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">microshades</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.11</span>
       </span>
     </div>
 
@@ -49,6 +49,9 @@ groups a specific color"><!-- mathjax --><script src="https://cdnjs.cloudflare.c
     </li>
     <li>
       <a href="../articles/non-microbiome_data.html">Palmer Penguins Data Example</a>
+    </li>
+    <li>
+      <a href="../articles/remove_na_option.html">Remove NA Option</a>
     </li>
     <li>
       <a href="../articles/titanic_data_example.html">Titanic Data Example</a>
@@ -83,41 +86,50 @@ groups a specific color</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">color_reassign</span><span class="op">(</span><span class="va">cdf</span>, <span class="va">group_assignment</span>, <span class="va">color_assignment</span>, group_level <span class="op">=</span> <span class="st">"Phylum"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">color_reassign</span><span class="op">(</span><span class="va">cdf</span>, <span class="va">group_assignment</span>, <span class="va">color_assignment</span>, group_level <span class="op">=</span> <span class="st">"Phylum"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>cdf</dt>
 <dd><p>data.frame containing the color key</p></dd>
+
+
 <dt>group_assignment</dt>
 <dd><p>string vector of taxonomic groups</p></dd>
+
+
 <dt>color_assignment</dt>
 <dd><p>sting vector of corresponding color assignment</p></dd>
+
+
 <dt>group_level</dt>
 <dd><p>string indiating the taxonomic level of group_assignment</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>cdf data.frame</p>
+    
+
+<p>cdf data.frame</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.plos.org/10.1371/journal.pone.0061217" class="external-link">phyloseq</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">mdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">color_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="create_color_dfs.html">create_color_dfs</a></span><span class="op">(</span><span class="va">mdf</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">mdf_group</span> <span class="op">&lt;-</span> <span class="va">color_obj</span><span class="op">$</span><span class="va">mdf</span></span>
-<span class="r-in"><span class="va">cdf</span> <span class="op">&lt;-</span> <span class="va">color_obj</span><span class="op">$</span><span class="va">cdf</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">new_cdf</span> <span class="op">&lt;-</span> <span class="fu">color_reassign</span><span class="op">(</span><span class="va">cdf</span>,</span>
-<span class="r-in">                          group_assignment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Firmicutes"</span>, <span class="st">"Actinobacteria"</span><span class="op">)</span>,</span>
-<span class="r-in">                          color_assignment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"micro_cvd_blue"</span>, <span class="st">"micro_cvd_purple"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.plos.org/10.1371/journal.pone.0061217" class="external-link">phyloseq</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">mdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">color_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="create_color_dfs.html">create_color_dfs</a></span><span class="op">(</span><span class="va">mdf</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">mdf_group</span> <span class="op">&lt;-</span> <span class="va">color_obj</span><span class="op">$</span><span class="va">mdf</span></span></span>
+<span class="r-in"><span><span class="va">cdf</span> <span class="op">&lt;-</span> <span class="va">color_obj</span><span class="op">$</span><span class="va">cdf</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">new_cdf</span> <span class="op">&lt;-</span> <span class="fu">color_reassign</span><span class="op">(</span><span class="va">cdf</span>,</span></span>
+<span class="r-in"><span>                          group_assignment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Firmicutes"</span>, <span class="st">"Actinobacteria"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                          color_assignment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"micro_cvd_blue"</span>, <span class="st">"micro_cvd_purple"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -132,8 +144,7 @@ groups a specific color</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

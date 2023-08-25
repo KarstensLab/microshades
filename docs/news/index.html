@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">microshades</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.11</span>
       </span>
     </div>
 
@@ -48,6 +48,9 @@
     </li>
     <li>
       <a href="../articles/non-microbiome_data.html">Palmer Penguins Data Example</a>
+    </li>
+    <li>
+      <a href="../articles/remove_na_option.html">Remove NA Option</a>
     </li>
     <li>
       <a href="../articles/titanic_data_example.html">Titanic Data Example</a>
@@ -76,9 +79,15 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="1.1000" id="microshades-11000">microshades 1.1000<a class="anchor" aria-label="anchor" href="#microshades-11000"></a></h2>
-<ul><li>Added a <code>NEWS.md</code> file to track changes to the
-package.</li>
+<h2 class="page-header" data-toc-text="1.10" id="microshades-110">microshades 1.10<a class="anchor" aria-label="anchor" href="#microshades-110"></a></h2>
+<ul><li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.11" id="microshades-111">microshades 1.11<a class="anchor" aria-label="anchor" href="#microshades-111"></a></h2>
+<ul><li>Major change: default behavior updated to NOT remove NAs during agglomeration step, see <a href="docs/articles/remove_na_option.html">Remove NA vignette</a>. To remove NAs / replicate figures generated with microshades 1.10 are earlier, use <code>remove_na = TRUE</code> in the <code>prep_mdf</code> function.</li>
+<li>Feature Added: Custom legends can now be displayed below the plot instead of along the right hand side. For details, see <a href="https://github.com/KarstensLab/microshades/issues/17" class="external-link">issue </a><a href="https://github.com/KarstensLab/microshades/issues/17" class="external-link">#17</a>
+</li>
+<li>Fixed minor issues detailed in <a href="https://github.com/KarstensLab/microshades/pull/23" class="external-link">pull request 23</a> -removing deprecated functions, updating dependencies, etc.</li>
 </ul></div>
   </div>
 
@@ -94,8 +103,7 @@ package.</li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

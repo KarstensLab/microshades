@@ -12,7 +12,8 @@ custom_legend(
   x = "Sample",
   y = "Abundance",
   legend_key_size = 0.4,
-  legend_text_size = 10
+  legend_text_size = 10,
+  legend_orientation = "vertical"
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ custom_legend(
 \item{legend_key_size}{numeric determines overall size of the legend keys}
 
 \item{legend_text_size}{integer determines size of legend text}
+
+\item{legend_orientation}{string determines vertical or horizontal orientation of legend}
 }
 \value{
 complete_legend ggplot

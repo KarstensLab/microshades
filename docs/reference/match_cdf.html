@@ -24,7 +24,7 @@ This can be useful if you want to make sure that different graphs have consisten
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">microshades</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.11</span>
       </span>
     </div>
 
@@ -49,6 +49,9 @@ This can be useful if you want to make sure that different graphs have consisten
     </li>
     <li>
       <a href="../articles/non-microbiome_data.html">Palmer Penguins Data Example</a>
+    </li>
+    <li>
+      <a href="../articles/remove_na_option.html">Remove NA Option</a>
     </li>
     <li>
       <a href="../articles/titanic_data_example.html">Titanic Data Example</a>
@@ -83,38 +86,49 @@ This can be useful if you want to make sure that different graphs have consisten
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">match_cdf</span><span class="op">(</span>
-  <span class="va">mdf</span>,
-  <span class="va">df_match</span>,
-  df_is_mdf <span class="op">=</span> <span class="cn">TRUE</span>,
-  group_level <span class="op">=</span> <span class="st">"Phylum"</span>,
-  subgroup_level <span class="op">=</span> <span class="st">"Genus"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">match_cdf</span><span class="op">(</span></span>
+<span>  <span class="va">mdf</span>,</span>
+<span>  <span class="va">df_match</span>,</span>
+<span>  df_is_mdf <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  group_level <span class="op">=</span> <span class="st">"Phylum"</span>,</span>
+<span>  subgroup_level <span class="op">=</span> <span class="st">"Genus"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>mdf</dt>
 <dd><p>data.frame, melted data frame to apply legend to</p></dd>
+
+
 <dt>df_match</dt>
 <dd><p>data.frame, data frame to use legend from</p></dd>
+
+
 <dt>df_is_mdf</dt>
 <dd><p>logical, true if df_match is a mdf, false if df_match is a cdf</p></dd>
+
+
 <dt>group_level</dt>
 <dd><p>string of larger taxonomic group</p></dd>
+
+
 <dt>subgroup_level</dt>
 <dd><p>string of smaller taxonomic group</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data.frame, melted df with ordered factor that are consistent with the legend</p>
+    
+
+<p>data.frame, melted df with ordered factor that are consistent with the legend</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">mdf_to_plot</span> <span class="op">&lt;-</span> <span class="fu">match_cdf</span><span class="op">(</span><span class="va">mdf</span>, <span class="va">df_match</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">mdf_to_plot</span> <span class="op">&lt;-</span> <span class="fu">match_cdf</span><span class="op">(</span><span class="va">mdf</span>, <span class="va">df_match</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in match_cdf(mdf, df_match):</span> object 'mdf' not found</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -129,8 +143,7 @@ This can be useful if you want to make sure that different graphs have consisten
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

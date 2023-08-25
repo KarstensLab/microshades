@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">microshades</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.11</span>
       </span>
     </div>
 
@@ -48,6 +48,9 @@
     </li>
     <li>
       <a href="../articles/non-microbiome_data.html">Palmer Penguins Data Example</a>
+    </li>
+    <li>
+      <a href="../articles/remove_na_option.html">Remove NA Option</a>
     </li>
     <li>
       <a href="../articles/titanic_data_example.html">Titanic Data Example</a>
@@ -81,7 +84,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="va">microshades_cvd_palettes</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">microshades_cvd_palettes</span></span></code></pre></div>
     </div>
 
     <div id="format">
@@ -91,7 +94,7 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">microshades_cvd_palettes</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">microshades_cvd_palettes</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $micro_cvd_gray</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "#F5F5F5" "#D6D6D6" "#B7B7B7" "#8B8B8B" "#616161"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -110,19 +113,19 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $micro_cvd_purple</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "#EFB6D6" "#E794C1" "#CC79A7" "#A1527F" "#7D3560"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="fu"><a href="microshades_palette.html">microshades_palette</a></span><span class="op">(</span><span class="st">"micro_cvd_gray"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="microshades_palette.html">microshades_palette</a></span><span class="op">(</span><span class="st">"micro_cvd_gray"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="microshades_cvd_palettes-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu"><a href="microshades_palette.html">microshades_palette</a></span><span class="op">(</span><span class="st">"micro_cvd_green"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="microshades_palette.html">microshades_palette</a></span><span class="op">(</span><span class="st">"micro_cvd_green"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="microshades_cvd_palettes-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu"><a href="microshades_palette.html">microshades_palette</a></span><span class="op">(</span><span class="st">"micro_cvd_orange"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="microshades_palette.html">microshades_palette</a></span><span class="op">(</span><span class="st">"micro_cvd_orange"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="microshades_cvd_palettes-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu"><a href="microshades_palette.html">microshades_palette</a></span><span class="op">(</span><span class="st">"micro_cvd_blue"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="microshades_palette.html">microshades_palette</a></span><span class="op">(</span><span class="st">"micro_cvd_blue"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="microshades_cvd_palettes-4.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu"><a href="microshades_palette.html">microshades_palette</a></span><span class="op">(</span><span class="st">"micro_cvd_turquoise"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="microshades_palette.html">microshades_palette</a></span><span class="op">(</span><span class="st">"micro_cvd_turquoise"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="microshades_cvd_palettes-5.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu"><a href="microshades_palette.html">microshades_palette</a></span><span class="op">(</span><span class="st">"micro_cvd_purple"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="microshades_palette.html">microshades_palette</a></span><span class="op">(</span><span class="st">"micro_cvd_purple"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="microshades_cvd_palettes-6.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -137,8 +140,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

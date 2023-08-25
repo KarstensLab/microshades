@@ -6,8 +6,7 @@
 \usage{
 create_color_dfs(
   mdf,
-  selected_groups = c("Proteobacteria", "Actinobacteria", "Bacteroidetes",
-    "Firmicutes"),
+  selected_groups = c("Proteobacteria", "Actinobacteria", "Bacteroidetes", "Firmicutes"),
   top_n_subgroups = 4,
   group_level = "Phylum",
   subgroup_level = "Genus",

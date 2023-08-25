@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">microshades</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.11</span>
       </span>
     </div>
 
@@ -48,6 +48,9 @@
     </li>
     <li>
       <a href="../articles/non-microbiome_data.html">Palmer Penguins Data Example</a>
+    </li>
+    <li>
+      <a href="../articles/remove_na_option.html">Remove NA Option</a>
     </li>
     <li>
       <a href="../articles/titanic_data_example.html">Titanic Data Example</a>
@@ -81,28 +84,33 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">default_hex</span><span class="op">(</span>n_groups <span class="op">=</span> <span class="fl">5</span>, cvd <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">default_hex</span><span class="op">(</span>n_groups <span class="op">=</span> <span class="fl">5</span>, cvd <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>n_groups</dt>
 <dd><p>integer of number of selected groups</p></dd>
+
+
 <dt>cvd</dt>
 <dd><p>logical Color Vision Deficent Friendly palette useage</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data.frame</p>
+    
+
+<p>data.frame</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Get hex codes for 5 groups</span></span>
-<span class="r-in"><span class="va">hex_df</span> <span class="op">&lt;-</span> <span class="fu">default_hex</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Get hex codes for 3 groups with CVD palette</span></span>
-<span class="r-in"><span class="va">hex_df</span> <span class="op">&lt;-</span> <span class="fu">default_hex</span><span class="op">(</span><span class="fl">3</span>, <span class="cn">TRUE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get hex codes for 5 groups</span></span></span>
+<span class="r-in"><span><span class="va">hex_df</span> <span class="op">&lt;-</span> <span class="fu">default_hex</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Get hex codes for 3 groups with CVD palette</span></span></span>
+<span class="r-in"><span><span class="va">hex_df</span> <span class="op">&lt;-</span> <span class="fu">default_hex</span><span class="op">(</span><span class="fl">3</span>, <span class="cn">TRUE</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -117,8 +125,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

@@ -21,13 +21,13 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-The microshades R package is designed to provide custom color shading palettes that improve accessibility and data organization. Approximately 300 million people in the world have Color Vision Deficiency (CVD), which is comparable to the most recent estimate of the US population. When creating  figures and graphics that use color, it is important to consider that individuals with CVD will interact with this material, and may not perceive all of the information tied to the colors as intended. This package includes carefully crafted palettes that improve CVD accessibility and may be applied to any plot. Additionally, there are functions to apply microshades palettes to microbiome data in a color-oriented orginazation. 
+The microshades R package is designed to provide custom color shading palettes that improve accessibility and data organization. Approximately 300 million people in the world have Color Vision Deficiency (CVD), which is comparable to the most recent estimate of the US population. When creating  figures and graphics that use color, it is important to consider that individuals with CVD will interact with this material, and may not perceive all of the information tied to the colors as intended. This package includes carefully crafted palettes that improve CVD accessibility and may be applied to any plot. Additionally, there are functions to apply microshades palettes to microbiome data in a color-oriented organization. 
 
 
 ## Installation
 
 ``` r
-remotes::install_github("KarstensLab/microshades")
+remotes::install_github("KarstensLab/microshades", dependencies = TRUE)
 ```
 
 If you plan to use microshades with microbiome data, you may need to install packages such as  [phyloseq](https://joey711.github.io/phyloseq/index.html) or [speedyseq](https://mikemc.github.io/speedyseq).
@@ -46,7 +46,7 @@ knitr::include_graphics("man/figures/microshades_all.png")
 
 ### CVD Visualization
 
-The palettes above provide accesibilty to individuals with CVD. Below are visualizations of the palettes under a [CVD simulation](http://hclwizard.org:3000/cvdemulator). 
+The palettes above provide accessibility to individuals with CVD. Below are visualizations of the palettes under a [CVD simulation](http://hclwizard.org:3000/cvdemulator). 
 
 
 

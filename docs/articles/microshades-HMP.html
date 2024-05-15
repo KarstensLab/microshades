@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Human Microbiome Project • microshades</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">microshades</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12</span>
       </span>
     </div>
 
@@ -63,6 +63,9 @@
     </li>
     <li>
       <a href="../articles/microshades-HMP2.html">Human Microbiome Project 2</a>
+    </li>
+    <li>
+      <a href="../articles/microshades-legend_customization.html">Legend Customization</a>
     </li>
     <li>
       <a href="../articles/non-microbiome_data.html">Palmer Penguins Data Example</a>
@@ -102,7 +105,7 @@
       <h1 data-toc-skip>Human Microbiome Project</h1>
                         <h4 data-toc-skip class="author">Erin Dahl</h4>
             
-            <h4 data-toc-skip class="date">August 25, 2023</h4>
+            <h4 data-toc-skip class="date">May 15, 2024</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KarstensLab/microshades/blob/HEAD/vignettes/microshades-HMP.Rmd" class="external-link"><code>vignettes/microshades-HMP.Rmd</code></a></small>
       <div class="hidden name"><code>microshades-HMP.Rmd</code></div>
@@ -147,10 +150,9 @@ using phyloseq functions <code><a href="https://rdrr.io/pkg/phyloseq/man/tax_glo
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/HMP16SData/man/V13.html" class="external-link">V13</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span>select <span class="op">=</span> <span class="va">HMP_BODY_SUBSITE</span> <span class="op">==</span> <span class="st">"Stool"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span>select <span class="op">=</span> <span class="va">SEX</span> <span class="op">==</span> <span class="st">"Male"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## snapshotDate(): 2022-04-26</span></span></code></pre>
 <pre><code><span><span class="co">## see ?HMP16SData and browseVignettes('HMP16SData') for documentation</span></span></code></pre>
 <pre><code><span><span class="co">## loading from cache</span></span></code></pre>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ps_v1v3_stool</span> <span class="op">&lt;-</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/HMP16SData/man/as_phyloseq.html" class="external-link">as_phyloseq</a></span><span class="op">(</span><span class="va">v1v3_stool</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -159,7 +161,7 @@ using phyloseq functions <code><a href="https://rdrr.io/pkg/phyloseq/man/tax_glo
 </h3>
 <p>Begin using microshades functions to evaluate abundance and apply
 advanced color organization at the Phylum Family level.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Use microshades function prep_mdf to agglomerate, normalize, and melt the phyloseq object</span></span>
 <span><span class="va">mdf_prep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prep_mdf.html">prep_mdf</a></span><span class="op">(</span><span class="va">ps_v1v3_stool</span>, subgroup_level <span class="op">=</span> <span class="st">"FAMILY"</span><span class="op">)</span></span>
 <span></span>
@@ -181,7 +183,7 @@ color mapping information used for plotting.</p>
 subgroup taxonomy. The darkest shade is the most abundant, and the
 lightest shade is the least abundant. (excluding the “other” subgroup
 from each of the selected groups)</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_microshades.html">plot_microshades</a></span><span class="op">(</span><span class="va">mdf_v1v3_stool</span>, <span class="va">cdf_v1v3_stool</span>, group_label <span class="op">=</span> <span class="st">"Phylum Family"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">plot_1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html" class="external-link">percent</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html" class="external-link">expansion</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -204,7 +206,7 @@ trends.</p>
 <div class="section level4">
 <h4 id="reorder-the-samples-by-bacteroidaceae-abundance">Reorder the samples by Bacteroidaceae Abundance<a class="anchor" aria-label="anchor" href="#reorder-the-samples-by-bacteroidaceae-abundance"></a>
 </h4>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># reorder_samples_by will change the order of samples based on an abundance of a specified subgroup taxonomy</span></span>
 <span><span class="va">new_sample_order_v1v3_stool</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reorder_samples_by.html">reorder_samples_by</a></span><span class="op">(</span><span class="va">mdf_v1v3_stool</span>, <span class="va">cdf_v1v3_stool</span>, order <span class="op">=</span> <span class="st">"Bacteroidaceae"</span>, group_level <span class="op">=</span> <span class="st">"PHYLUM"</span>, subgroup_level <span class="op">=</span> <span class="st">"FAMILY"</span>, sink_abundant_groups <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
@@ -221,7 +223,7 @@ trends.</p>
 <div class="section level4">
 <h4 id="reorder-by-abundance-of-group-levels-only">Reorder by Abundance of Group levels Only<a class="anchor" aria-label="anchor" href="#reorder-by-abundance-of-group-levels-only"></a>
 </h4>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># reorder_samples_by will change the order of samples based on an abundance of a specified subgroup taxonomy</span></span>
 <span><span class="co"># The default subgroup_level is "Genus" </span></span>
 <span><span class="va">new_group_order_v1v3_stool</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reorder_samples_by.html">reorder_samples_by</a></span><span class="op">(</span><span class="va">mdf_v1v3_stool</span>, <span class="va">cdf_v1v3_stool</span>, group_level <span class="op">=</span> <span class="st">"PHYLUM"</span>, subgroup_level <span class="op">=</span> <span class="st">"FAMILY"</span>, sink_abundant_groups <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -239,7 +241,7 @@ trends.</p>
 <div class="section level4">
 <h4 id="reorder-by-both-samples-and-abundance-of-group-levels">Reorder by both Samples and Abundance of Group levels<a class="anchor" aria-label="anchor" href="#reorder-by-both-samples-and-abundance-of-group-levels"></a>
 </h4>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># reorder_samples_by will change the order of samples based on Family an abundance of "Bacteroidaceae" and reorder the Phylum to sink the most abundant groups</span></span>
 <span><span class="va">reordered_v1v3_stool</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reorder_samples_by.html">reorder_samples_by</a></span><span class="op">(</span><span class="va">mdf_v1v3_stool</span>, <span class="va">cdf_v1v3_stool</span>, order <span class="op">=</span> <span class="st">"Bacteroidaceae"</span>, group_level <span class="op">=</span> <span class="st">"PHYLUM"</span>, subgroup_level <span class="op">=</span> <span class="st">"FAMILY"</span>, sink_abundant_groups <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -274,7 +276,7 @@ trends.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer>

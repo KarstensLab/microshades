@@ -16,12 +16,12 @@ may not perceive all of the information tied to the colors as intended.
 This package includes carefully crafted palettes that improve CVD
 accessibility and may be applied to any plot. Additionally, there are
 functions to apply microshades palettes to microbiome data in a
-color-oriented orginazation.
+color-oriented organization.
 
 ## Installation
 
 ``` r
-remotes::install_github("KarstensLab/microshades", dependencies=TRUE)
+remotes::install_github("KarstensLab/microshades", dependencies = TRUE)
 ```
 
 If you plan to use microshades with microbiome data, you may need to
@@ -43,7 +43,7 @@ colors per palette type that can be directly applied to any plot.
 
 ### CVD Visualization
 
-The palettes above provide accesibilty to individuals with CVD. Below
+The palettes above provide accessibility to individuals with CVD. Below
 are visualizations of the palettes under a [CVD
 simulation](http://hclwizard.org:3000/cvdemulator).
 

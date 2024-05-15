@@ -1,5 +1,5 @@
 ---
-title: "Creating custom legends with microshades"
+title: "Legend Customization"
 author: "Christina Turner, Anagha Shenoy, Lisa Karstens"
 date: '`r format(Sys.Date(), "%B %e, %Y")`'
 output: rmarkdown::html_document

@@ -114,7 +114,8 @@ To ensure that all elements of the custom legend are visible, adjust `legend_key
 
 Use `plot_grid` from the cowplot package to plot the custom legend with the visualization.
 
-To follow a detailed tutorial on how to use the `custom_legend` function, see the [custom legend vignette](https://karstenslab.github.io/microshades/articles/microshades-custom_legend.html).
+To follow a detailed tutorial on how to use the `custom_legend` function, see the [custom legend vignette](https://karstenslab.github.io/microshades/articles/microshades-legend_customization.html).
+
 
 ```{r fig.width= 9, fig.height= 5}
 

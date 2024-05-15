@@ -19,12 +19,12 @@ Imports:
   tidyr (>= 1.1.0),
   purrr,
   forcats,
+  cowplot,
   tidyselect
 Suggests:
   phyloseq,
   speedyseq,
   ggplot2 (>= 3.3.2),
-  cowplot,
   knitr,
   rmarkdown,
   testthat (>= 3.0.0)

@@ -153,7 +153,7 @@ plot_contributions <- function(mdf, cdf,  col_name, data_match, short_name = NUL
     theme(legend.position = "none")
 
   # Median Barplot
-  top_drivers_median_barplot <- ggplot(cluster_subset_barplot, aes(x = .data[[short_name]], y = .data[["mean_abundance"]], fill = .data[["group"]])) +
+  top_drivers_median_barplot <- ggplot(cluster_subset_barplot, aes(x = .data[[short_name]], y = .data[["median_abundance"]], fill = .data[["group"]])) +
     geom_bar(stat = "identity") +
     coord_flip() +
     ggtitle(paste(col_name, data_match, "(n =",n_samples,")")) +

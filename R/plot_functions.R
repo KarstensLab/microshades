@@ -101,14 +101,16 @@ plot_contributions <- function(mdf, cdf,  col_name, data_match, short_name = NUL
 
     # Aggregate the data, keep minimum info needed
     agg_subset <- cluster_subset  %>%
+      ungroup() %>%
       select( Sample, Abundance,  group) %>%
       group_by(Sample,  group) %>%
-      summarize(Abundance = sum(Abundance))
+      summarize(Abundance = sum(Abundance), .groups = "keep")
 
     cluster_subset_barplot <- agg_subset  %>%
+      ungroup() %>%
       select( Abundance, group) %>%
       group_by(group) %>%
-      summarize(mean_abundance = round(mean(Abundance),2), median_abundance = round(median(Abundance),2),  sd = sd(Abundance))
+      summarize(mean_abundance = round(mean(Abundance),2), median_abundance = round(median(Abundance),2),  sd = sd(Abundance), .groups = "keep")
 
     # assign the short name to be group
     short_name <- "group"
@@ -116,16 +118,18 @@ plot_contributions <- function(mdf, cdf,  col_name, data_match, short_name = NUL
   } else {
     # Aggregate the data, keep minimum info needed
     agg_subset <- cluster_subset  %>%
+      ungroup() %>%
       select( Sample, Abundance,  group, !!sym(short_name)) %>%
       group_by(Sample,  group,  !!sym(short_name)) %>%
-      summarize(Abundance = sum(Abundance))
+      summarize(Abundance = sum(Abundance), .groups = "keep")
 
     cluster_subset_barplot <- agg_subset  %>%
+      ungroup() %>%
       select( Abundance, group, !!sym(short_name)) %>%
       group_by(group, !!sym(short_name)) %>%
-      summarize(mean_abundance = mean(Abundance), median_abundance = median(Abundance), sd = sd(Abundance))
+      summarize(mean_abundance = mean(Abundance), median_abundance = median(Abundance), sd = sd(Abundance), .groups = "keep")
 
-    group_levels <- cluster_subset_barplot %>% select(group, !!sym(short_name)) %>% unique() %>% arrange(group)
+    group_levels <- cluster_subset_barplot %>% ungroup() %>% select(group, !!sym(short_name)) %>% unique() %>% arrange(group)
 
     cluster_subset_barplot[[short_name]] <- factor( cluster_subset_barplot[[short_name]], levels = group_levels[[short_name]])
   }
@@ -149,7 +153,7 @@ plot_contributions <- function(mdf, cdf,  col_name, data_match, short_name = NUL
     theme(legend.position = "none")
 
   # Median Barplot
-  top_drivers_median_barplot <- ggplot(cluster_subset_barplot, aes(x = .data[[short_name]], y = .data[["mean_abundance"]], fill = .data[["group"]])) +
+  top_drivers_median_barplot <- ggplot(cluster_subset_barplot, aes(x = .data[[short_name]], y = .data[["median_abundance"]], fill = .data[["group"]])) +
     geom_bar(stat = "identity") +
     coord_flip() +
     ggtitle(paste(col_name, data_match, "(n =",n_samples,")")) +

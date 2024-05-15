@@ -118,5 +118,5 @@ individual_legend <- function (mdf,
     theme(legend.title = element_text(face = "bold")) +
     theme(legend.key.size = unit(legend_key_size, "lines"), text=element_text(size=legend_text_size))
 
-  legend <- get_legend(select_plot)
+  legend <- get_plot_component(select_plot, 'guide-box-right', return_all = TRUE)
 }

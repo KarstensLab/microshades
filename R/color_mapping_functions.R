@@ -458,12 +458,13 @@ match_cdf <- function(mdf,
 #' This function will reorder the user selected subgroup taxa based on abundance, and can also
 #' reorder the stacked groups levels based on abundance, using `sink_abundant_groups`
 #'
-#' @param mdf_group data.frame, data frame containf microbiome data
+#' @param mdf_group data.frame, data frame containing microbiome data
 #' @param cdf data.frame containing the color key
 #' @param order string of subgroup to reorder by
 #' @param group_level string of larger taxonomic group
 #' @param subgroup_level string of smaller taxonomic group
 #' @param sample_variable sample variable to reorder (x- axis component for plot)
+#' @param sample_ordering list of samples in desired order for plotting
 #' @param sink_abundant_groups logical reorder the phylum groups so the most abundant is the bottom group
 #'
 #' @import dplyr
@@ -490,13 +491,14 @@ match_cdf <- function(mdf,
 #' cdf <- color_obj$cdf
 #'
 #' mdf_new <- reorder_samples_by(mdf_group, cdf)
-#' mdf_new <- reorder_samples_by(mdf_group, cdf, order = "Bacteroides")
+#' mdf_new <- reorder_samples_by(mdf_group, cdf, order_tax = "Bacteroides")
 reorder_samples_by <- function (mdf_group,
                                 cdf,
                                 order_tax = "NA",
                                 group_level = "Phylum",
                                 subgroup_level = "Genus",
                                 sample_variable = "Sample",
+                                sample_ordering = NA,
                                 sink_abundant_groups = TRUE)
 {
   if (class(mdf_group) != "data.frame")
@@ -536,7 +538,7 @@ reorder_samples_by <- function (mdf_group,
     stop("variable 'order_tax' does not exist in the dataset")
   }
 
-  if( sink_abundant_groups)
+  if(sink_abundant_groups)
   {
     # reorder Top group
     reorder_groups <- mdf_group %>% group_by(!!sym(col_name_group))  %>%
@@ -585,6 +587,17 @@ reorder_samples_by <- function (mdf_group,
     sample_order <- c(new_order[[sample_variable]], samples_no_subgroup)
 
     mdf_group[[sample_variable]] <- factor(mdf_group[[sample_variable]], sample_order)
+  }
+  
+  if (!(length(sample_ordering)==1 && is.na(sample_ordering))) {
+    unique_sample_levels <- as.character(unique(mdf_group[[sample_variable]]))
+    if (length(sample_ordering) != length(unique_sample_levels)) {
+      warning("Some samples were dropped. Check sample_ordering list.")
+      mdf_group <- mdf_group %>% filter(get(sample_variable) %in% sample_ordering)
+    } else if (!identical(sort(sample_ordering), sort(unique_sample_levels))) {
+      stop("Ensure sample_ordering list is composed of existing samples.")
+    }
+    mdf_group[[sample_variable]] <- factor(mdf_group[[sample_variable]], sample_ordering)
   }
 
 

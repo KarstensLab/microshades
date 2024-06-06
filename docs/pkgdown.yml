@@ -2,12 +2,13 @@ pandoc: 3.1.13
 pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
+  microshades-custom_legend: microshades-custom_legend.html
   microshades-GP: microshades-GP.html
   microshades-HMP: microshades-HMP.html
-  microshades-HMP2: microshades-HMP2.html
   microshades-legend_customization: microshades-legend_customization.html
+  microshades-sample_reordering: microshades-sample_reordering.html
   non-microbiome_data: non-microbiome_data.html
   remove_na_option: remove_na_option.html
   titanic_data_example: titanic_data_example.html
-last_built: 2024-05-15T22:21Z
+last_built: 2024-06-06T23:24Z
 

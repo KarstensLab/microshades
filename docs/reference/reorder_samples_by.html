@@ -24,7 +24,7 @@ reorder the stacked groups levels based on abundance, using sink_abundant_groups
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">microshades</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.13</span>
       </span>
     </div>
 
@@ -39,16 +39,19 @@ reorder the stacked groups levels based on abundance, using sink_abundant_groups
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/microshades-custom_legend.html">Creating custom legends with microshades</a>
+    </li>
+    <li>
       <a href="../articles/microshades-GP.html">Global Patterns Data</a>
     </li>
     <li>
       <a href="../articles/microshades-HMP.html">Human Microbiome Project</a>
     </li>
     <li>
-      <a href="../articles/microshades-HMP2.html">Human Microbiome Project 2</a>
+      <a href="../articles/microshades-legend_customization.html">Legend Customization</a>
     </li>
     <li>
-      <a href="../articles/microshades-legend_customization.html">Legend Customization</a>
+      <a href="../articles/microshades-sample_reordering.html">Sample Reordering</a>
     </li>
     <li>
       <a href="../articles/non-microbiome_data.html">Palmer Penguins Data Example</a>
@@ -96,6 +99,7 @@ reorder the stacked groups levels based on abundance, using <code>sink_abundant_
 <span>  group_level <span class="op">=</span> <span class="st">"Phylum"</span>,</span>
 <span>  subgroup_level <span class="op">=</span> <span class="st">"Genus"</span>,</span>
 <span>  sample_variable <span class="op">=</span> <span class="st">"Sample"</span>,</span>
+<span>  sample_ordering <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  sink_abundant_groups <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -103,7 +107,7 @@ reorder the stacked groups levels based on abundance, using <code>sink_abundant_
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>mdf_group</dt>
-<dd><p>data.frame, data frame containf microbiome data</p></dd>
+<dd><p>data.frame, data frame containing microbiome data</p></dd>
 
 
 <dt>cdf</dt>
@@ -120,6 +124,10 @@ reorder the stacked groups levels based on abundance, using <code>sink_abundant_
 
 <dt>sample_variable</dt>
 <dd><p>sample variable to reorder (x- axis component for plot)</p></dd>
+
+
+<dt>sample_ordering</dt>
+<dd><p>list of samples in desired order for plotting</p></dd>
 
 
 <dt>sink_abundant_groups</dt>
@@ -151,7 +159,7 @@ reorder the stacked groups levels based on abundance, using <code>sink_abundant_
 <span class="r-in"><span><span class="va">cdf</span> <span class="op">&lt;-</span> <span class="va">color_obj</span><span class="op">$</span><span class="va">cdf</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">mdf_new</span> <span class="op">&lt;-</span> <span class="fu">reorder_samples_by</span><span class="op">(</span><span class="va">mdf_group</span>, <span class="va">cdf</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">mdf_new</span> <span class="op">&lt;-</span> <span class="fu">reorder_samples_by</span><span class="op">(</span><span class="va">mdf_group</span>, <span class="va">cdf</span>, order <span class="op">=</span> <span class="st">"Bacteroides"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mdf_new</span> <span class="op">&lt;-</span> <span class="fu">reorder_samples_by</span><span class="op">(</span><span class="va">mdf_group</span>, <span class="va">cdf</span>, order_tax <span class="op">=</span> <span class="st">"Bacteroides"</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>

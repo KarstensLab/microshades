@@ -15,3 +15,11 @@
 * Resolved warnings from dplyr and cowplot
 * Fixed median barplot in plot_contributions
 * Added dependencies = TRUE in install instructions  
+
+# microshades 1.13
+
+* Minor change: Added functionality to reorder_samples_by to allow a user to pass in a list to reorder samples
+* Updated Human Microbiome Project 2 vignette to demonstrate changes to reorder_samples_by 
+* Renamed Human Microbiome Project 2 vignette to Sample Reordering for clarity to users
+
+

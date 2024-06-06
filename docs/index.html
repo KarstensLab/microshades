@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">microshades</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.13</span>
       </span>
     </div>
 
@@ -56,16 +56,19 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="articles/microshades-custom_legend.html">Creating custom legends with microshades</a>
+    </li>
+    <li>
       <a href="articles/microshades-GP.html">Global Patterns Data</a>
     </li>
     <li>
       <a href="articles/microshades-HMP.html">Human Microbiome Project</a>
     </li>
     <li>
-      <a href="articles/microshades-HMP2.html">Human Microbiome Project 2</a>
+      <a href="articles/microshades-legend_customization.html">Legend Customization</a>
     </li>
     <li>
-      <a href="articles/microshades-legend_customization.html">Legend Customization</a>
+      <a href="articles/microshades-sample_reordering.html">Sample Reordering</a>
     </li>
     <li>
       <a href="articles/non-microbiome_data.html">Palmer Penguins Data Example</a>
@@ -146,14 +149,16 @@
 </div>
 </div>
 <div class="section level2">
-<h2 id="phyloseq-combatibility">Phyloseq Combatibility<a class="anchor" aria-label="anchor" href="#phyloseq-combatibility"></a>
+<h2 id="phyloseq-compatibility">Phyloseq Compatibility<a class="anchor" aria-label="anchor" href="#phyloseq-compatibility"></a>
 </h2>
 <p>In addition to color palettes, this package can also be used in conjunction with the R package phyloseq to enhance microbiome data visualization. The microshades functions create stacked bar plots from phyloseq objects, color organized by a data-driven hierarchy. The accessibility and advanced color organization features described help data reviewers and consumers notice visual patterns and trends easier.</p>
 <p>For detailed tutorials on how to use microshades function with phyloseq objects, please review the vignettes provided:</p>
 <ul>
 <li><a href="https://karstenslab.github.io/microshades/articles/microshades-GP.html" class="external-link">Global Patterns</a></li>
 <li><a href="https://karstenslab.github.io/microshades/articles/microshades-HMP.html" class="external-link">Human Microbiome Project</a></li>
-<li><a href="https://karstenslab.github.io/microshades/articles/microshades-HMP2.html" class="external-link">Human Microbiome Project 2</a></li>
+<li><a href="https://karstenslab.github.io/microshades/articles/microshades-sample_reordering.html" class="external-link">Sample Reordering</a></li>
+<li><a href="https://karstenslab.github.io/microshades/articles/microshades-legend_customization.html" class="external-link">Legend Customization</a></li>
+<li><a href="https://karstenslab.github.io/microshades/articles/remove_na_option.html" class="external-link">Remove NA Option</a></li>
 </ul>
 <p>Below is an example of a plot generated with microshades on Curated Metagenomic Data of the Human Microbiome. On the left is the original stacked barplot made using phyloseq. On the right are two barplot of the same data, with microshades palettes and functions applied. microshades uses coloring to correspond with taxonomic group and subgroup levels.</p>
 <p><img src="reference/figures/plot_CMD.png" width="916" style="display: block; margin: auto;"></p>

@@ -11,11 +11,12 @@ reorder_samples_by(
   group_level = "Phylum",
   subgroup_level = "Genus",
   sample_variable = "Sample",
+  sample_ordering = NA,
   sink_abundant_groups = TRUE
 )
 }
 \arguments{
-\item{mdf_group}{data.frame, data frame containf microbiome data}
+\item{mdf_group}{data.frame, data frame containing microbiome data}
 
 \item{cdf}{data.frame containing the color key}
 
@@ -24,6 +25,8 @@ reorder_samples_by(
 \item{subgroup_level}{string of smaller taxonomic group}
 
 \item{sample_variable}{sample variable to reorder (x- axis component for plot)}
+
+\item{sample_ordering}{list of samples in desired order for plotting}
 
 \item{sink_abundant_groups}{logical reorder the phylum groups so the most abundant is the bottom group}
 
@@ -52,5 +55,5 @@ mdf_group <- color_obj$mdf
 cdf <- color_obj$cdf
 
 mdf_new <- reorder_samples_by(mdf_group, cdf)
-mdf_new <- reorder_samples_by(mdf_group, cdf, order = "Bacteroides")
+mdf_new <- reorder_samples_by(mdf_group, cdf, order_tax = "Bacteroides")
 }

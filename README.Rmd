@@ -76,7 +76,7 @@ knitr::include_graphics("man/figures/microshades_palettes_cvd.png")
 
 To learn more about the different functions and shades in microshades, please visit the [reference](https://KarstensLab.github.io/microshades/reference) section of our website.
 
-## Phyloseq Combatibility
+## Phyloseq Compatibility
 
 In addition to color palettes, this package can also be used in conjunction with the R package phyloseq to enhance microbiome data visualization. The microshades functions create stacked bar plots from phyloseq objects, color organized by a data-driven hierarchy. The accessibility and advanced color organization features described help data reviewers and consumers notice visual patterns and trends easier. 
 
@@ -84,7 +84,10 @@ For detailed tutorials on how to use microshades function with phyloseq objects,
 
 - [Global Patterns](https://karstenslab.github.io/microshades/articles/microshades-GP.html)
 - [Human Microbiome Project](https://karstenslab.github.io/microshades/articles/microshades-HMP.html)
-- [Human Microbiome Project 2](https://karstenslab.github.io/microshades/articles/microshades-HMP2.html)
+- [Sample Reordering](https://karstenslab.github.io/microshades/articles/microshades-sample_reordering.html)
+- [Legend Customization](https://karstenslab.github.io/microshades/articles/microshades-legend_customization.html)
+- [Remove NA Option](https://karstenslab.github.io/microshades/articles/remove_na_option.html)
+
 
 Below is an example of a plot generated with microshades on Curated Metagenomic Data of the Human Microbiome. On the left is the original stacked barplot made using phyloseq. On the right are two barplot of the same data, with microshades palettes and functions applied. microshades uses coloring to correspond with taxonomic group and subgroup levels. 
 

@@ -77,7 +77,7 @@ please visit the
 [reference](https://KarstensLab.github.io/microshades/reference) section
 of our website.
 
-## Phyloseq Combatibility
+## Phyloseq Compatibility
 
 In addition to color palettes, this package can also be used in
 conjunction with the R package phyloseq to enhance microbiome data
@@ -93,8 +93,12 @@ objects, please review the vignettes provided:
   Patterns](https://karstenslab.github.io/microshades/articles/microshades-GP.html)
 - [Human Microbiome
   Project](https://karstenslab.github.io/microshades/articles/microshades-HMP.html)
-- [Human Microbiome Project
-  2](https://karstenslab.github.io/microshades/articles/microshades-HMP2.html)
+- [Sample
+  Reordering](https://karstenslab.github.io/microshades/articles/microshades-sample_reordering.html)
+- [Legend
+  Customization](https://karstenslab.github.io/microshades/articles/microshades-legend_customization.html)
+- [Remove NA
+  Option](https://karstenslab.github.io/microshades/articles/remove_na_option.html)
 
 Below is an example of a plot generated with microshades on Curated
 Metagenomic Data of the Human Microbiome. On the left is the original
